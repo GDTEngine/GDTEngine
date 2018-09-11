@@ -32,6 +32,7 @@ private:
 #### Documenting
 Documentation will be generated through comments in the header files which means it is a part of the coding standard.
 * Every class, struct, enum, and member variable with a access specifier of public and protected must be documented.
+
 ```cpp
 class CSomeClass
 {
@@ -42,6 +43,19 @@ public:
     int doSomething(int param1, float param2);       
 }
 ```
+
+#### Header Files
+The header files should follow the below mentioned format:
+* Always use *'#pragma once'*, it is supported by all modern compilers.
+* Don't use #include guards (#ifndef ... #define ... #endif).
+* Avoid having function implementations in header files, prefer headers with declarations only, it allows to have less '#include's in headers.
+* Avoid using  #include in a header file that are not required (put all include needed in the .cpp instead).
+* Order of includes: Current project headers, other project headers, third party headers. After that, alphabetically by filename/filepath.
+* Use forward declarations if applicable to reduce compiletime, excluding third party.
+
+#### Source Files
+The source files should follow the below mentioned format:
+* Classes should not be split across multiple source files.
 
 #### Newlines
 Both .cpp and .hpp files must always end with a newline.
@@ -92,7 +106,7 @@ enum class EFoodType : uint32_t
 ```
 
 #### Function Name
-The name of a function should be in camelCase.
+The name of a function must be in camelCase.
 
 ```cpp
 // Good!
@@ -109,6 +123,44 @@ float health() const;
 
 // Bad! Missing auxiliary verb due to return type, not descriptive.
 bool dead() const;
+```
+
+#### Variable Naming Prefixes
+* *m_*: for members with access specifierer of private.
+* *p*: for pointer-like (raw and smart pointers)
+* *s*: for static variables.
+```cpp
+class CSomeClass
+{
+public:
+    // Good! However, in general do **not** make member variables public.
+    int someInteger;
+    
+    // Bad!
+    int m_someInteger;
+    
+private:
+    // Good!
+    float m_someFloat;
+    
+    // Good!
+    char* m_pName;
+    
+    // Bad!
+    float someFloat;
+    
+    // Bad!
+    char* m_name;
+}
+
+void CSomeClass::someMethod()
+{
+    // Good!
+    int someInteger = 3;
+    
+    // Good!
+    void* pSomePointer = nullptr;
+}
 ```
 
 ### A Final Note on C++ Coding Standard
