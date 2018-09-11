@@ -133,7 +133,7 @@ bool dead() const;
 class CSomeClass
 {
 public:
-    // Good! However, in general do **not** make member variables public.
+    // Good! However, in general do not make member variables public.
     int someInteger;
     
     // Bad!
