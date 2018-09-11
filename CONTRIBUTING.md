@@ -126,9 +126,9 @@ bool dead() const;
 ```
 
 #### Variable Naming Prefixes
-* *m_*: for members with access specifierer of private.
-* *p*: for pointer-like (raw and smart pointers)
-* *s*: for static variables.
+* **m_**: for members with access specifierer of private.
+* **p**: for pointer-like (raw and smart pointers)
+* **s**: for static variables.
 ```cpp
 class CSomeClass
 {
