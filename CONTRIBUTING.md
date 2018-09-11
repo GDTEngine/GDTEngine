@@ -79,7 +79,8 @@ struct SSomeStruct
 ```
 
 #### Enum Names
-Als
+The name of a enum should be in PascalCase, prefixed with the prefix **'E'**.
+* Enum values should by ordered alphabetically by name if no explicit reason not to do so.
 ```cpp
 enum class EFoodType : uint32_t
 {
