@@ -81,13 +81,34 @@ struct SSomeStruct
 #### Enum Names
 The name of a enum should be in PascalCase, prefixed with the prefix **'E'**.
 * Enum values should by ordered alphabetically by name if no explicit reason not to do so.
+
 ```cpp
 enum class EFoodType : uint32_t
 {
+    Beans,
     Cheese,
-    Meatballs,
-    Pasta,
+    Pasta
 };
+```
+
+#### Function Name
+The name of a function should be in camelCase.
+
+```cpp
+// Good!
+float getHealth() const;
+
+// Good!
+bool isDead() const;
+
+// Good!
+void setHealth(float health);
+
+// Bad! Missing verb, not descriptive.
+float health() const;
+
+// Bad! Missing auxiliary verb due to return type, not descriptive.
+bool dead() const;
 ```
 
 ### A Final Note on C++ Coding Standard
