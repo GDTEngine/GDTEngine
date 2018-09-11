@@ -9,25 +9,38 @@ All C++ class declarations should follow this basic layout:
 ```cpp
 class CSomeClass
 {
-    // Typedefs, enums and nested classes.
-    public:
-    protected:
-    private:
-    
-    // Methods, including constructors/destructor and operators.
-    public:
-    protected:
-    private:
-    
-    // Member variables.
-    public:
-    protected:
-    private:
+// Typedefs, enums and nested classes.
+public:
+protected:
+private:
+
+// Methods, including constructors/destructor and operators.
+public:
+protected:
+private:
+
+// Member variables.
+public:
+protected:
+private:
 };
 ```
 
+#### Documentation
+Documentation will be generated through comments in the header files which means it is a part of the coding standard.
+```cpp
+class CSomeClass
+{
+public:
+    /**
+     * Add a quick description. 
+     */
+    int doSomething(int param1, float param2);       
+}
+```
+
 #### Newlines
-Both .cpp and .hpp must always end with a newline.
+Both .cpp and .hpp files must always end with a newline.
 
 #### Spaces and Tabs
 * Tabs are not allowed, always use spaces.
