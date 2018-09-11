@@ -5,6 +5,9 @@
 This outlines the most important coding standards that are applicable to GDTEngine. The coding standards are enforced to maintain readability, consistency and easier maintenance.
 
 #### Layout of C++ Classes
+* Typedef, enums, nested classes, methods are first orderd by access specifiers then by name.
+* Member variables are first orderd by access specifiers, then the name of the type, and last the name.
+
 All C++ class declarations should follow this basic layout:
 ```cpp
 class CSomeClass
@@ -73,3 +76,8 @@ The name of a struct should be in PascalCase, prefixed with the prefix **'S'**.
 ```cpp
 struct CSomeStruct
 ```
+
+### A Final Note on C++ Coding Standard
+There are a lot of rules here and they might fright you a bit. But the reason is to cover as many cases as possible, so think of this a bit of a dictionary.
+
+Finally, if you stumble upon something in the c++ coding standard not specified here, please put out an Epic issue on that so we can addit into this document.
