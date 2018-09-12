@@ -167,6 +167,103 @@ void CSomeClass::someMethod()
 }
 ```
 
+### C++ Class Example
+
+#### Header File
+```cpp
+#pragma once
+
+#include "Core/BaseTypes.hpp"
+
+#include <glm.hpp>
+#include <string>
+
+namespace Graphics
+{
+    class CTexture final    // If no virtual desturctor please put final here.
+    {
+    public:
+        class enum EFormat : uint32
+        {
+            RGB = 3,
+            RGBA = 4
+        };
+        
+    public:
+        CTexture();
+        
+        CTexture(const CTexture& other);
+        
+        CTexture(const CTexture&& other);
+        
+        CTexture(EFormat format, int32 size);
+        
+        ~CTexture();
+        
+        void operator=(const CTexture& rhs);
+        
+        EFormat getFormat() const;
+        
+        glm::vec3 getPixelRGB(int x, int y) const;
+        
+        glm::vec4 getPixelRGBA(int x, int y) const;
+        
+        void loadFromFile(const std::string& filename, EFormat format);
+        
+        void setPixel(int x, int y, const glm::vec3& color);
+        
+        void setPixel(int x, int y, const glm::vec4& color);
+        
+    private:
+        EType m_format;
+        int32 m_size;
+        uchar* m_pTextureData;
+    }
+}
+// Do not forget to put a newline at the end of the file.
+```
+
+### Source File
+```cpp
+#include "Texture.hpp"
+
+using namespace Graphics;
+
+CTexture::CTexture()
+    : m_format(EFormat::RGB)
+    , m_size(0)
+    , m_pTextureData(nullptr)
+{
+}
+
+CTexture::CTexture(const CTexture& other)
+{
+    // Make a deep copy here.
+    m_format = other.m_format;
+    m_size = other.m_size;
+    m_pTextureData = new uchar[m_size * static_cast<int32>(m_format)];
+    memcpy(m_pTextureData, other.m_pTextureData, m_size * static_cast<int32>(m_format));
+}
+
+CTexture::CTexutre(const CTexture&& other)
+{
+    m_format = other.m_format;
+    m_size = other.m_size,
+    m_pTextureData = other.m_pTextureData;
+    other.m_size = 0;
+    other.m_pTextureData = nullptr;
+}
+
+CTexture::~CTexture()
+{
+    if (m_pTextureData)
+    {
+        delete[] m_pTextureData;
+    }
+}
+// Do not forget to put a newline at the end of the file.
+```
+
 ### A Final Note on C++ Coding Standard
 There are a lot of rules here and they might fright you a bit. But the reason is to cover as many cases as possible, so think of this a bit of a dictionary.
 
