@@ -265,6 +265,4 @@ CTexture::~CTexture()
 ```
 
 ### A Final Note on C++ Coding Standard
-There are a lot of rules here and they might fright you a bit. But the reason is to cover as many cases as possible, so think of this a bit of a dictionary.
-
-Finally, if you stumble upon something in the c++ coding standard not specified here, please put out an Epic issue on that so we can addit into this document.
+If you stumble upon something in the c++ coding standard not specified here, please put out an Epic issue on that so we can addit into this document.
