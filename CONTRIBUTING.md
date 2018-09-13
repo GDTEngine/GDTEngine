@@ -1,7 +1,6 @@
 # Contributing
 
 ## C++ Coding Standard
-
 This outlines the most important coding standards that are applicable to GDTEngine. The coding standards are enforced to maintain readability, consistency and easier maintenance.
 
 #### Layout of a C++ Classes
@@ -38,7 +37,21 @@ class CSomeClass
 {
 public:
     /**
-     * Add a quick description. 
+     * @breif Add a quick description.
+     * @param param1 The first param. 
+     * @param param2 The second param.
+     * @return Returns some integer.
+     *
+     * A more detailed description here if needed.
+     * Examples can be added.
+     * @code{.cpp}
+     * void CSomeClass::someMethod()
+     * {
+     *     // This is some random integer.
+     *     int someInt = doSomething(3, 0.5f);
+     * }
+     * @endcode
+     * More comments can be added here, and more examples.
      */
     int doSomething(int param1, float param2);       
 }
@@ -129,7 +142,7 @@ bool dead() const;
 * **m_**: for members with access specifierer of private.
 * **s**: for static variables.
 * **p**: for pointer-like (raw and smart pointers).
-
+* For booleans use auxiliary verbs such as was, can, is, must and so on.
 ```cpp
 class CSomeClass
 {
@@ -155,6 +168,12 @@ private:
     
     // Good!
     static char* m_spName;
+    
+    // Good!
+    bool isSwimming;
+    
+    // Bad!
+    bool swimming;
 }
 
 void CSomeClass::someMethod()
@@ -170,6 +189,8 @@ void CSomeClass::someMethod()
 ### C++ Class Example
 
 #### Header File
+The header file is named **Texture.hpp**.
+
 ```cpp
 #pragma once
 
@@ -214,6 +235,8 @@ namespace Graphics
 ```
 
 ### Source File
+The source file is named **Texture.cpp**.
+
 ```cpp
 #include "Texture.hpp"
 
