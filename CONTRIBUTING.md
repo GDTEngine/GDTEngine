@@ -254,6 +254,14 @@ CTexture::CTexutre(const CTexture&& other)
     other.m_pTextureData = nullptr;
 }
 
+
+CTexture::CTexture(EFormat format, int32 size)
+    : m_format(format)
+    , m_size(size)
+{
+    ...
+}
+
 CTexture::~CTexture()
 {
     if (m_pTextureData)
@@ -261,8 +269,43 @@ CTexture::~CTexture()
         delete[] m_pTextureData;
     }
 }
+
+void operator=(const CTexture& rhs)
+{
+    ...
+}
+
+EFormat CTexture::getFormat() const
+{
+    ...
+}
+
+glm::vec3 CTexture::getPixelRGB(int x, int y) const
+{
+    ...
+}
+
+glm::vec4 CTexture::getPixelRGBA(int x, int y) const
+{
+    ...
+}
+
+void CTexture::loadFromFile(const std::string& filename, EFormat format)
+{
+    ...
+}
+
+void CTexture::setPixel(int x, int y, const glm::vec3& color)
+{
+    ...
+}
+
+void CTexture::setPixel(int x, int y, const glm::vec4& color)
+{
+    ...
+}
 // Do not forget to put a newline at the end of the file.
 ```
 
 ### A Final Note on C++ Coding Standard
-If you stumble upon something in the c++ coding standard not specified here, please put out an Epic issue on that so we can addit into this document.
+If you stumble upon something in the c++ coding standard not specified here, please put out an Epic issue on that so we can add it into this document.
