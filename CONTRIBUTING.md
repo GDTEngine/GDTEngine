@@ -195,24 +195,14 @@ namespace Graphics
         CTexture(const CTexture& other);
         
         CTexture(const CTexture&& other);
-        
-        CTexture(EFormat format, int32 size);
-        
+                
         ~CTexture();
         
         void operator=(const CTexture& rhs);
         
         EFormat getFormat() const;
         
-        glm::vec3 getPixelRGB(int x, int y) const;
-        
-        glm::vec4 getPixelRGBA(int x, int y) const;
-        
         void loadFromFile(const std::string& filename, EFormat format);
-        
-        void setPixel(int x, int y, const glm::vec3& color);
-        
-        void setPixel(int x, int y, const glm::vec4& color);
         
     private:
         EType m_format;
@@ -254,14 +244,6 @@ CTexture::CTexutre(const CTexture&& other)
     other.m_pTextureData = nullptr;
 }
 
-
-CTexture::CTexture(EFormat format, int32 size)
-    : m_format(format)
-    , m_size(size)
-{
-    ...
-}
-
 CTexture::~CTexture()
 {
     if (m_pTextureData)
@@ -280,27 +262,7 @@ EFormat CTexture::getFormat() const
     ...
 }
 
-glm::vec3 CTexture::getPixelRGB(int x, int y) const
-{
-    ...
-}
-
-glm::vec4 CTexture::getPixelRGBA(int x, int y) const
-{
-    ...
-}
-
 void CTexture::loadFromFile(const std::string& filename, EFormat format)
-{
-    ...
-}
-
-void CTexture::setPixel(int x, int y, const glm::vec3& color)
-{
-    ...
-}
-
-void CTexture::setPixel(int x, int y, const glm::vec4& color)
 {
     ...
 }
