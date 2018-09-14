@@ -4,8 +4,8 @@ workspace "GDTEngine"
 	location "Generated"
 	language "C++"
     architecture "x86_64"
+    configurations { "Debug", "Release" }
     startproject "Engine"
-	configurations { "Debug", "Release" }
 	filter { "configurations:Debug" }
 		symbols "On"
 	
@@ -58,11 +58,21 @@ end
 
 -- Source --
 
+project "Core"
+    kind "None"
+    location "Source/Core"
+    files { "Source/Core/**.hpp", "Source/Core/**.inl", "Source/Core/**.cpp" }
+
+function includeCore()
+    includedirs "Source/Core"
+end
+
 project "Graphics"
     kind "StaticLib"
     location "Source/Graphics"
     files { "Source/Graphics/**.hpp", "Source/Graphics/**.inl", "Source/Graphics/**.cpp" }
 
+    includeCore()
     includeGLEW()
     includeGLFW()
 
@@ -91,6 +101,7 @@ project "Engine"
     location "Source/Engine"
     files { "Source/Engine/**.hpp", "Source/Engine/**.inl", "Source/Engine/**.cpp" }
 
+    includeCore()
     includeGraphics()
 
     linkGraphics()
