@@ -1,5 +1,7 @@
 #pragma once
 
+#include "BaseTypes.hpp"
+
 #include <GLEW/glew.h>
 #include <GLFW/glfw3.h>
 
