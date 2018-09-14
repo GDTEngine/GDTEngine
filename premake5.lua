@@ -3,7 +3,8 @@
 workspace "GDTEngine"
 	location "Generated"
 	language "C++"
-	architecture "x86_64"
+    architecture "x86_64"
+    startproject "Engine"
 	configurations { "Debug", "Release" }
 	filter { "configurations:Debug" }
 		symbols "On"
