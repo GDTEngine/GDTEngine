@@ -6,7 +6,7 @@ workspace "GDTEngine"
 	architecture "x86_64"
 	configurations { "Debug", "Release" }
 	filter { "configurations:Debug" }
-		flags { "Symbols" }
+		symbols "On"
 	
 	filter { "configurations:Release" }
 		optimize "On"
@@ -31,12 +31,13 @@ function linkGLFW()
     filter {}
 
 	filter { "kind:not StaticLib" }
-		links { "glfw3" }
+        links { "glfw3" }
+        
 	filter {}
 end
 
 function includeGLEW()
-	includedirs "ThirdParty/GLFW/Include"
+	includedirs "ThirdParty/GLEW/Include"
 end	
 
 function linkGLEW()
@@ -49,7 +50,8 @@ function linkGLEW()
     filter {}
 	
 	filter { "kind:not StaticLib" }
-		links { "glfw3" }
+        links { "glfw3" }
+        
 	filter {}
 end
 
@@ -62,7 +64,7 @@ project "Graphics"
     includeGLFW()
 
 function includeGraphics()
-    include "Source/Graphics/"
+    includedirs "Source/Graphics"
 end 
 
 function linkGraphics()
