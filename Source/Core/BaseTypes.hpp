@@ -1,16 +1,35 @@
 #pragma once
 
-#include <cstdint>
-
 typedef unsigned char uchar;
-typedef unsigned char byte;
+typedef signed char schar;
 
-typedef int8_t int8;
-typedef int16_t int16;
-typedef int32_t int32;
-typedef int64_t int64;
+typedef unsigned short ushort;
+typedef signed short sshort;
 
-typedef uint8_t uint8;
-typedef uint16_t uint16;
-typedef uint32_t uint32;
-typedef uint64_t uint64;
+typedef unsigned int uint;
+typedef signed int sint;
+
+typedef unsigned long ulong;
+typedef signed long slong;
+
+typedef unsigned long long ulonglong;
+typedef signed long long slonglong;
+
+typedef schar int8;
+typedef schar sint8;
+typedef uchar uint8;
+
+typedef sshort int16;
+typedef sshort sint16;
+typedef ushort uint16;
+
+typedef sint int32;
+typedef sint sint32;
+typedef uint uint32;
+
+typedef slonglong int64;
+typedef slonglong sint64;
+typedef ulonglong uint64;
+
+typedef float  f32;
+typedef double f64;

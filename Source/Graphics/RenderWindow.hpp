@@ -4,6 +4,7 @@
 
 #include <GLEW/glew.h>
 #include <GLFW/glfw3.h>
+#include <string>
 
 namespace gdt
 {
@@ -28,6 +29,8 @@ namespace gdt
          */
         CRenderWindow(const CRenderWindow&& other) noexcept;
 
+        CRenderWindow(const std::string& title, int32 width, int32 height);
+
         /**
          * @breif Destructor.
          */
@@ -38,7 +41,20 @@ namespace gdt
          */
         void operator=(const CRenderWindow& rhs) = delete;
 
-    private:
+        /**
+         * @breif Get the height of the window in pixels.
+         * @return Height of the window.
+         */
+        int32 getHeight() const;
 
+        /**
+         * @breif Get the width of the window in pixels.
+         * @return Width of the window.
+         */
+        int32 getWidth() const;
+
+    private:
+        int32 m_height;
+        int32 m_width;
     };
 }
