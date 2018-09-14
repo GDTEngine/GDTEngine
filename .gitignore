@@ -3,15 +3,15 @@
 */
 
 # Allow git files.
-!.gitignore
+!*.gitignore
 
 # Allow cpp.
-!.cpp
-!.hpp
-!.inl
+!*.cpp
+!*.hpp
+!*.inl
 
 # Allow lua.
-!.lua
+!*.lua
 
 # Allow other.
-!.md
+!*.md
