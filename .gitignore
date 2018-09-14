@@ -1,0 +1,17 @@
+# Ignore everything including subfolders.
+*
+*/
+
+# Allow git files.
+!.gitignore
+
+# Allow cpp.
+!.cpp
+!.hpp
+!.inl
+
+# Allow lua.
+!.lua
+
+# Allow other.
+!.md
