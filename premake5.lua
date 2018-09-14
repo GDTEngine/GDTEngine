@@ -22,8 +22,14 @@ function includeGLFW()
 end	
 
 function linkGLFW()
-	libdirs "ThirdParty/GLFW/Lib"
-	
+    filter { "system:windows", "architecture:x86_64", "configurations:Debug" }
+        libdirs "ThirdParty/GLFW/Lib/Win64/Debug"
+        
+    filter { "system:windows", "architecture:x86_64", "configurations:Release" }
+	    libdirs "ThirdParty/GLFW/Lib/Win64/Release"
+    
+    filter {}
+
 	filter { "kind:not StaticLib" }
 		links { "glfw3" }
 	filter {}
@@ -34,7 +40,13 @@ function includeGLEW()
 end	
 
 function linkGLEW()
-	libdirs "ThirdParty/GLFW/Lib"
+    filter { "system:windows", "architecture:x86_64", "configurations:Debug" }
+        libdirs "ThirdParty/GLEW/Lib/Win64/Debug"
+        
+    filter { "system:windows", "architecture:x86_64", "configurations:Release" }
+	    libdirs "ThirdParty/GLEW/Lib/Win64/Release"
+    
+    filter {}
 	
 	filter { "kind:not StaticLib" }
 		links { "glfw3" }
@@ -45,6 +57,7 @@ end
 
 project "Graphics"
     kind "StaticLib"
+    location "Source/Graphics"
     files "Source/Graphics/**"
     includeGLFW()
 
@@ -70,6 +83,7 @@ end
 
 project "Engine"
     kind "ConsoleApp"
+    location "Source/Engine"
     files "Source/Engine/**"
 
     includeGraphics()
