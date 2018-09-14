@@ -15,3 +15,4 @@
 
 # Allow other.
 !*.md
+!premake5.exe
