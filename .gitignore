@@ -1,6 +1,6 @@
 # Ignore everything including subfolders.
 *
-*/
+!*/
 
 # Allow git files.
 !*.gitignore
