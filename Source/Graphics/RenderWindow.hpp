@@ -1,23 +1,42 @@
 #pragma once
 
-/**
- * A window with an OpenGL context.
- */
-class CRenderWindow final
+#include <GLEW/glew.h>
+#include <GLFW/glfw3.h>
+
+namespace gdt
 {
-public:
     /**
-     * @breif Default constructor.
+     * A window with an OpenGL context.
      */
-    CRenderWindow();
+    class CRenderWindow final
+    {
+    public:
+        /**
+         * @breif Default constructor.
+         */
+        CRenderWindow();
 
-    /**
-     * @breif Copy constructor deleted.
-     */
-    CRenderWindow(const CRenderWindow& other) = delete;
+        /**
+         * @breif Copy constructor deleted.
+         */
+        CRenderWindow(const CRenderWindow& other) = delete;
 
-    /**
-     * @breif Destructor.
-     */
-    ~CRenderWindow();
-};
+        /**
+         * @breif Move constructor.
+         */
+        CRenderWindow(const CRenderWindow&& other) noexcept;
+
+        /**
+         * @breif Destructor.
+         */
+        ~CRenderWindow();
+
+        /**
+         * @breif Assignment operator deleted.
+         */
+        void operator=(const CRenderWindow& rhs) = delete;
+
+    private:
+
+    };
+}
