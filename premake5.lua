@@ -18,6 +18,25 @@ workspace "GDTEngine"
 
 -- Third Party --
 
+function includeGLEW()
+	includedirs "ThirdParty/GLEW/Include"
+end	
+
+function linkGLEW()
+    filter { "system:windows", "architecture:x86_64", "configurations:Debug" }
+        libdirs "ThirdParty/GLEW/Lib/Win64/Debug"
+        
+    filter { "system:windows", "architecture:x86_64", "configurations:Release" }
+	    libdirs "ThirdParty/GLEW/Lib/Win64/Release"
+    
+    filter {}
+	
+	filter { "kind:not StaticLib" }
+        links { "glew" }
+        
+	filter {}
+end
+
 function includeGLFW()
 	includedirs "ThirdParty/GLFW/Include"
 end	
@@ -37,31 +56,14 @@ function linkGLFW()
 	filter {}
 end
 
-function includeGLEW()
-	includedirs "ThirdParty/GLEW/Include"
-end	
-
-function linkGLEW()
-    filter { "system:windows", "architecture:x86_64", "configurations:Debug" }
-        libdirs "ThirdParty/GLEW/Lib/Win64/Debug"
-        
-    filter { "system:windows", "architecture:x86_64", "configurations:Release" }
-	    libdirs "ThirdParty/GLEW/Lib/Win64/Release"
-    
-    filter {}
-	
-	filter { "kind:not StaticLib" }
-        links { "glfw3" }
-        
-	filter {}
-end
-
 -- Source --
 
 project "Graphics"
     kind "StaticLib"
     location "Source/Graphics"
-    files "Source/Graphics/**"
+    files { "Source/Graphics/**.hpp", "Source/Graphics/**.inl", "Source/Graphics/**.cpp" }
+
+    includeGLEW()
     includeGLFW()
 
 function includeGraphics()
@@ -87,7 +89,7 @@ end
 project "Engine"
     kind "ConsoleApp"
     location "Source/Engine"
-    files "Source/Engine/**"
+    files { "Source/Engine/**.hpp", "Source/Engine/**.inl", "Source/Engine/**.cpp" }
 
     includeGraphics()
 
