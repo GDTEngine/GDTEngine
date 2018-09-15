@@ -32,7 +32,7 @@ function linkGLEW()
     filter {}
 	
 	filter { "kind:not StaticLib" }
-        links { "glew" }
+        links { "glews" }
         
 	filter {}
 end
