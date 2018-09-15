@@ -33,6 +33,7 @@ workspace "GDTEngine"
 -- Third Party --
 
 function includeGLEW()
+    defines { "GLEW_STATIC" }
 	includedirs "ThirdParty/GLEW/Include"
 end	
 
@@ -46,7 +47,7 @@ function linkGLEW()
     filter {}
 	
 	filter { "kind:not StaticLib" }
-        links { "glew32s" }
+        links { "glew32s", "opengl32" }
         
 	filter {}
 end
@@ -61,7 +62,7 @@ function linkGLFW()
         
     filter { "system:windows", "architecture:x86_64", "configurations:Release" }
 	    libdirs "ThirdParty/GLFW/Lib/Win64/Release"
-    
+
     filter {}
 
 	filter { "kind:not StaticLib" }
@@ -96,11 +97,11 @@ end
 
 function linkGraphics()
     filter { "kind:not StaticLib", "system:windows" }
-        links { "Graphics", "OpenGL32" }
+        links { "Graphics" }
     
     filter { "kind:not StaticLib", "system:not windows" }
-        links { "Graphics", "GL" }
-        
+        links { "Graphics" }
+
     filter {}
 
     includeGLEW()
