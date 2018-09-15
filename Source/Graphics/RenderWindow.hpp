@@ -14,6 +14,7 @@ namespace gdt
     class CRenderWindow final
     {
     public:
+
         /**
          * @breif Default constructor.
          */
@@ -63,9 +64,11 @@ namespace gdt
         void create(const std::string& title, int32 width, int32 height);
 
         /**
-         *
+         * @breif Displays what has been rendered to the window.
+         * 
+         * Will set this window to the current context.
          */
-        void makeContextCurrent() const;
+        void display() const;
 
         /**
          * @breif Get the height of the window in pixels.
@@ -79,11 +82,61 @@ namespace gdt
          */
         int32 getWidth() const;
 
+        /**
+         * @breif Check whether the window has the input focus.
+         * @return 'true' if in focus.
+         */
+        bool hasFocus() const;
+
+        /**
+         * @breif Check whether the window is visible
+         */
+        bool isVisible() const;
+
+        /**
+         * @breif Make this window the current context.
+         */
+        void makeThisContextCurrent() const;
+
+        /**
+         * @breif Set the size of the window.
+         * @param width Width of the window.
+         * @param height Height of the window.
+         */
+        void setSize(int32 width, int32 height) const;
+
+        /**
+         * @breif Set the title of the window.
+         * @param title Title of the window.
+         */
+        void setTitle(const std::string& title) const;
+
+        /**
+         * @breif Set the size and the position of the viewport.
+         * @param x Horizontal position of the viewport.
+         * @param y Vertical position of the viewport.
+         * @param width Width of the viewport.
+         * @param height Height of the viewport.
+         */
+        void setViewport(int32 x, int32 y, int32 width, int32 height) const;
+
+        /**
+         * @breif Set the window to be visible or invisible.
+         * @param visible 'true' to make the window visible.
+         */
+        void setVisible(bool visible) const;
+
+    private:
+
+        static void windowSizeCallback(GLFWwindow* pRenderWindow, int32 width, int32 height);
+
+        void windowSizeCallback(int32 width, int32 height);
+
     private:
         
-        GLFWwindow* m_window;
+        static bool m_sGlewInitialized;
+        static bool m_sGlfwInitialized;
 
-        int32 m_height;
-        int32 m_width;
+        GLFWwindow* m_pRenderWindow;
     };
 }
