@@ -1,3 +1,9 @@
+/**
+ * @file     RenderWindow.hpp
+ * @author   Ludvig Arlebrink
+ * @date     9/16/2018
+ */
+
 #pragma once
 
 #include "BaseTypes.hpp"
@@ -9,7 +15,7 @@
 namespace gdt
 {
     /**
-     * A window with an OpenGL context.
+     * @breif A window with an OpenGL context.
      */
     class CRenderWindow final
     {

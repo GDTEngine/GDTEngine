@@ -1,3 +1,9 @@
+/**
+ * @file     BaseTypes.hpp
+ * @author   Ludvig Arlebrink
+ * @date     9/16/2018
+ */
+
 #pragma once
 
 typedef unsigned char uchar;

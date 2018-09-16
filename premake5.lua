@@ -15,10 +15,12 @@ workspace "GDTEngine"
     configurations { "Debug", "Release" }
     startproject "Engine"
 	filter { "configurations:Debug" }
-		symbols "On"
+        symbols "On"
+        defines { "GDT_DEBUG" }
 	
 	filter { "configurations:Release" }
-		optimize "On"
+        optimize "On"
+        defines { "GDT_RELEASE"}
 	
     filter {}
     
@@ -31,6 +33,10 @@ workspace "GDTEngine"
     objdir ("Build/Obj/%{prj.name}/%{cfg.longname}")
 
 -- Third Party --
+
+function includeGLM()
+    includedirs "ThirdParty/GLM/Include"
+end
 
 function includeGLEW()
     defines { "GLEW_STATIC" }
@@ -78,6 +84,8 @@ project "Core"
     location "Source/Core"
     files { "Source/Core/**.hpp", "Source/Core/**.inl", "Source/Core/**.cpp" }
 
+    includeGLM()
+
 function includeCore()
     includedirs "Source/Core"
 end
@@ -87,9 +95,11 @@ project "Graphics"
     location "Source/Graphics"
     files { "Source/Graphics/**.hpp", "Source/Graphics/**.inl", "Source/Graphics/**.cpp" }
 
-    includeCore()
+    includeGLM()
     includeGLEW()
     includeGLFW()
+
+    includeCore()
 
 function includeGraphics()
     includedirs "Source/Graphics"
@@ -104,9 +114,6 @@ function linkGraphics()
 
     filter {}
 
-    includeGLEW()
-    includeGLFW()
-
     linkGLEW()
     linkGLFW()
 end
@@ -115,6 +122,10 @@ project "Engine"
     kind "ConsoleApp"
     location "Source/Engine"
     files { "Source/Engine/**.hpp", "Source/Engine/**.inl", "Source/Engine/**.cpp" }
+
+    includeGLM()
+    includeGLEW()
+    includeGLFW()
 
     includeCore()
     includeGraphics()
