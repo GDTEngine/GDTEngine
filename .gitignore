@@ -9,6 +9,9 @@
 !*.cpp
 !*.hpp
 !*.inl
+!*.h
+!*.pump
+!*.cc
 
 # Allow lua.
 !*.lua

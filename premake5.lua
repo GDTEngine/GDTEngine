@@ -131,3 +131,22 @@ project "Engine"
     includeGraphics()
 
     linkGraphics()
+    
+project "Graphics_UnitTest"
+    kind "ConsoleApp"
+    files {
+        "Source/Graphics/UnitTest/**.cpp",
+        "Source/Graphics/UnitTest/**.hpp",
+        "ThirdParty/googletest-release-1.8.1/googletest/src/gtest-all.cc",
+        "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock_main.cc",
+        "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock-all.cc" 
+    }
+    location "Source/Graphics/UnitTest"
+    includedirs {
+      "ThirdParty/googletest-release-1.8.1/googletest/include",
+      "ThirdParty/googletest-release-1.8.1/googletest/src",
+      "ThirdParty/googletest-release-1.8.1/googlemock/include",
+      "ThirdParty/googletest-release-1.8.1/googletest/src"
+    }
+    includeCore()
+    linkGraphics()

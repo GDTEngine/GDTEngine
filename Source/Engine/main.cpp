@@ -2,6 +2,7 @@
 #include "RenderWindow.hpp"
 #include "Shader.hpp"
 #include "Shaders/UberShaderSource.hpp"
+#include "RenderWindow.hpp"
 
 using namespace gdt;
 
