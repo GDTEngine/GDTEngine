@@ -1,14 +1,14 @@
-/*
+/**
 * @file     Mocks.hpp
 * @author   Marek Cernak
 * @date     9/16/2018
 *
-* @brief Graphics module mocks
+* @breif Graphics module mocks
 */
 
-#include "gmock/gmock.h"
-
 #pragma once
+
+#include "gmock/gmock.h"
 
 namespace gdt
 {

@@ -1,40 +1,42 @@
-/*
+/**
 * @file     GraphicsTest.cpp
 * @author   Marek Cernak
 * @date     9/16/2018
 *
-* @brief Graphics module tests
+* @breif Graphics module tests
 */
 
+#include "../RenderWindow.hpp"
 #include <gtest/gtest.h>
 #include <memory>
-#include "../RenderWindow.hpp"
 
 namespace gdt
 {
     namespace test
     {
-
-        class GraphicsTestBase : public ::testing::Test {
+        /**
+        * Base class for graphics unit tests.
+        */
+        class CGraphicsTestBase : public ::testing::Test {
 
         protected:
 
             /*
             * Define ctor for to initialize for whole duration of test.
             */
-            // ~GraphicsTestBase(){}
+            // CGraphicsTestBase(){}
 
             /*
             * Define dtor to cleanup after the whole test suite.
             */
-            // GraphicsTestBase(){}
+            // ~CGraphicsTestBase(){}
 
             /*
             * Setup before each test.
             */
             void SetUp() override
             {
-                m_renderWindow = std::make_unique<CRenderWindow>("GDTEngine", 1280, 720);
+                m_pRenderWindow = std::make_unique<CRenderWindow>("GDTEngine", 1280, 720);
             }
 
             /*
@@ -44,16 +46,16 @@ namespace gdt
             {}
 
         protected:
-            std::unique_ptr<gdt::CRenderWindow> m_renderWindow;
+            std::unique_ptr<gdt::CRenderWindow> m_pRenderWindow;
         };
 
         // This is just an example test. Provide proper tests when needed.
-        TEST_F(GraphicsTestBase, ExampleTest)
+        TEST_F(CGraphicsTestBase, ExampleTest)
         {
-            EXPECT_EQ(m_renderWindow->getHeight(), 720);
-            ASSERT_NE(m_renderWindow->getHeight(), 500);
-            EXPECT_EQ(m_renderWindow->getWidth(), 1280);
-            ASSERT_NE(m_renderWindow->getWidth(), 1200);
+            EXPECT_EQ(m_pRenderWindow->getHeight(), 720);
+            ASSERT_NE(m_pRenderWindow->getHeight(), 500);
+            EXPECT_EQ(m_pRenderWindow->getWidth(), 1280);
+            ASSERT_NE(m_pRenderWindow->getWidth(), 1200);
         }
     }
 }
