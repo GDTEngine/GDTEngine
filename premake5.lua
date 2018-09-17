@@ -10,7 +10,7 @@ end
 
 workspace "GDTEngine"
 	location "Generated"
-	language "C++"
+    language "C++"
     architecture "x86_64"
     configurations { "Debug", "Release" }
     startproject "Engine"
@@ -82,7 +82,7 @@ end
 project "Core"
     kind "None"
     location "Source/Core"
-    files { "Source/Core/**.hpp", "Source/Core/**.inl", "Source/Core/**.cpp" }
+    files { "Source/Core/**.hpp", "Source/Core/**.inl", "Source/Core/**.cpp", }
 
     includeGLM()
 
@@ -94,6 +94,7 @@ project "Graphics"
     kind "StaticLib"
     location "Source/Graphics"
     files { "Source/Graphics/**.hpp", "Source/Graphics/**.inl", "Source/Graphics/**.cpp" }
+    excludes { "Source/Graphics/UnitTest/**" }
 
     includeGLM()
     includeGLEW()

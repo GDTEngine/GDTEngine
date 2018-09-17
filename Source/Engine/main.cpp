@@ -40,10 +40,12 @@ int main(int argc, char* argv[])
 
     while (true)
     {
+        glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+
         pRenderWindow->clear();
 
         uberShader.use();
-        vao->drawArrays(0, 3);
+        vao->drawArrays(0, 6);
 
         pRenderWindow->display();
 

@@ -33,11 +33,38 @@ namespace gdt
          */
         ~CVertexBuffer();
 
+        /**
+         * @breif Manualy bind this buffer.
+         */
         void bind() const override;
 
+        /**
+         * @breif Set a attribute pointer to the buffer.
+         * @param vertexArray Vertex array the buffer will be attached to.
+         * @param index Index of the pointer.
+         * @param size
+         * @param type
+         * @param stride
+         * @param offset
+         *
+         * Calling this function will also bind this buffer.
+         */
         void setAttributePointer(CVertexArray* vertexArray, int32 index, int32 size, EType type, int32 stride, int32 offset);
 
+        /**
+         * @breif Set the data of this buffer.
+         * @param vertexArray
+         * @param size
+         * @param dataPtr
+         *
+         * Calling this function will also bind this buffer.
+         */
         void setData(CVertexArray* vertexArray, int32 size, const void* dataPtr);
+
+        /**
+         * @breif Manualy unbind the vertex buffers.
+         */
+        static void unbind();
 
     private:
 

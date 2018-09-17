@@ -27,7 +27,7 @@ void CVertexBuffer::bind() const
 {
     if (m_sActiveVertexBuffer != m_vertexBufferId)
     {
-        glBindBuffer(GL_ARRAY_BUFFER, m_sActiveVertexBuffer);
+        glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferId);
         m_sActiveVertexBuffer = m_vertexBufferId;
     }
 }
