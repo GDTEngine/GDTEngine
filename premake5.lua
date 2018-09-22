@@ -10,15 +10,17 @@ end
 
 workspace "GDTEngine"
 	location "Generated"
-	language "C++"
+    language "C++"
     architecture "x86_64"
     configurations { "Debug", "Release" }
     startproject "Engine"
 	filter { "configurations:Debug" }
-		symbols "On"
+        symbols "On"
+        defines { "GDT_DEBUG" }
 	
 	filter { "configurations:Release" }
-		optimize "On"
+        optimize "On"
+        defines { "GDT_RELEASE"}
 	
     filter {}
     
@@ -31,6 +33,10 @@ workspace "GDTEngine"
     objdir ("Build/Obj/%{prj.name}/%{cfg.longname}")
 
 -- Third Party --
+
+function includeGLM()
+    includedirs "ThirdParty/GLM/Include"
+end
 
 function includeGLEW()
     defines { "GLEW_STATIC" }
@@ -76,7 +82,9 @@ end
 project "Core"
     kind "None"
     location "Source/Core"
-    files { "Source/Core/**.hpp", "Source/Core/**.inl", "Source/Core/**.cpp" }
+    files { "Source/Core/**.hpp", "Source/Core/**.inl", "Source/Core/**.cpp", }
+
+    includeGLM()
 
 function includeCore()
     includedirs "Source/Core"
@@ -85,11 +93,14 @@ end
 project "Graphics"
     kind "StaticLib"
     location "Source/Graphics"
-    files { "Source/Graphics/*.hpp", "Source/Graphics/*.inl", "Source/Graphics/*.cpp" }
+    files { "Source/Graphics/**.hpp", "Source/Graphics/**.inl", "Source/Graphics/**.cpp" }
+    excludes { "Source/Graphics/UnitTest/**" }
 
-    includeCore()
+    includeGLM()
     includeGLEW()
     includeGLFW()
+
+    includeCore()
 
 function includeGraphics()
     includedirs "Source/Graphics"
@@ -104,9 +115,6 @@ function linkGraphics()
 
     filter {}
 
-    includeGLEW()
-    includeGLFW()
-
     linkGLEW()
     linkGLFW()
 end
@@ -116,26 +124,30 @@ project "Engine"
     location "Source/Engine"
     files { "Source/Engine/**.hpp", "Source/Engine/**.inl", "Source/Engine/**.cpp" }
 
+    includeGLM()
+    includeGLEW()
+    includeGLFW()
+
     includeCore()
     includeGraphics()
 
     linkGraphics()
     
 project "Graphics_UnitTest"
-        kind "consoleapp"
-        files {
-            "Source/Graphics/UnitTest/**.cpp",
-            "Source/Graphics/UnitTest/**.hpp",
-            "ThirdParty/googletest-release-1.8.1/googletest/src/gtest-all.cc",
-            "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock_main.cc",
-            "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock-all.cc" 
-        }
-        location "Source/Graphics/UnitTest"
-        includedirs {
-            "ThirdParty/googletest-release-1.8.1/googletest/include",
-            "ThirdParty/googletest-release-1.8.1/googletest/src",
-            "ThirdParty/googletest-release-1.8.1/googlemock/include",
-            "ThirdParty/googletest-release-1.8.1/googletest/src"
-            }
-        includeCore()
-        linkGraphics()
+    kind "ConsoleApp"
+    files {
+        "Source/Graphics/UnitTest/**.cpp",
+        "Source/Graphics/UnitTest/**.hpp",
+        "ThirdParty/googletest-release-1.8.1/googletest/src/gtest-all.cc",
+        "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock_main.cc",
+        "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock-all.cc" 
+    }
+    location "Source/Graphics/UnitTest"
+    includedirs {
+      "ThirdParty/googletest-release-1.8.1/googletest/include",
+      "ThirdParty/googletest-release-1.8.1/googletest/src",
+      "ThirdParty/googletest-release-1.8.1/googlemock/include",
+      "ThirdParty/googletest-release-1.8.1/googletest/src"
+    }
+    includeCore()
+    linkGraphics()

@@ -1,6 +1,13 @@
+/**
+ * @file     RenderWindow.cpp
+ * @author   Ludvig Arlebrink
+ * @date     9/16/2018
+ */
+
 #include "RenderWindow.hpp"
 
 using namespace gdt;
+using namespace graphics;
 
 bool CRenderWindow::m_sGlewInitialized = false;
 bool CRenderWindow::m_sGlfwInitialized = false;
