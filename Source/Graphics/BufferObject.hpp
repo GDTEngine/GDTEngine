@@ -19,6 +19,13 @@ namespace gdt
         {
         public:
 
+            enum class EAccess
+            {
+                ReadOnly = GL_READ_ONLY,
+                ReadWrite = GL_READ_WRITE,
+                WriteOnly = GL_WRITE_ONLY
+            };
+
             /**
              * @breif Enum class for basic data types.
              */

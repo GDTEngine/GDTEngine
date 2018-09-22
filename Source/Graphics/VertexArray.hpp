@@ -15,7 +15,7 @@ namespace gdt
     namespace graphics
     {
         /**
-         * @breif A **'CVertexArray'** is an object that stores all of the state needed to supply vertex data.
+         * @breif A **'CArrayBuffer'** is an object that stores all of the state needed to supply vertex data.
          */
         class CVertexArray
         {

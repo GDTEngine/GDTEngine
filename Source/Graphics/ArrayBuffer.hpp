@@ -1,5 +1,5 @@
 /**
- * @file     VertexBuffer.hpp
+ * @file     ArrayBuffer.hpp
  * @author   Ludvig Arlebrink
  * @date     9/22/2018
  */
@@ -21,30 +21,30 @@ namespace gdt
          *
          * Default usage for this buffer is **'StaticDraw'**.
          */
-        class CVertexBuffer final : public CBufferObject
+        class CArrayBuffer final : public CBufferObject
         {
         public:
 
             /**
              * @breif Default constructor.
              */
-            CVertexBuffer();
+            CArrayBuffer();
 
             /**
              * @breif Copy constructor deleted.
              */
-            CVertexBuffer(const CVertexBuffer& other) = delete;
+            CArrayBuffer(const CArrayBuffer& other) = delete;
 
             /**
              * @breif Move constructor.
              * @param other Source.
              */
-            CVertexBuffer(CVertexBuffer&& other) noexcept;
+            CArrayBuffer(CArrayBuffer&& other) noexcept;
 
             /**
              * @breif Destructor.
              */
-            ~CVertexBuffer();
+            ~CArrayBuffer();
 
             /**
              * @breif Assignment operator deleted.
@@ -57,13 +57,19 @@ namespace gdt
             void bind() const override;
 
             /**
+             * @breif Map this buffer.
+             * @param access Indicate the access.
+             */
+            void* mapBuffer(EAccess access);
+
+            /**
              * @breif Set a attribute pointer to the buffer.
              * @param vertexArray Vertex array the buffer will be attached to.
              * @param index Index of the pointer.
-             * @param size
-             * @param type
-             * @param stride
-             * @param offset
+             * @param size Specifies the number of components per generic vertex attribute.
+             * @param type Specifies the data type of each component in the array.
+             * @param stride Specifies the byte offset between consecutive generic vertex attributes.
+             * @param offset Specifies a offset of the first component of the first generic vertex attribute in the array.
              *
              * Calling this function will also bind this buffer.
              */
@@ -71,13 +77,17 @@ namespace gdt
 
             /**
              * @breif Set the data of this buffer.
-             * @param vertexArray
-             * @param size
-             * @param dataPtr
-             *
+             * @param size Specifies the size in bytes of the buffer object's new data store.
+             * @param dataPtr Specifies a pointer to data that will be copied into the data store for initialization, or **'nullptr'** if no data is to be copied.
+             *  
              * Calling this function will also bind this buffer.
              */
-            void setData(CVertexArray& vertexArray, int32 size, const void* dataPtr) const;
+            void setData(int32 size, const void* dataPtr) const;
+
+            /**
+             * @breif Unmaps the buffer.
+             */
+            void unmapBuffer() const;
 
             /**
              * @breif Manualy unbind the active vertex buffers.
