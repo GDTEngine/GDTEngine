@@ -50,8 +50,6 @@ int main(int argc, char* argv[])
 
         pRenderWindow->clear();
 
-
-
         uberShader.use();
         uberShader.setMat4("Projection", glm::ortho(0.0f, 1280.0f, 720.0f, 0.0f));
         //vao.drawArrays(0, 6);

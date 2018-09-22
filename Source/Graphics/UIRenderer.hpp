@@ -22,6 +22,7 @@ namespace gdt
         class CUIRenderer
         {
         private:
+
             struct SUIDefinition
             {
                 glm::vec2 position;
@@ -29,14 +30,30 @@ namespace gdt
 
         public:
 
+            /**
+             * @breif Default constructor.
+             */
             CUIRenderer();
 
+            /**
+             * @breif Copy constructor deleted.
+             */
             CUIRenderer(const CUIRenderer& other) = delete;
 
+            /**
+             * @breif Move constructor.
+             * @param other Source.
+             */
             CUIRenderer(CUIRenderer&& other) noexcept;
 
+            /**
+             * @breif Destructor.
+             */
             ~CUIRenderer();
 
+            /**
+             * @breif Assignment operator deleted.
+             */
             void operator=(const CUIRenderer& rhs) = delete;
 
             void begin();
