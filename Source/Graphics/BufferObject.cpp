@@ -14,6 +14,11 @@ CBufferObject::CBufferObject()
 {
 }
 
+CBufferObject::CBufferObject(CBufferObject&& other) noexcept
+    : m_usage(other.m_usage)
+{
+}
+
 CBufferObject::CBufferObject(EUsage usage)
     : m_usage(usage)
 {

@@ -18,9 +18,20 @@ CVertexArray::CVertexArray()
     glGenVertexArrays(1, &m_vertexArrayId);
 }
 
+CVertexArray::CVertexArray(CVertexArray&& other) noexcept
+    : m_drawMode(other.m_drawMode)
+    , m_count(other.m_count)
+    , m_vertexArrayId(other.m_vertexArrayId)
+{
+    other.m_vertexArrayId = 0;
+}
+
 CVertexArray::~CVertexArray()
 {
-    glDeleteVertexArrays(1, &m_vertexArrayId);
+    if (m_vertexArrayId > 0)
+    {
+        glDeleteVertexArrays(1, &m_vertexArrayId);
+    }
 }
 
 void CVertexArray::bind() const

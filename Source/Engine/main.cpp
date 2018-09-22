@@ -28,11 +28,11 @@ int main(int argc, char* argv[])
         -0.5f,  0.5f, 0.0f
     };
 
-    CVertexArray* vao = new CVertexArray();
+    CVertexArray vao;
     CVertexBuffer* vbo = new CVertexBuffer();
 
     vbo->setData(vao, sizeof(vertices), vertices);
-    vbo->setAttributePointer(vao, 0, 3, CBufferObject::EType::Float, sizeof(float) * 3, 0);
+    vbo->setAttributePointer(vao, 0, 3, CVertexBuffer::EType::Float, sizeof(float) * 3, 0);
 
     // vbo.setData(&vao, )
 
@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
         pRenderWindow->clear();
 
         uberShader.use();
-        vao->drawArrays(0, 6);
+        vao.drawArrays(0, 6);
 
         pRenderWindow->display();
 

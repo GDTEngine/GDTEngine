@@ -44,9 +44,22 @@ namespace gdt
             CVertexArray();
 
             /**
+             * @breif Copy constructor deleted.
+             */
+            CVertexArray(const CVertexArray& other) = delete;
+
+            /**
+             * @breif Move constructor.
+             * @param other Source.
+             */
+            CVertexArray(CVertexArray&& other) noexcept;
+
+            /**
              * @breif Destructor.
              */
             ~CVertexArray();
+
+            void operator=(const CVertexArray& rhs) = delete;
 
             /**
              * @breif Bind the vertex array.

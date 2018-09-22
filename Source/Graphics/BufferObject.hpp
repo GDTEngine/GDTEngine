@@ -114,7 +114,19 @@ namespace gdt
             CBufferObject();
 
             /**
+             * @breif Copy constructor deleted.
+             */
+            CBufferObject(const CBufferObject& other) = delete;
+
+            /**
+             * @breif Move constructor.
+             * @param other Source.
+             */
+            CBufferObject(CBufferObject&& other) noexcept;
+
+            /**
              * @brief Set usage of the buffer object.
+             * @param usage Usage of this buffer.
              */
             explicit CBufferObject(EUsage usage);
 
@@ -122,6 +134,11 @@ namespace gdt
              * @breif Destructor.
              */
             virtual ~CBufferObject();
+
+            /**
+             * @breif Assignment operator deleted.
+             */
+            void operator=(const CBufferObject& rhs) = delete;
 
             /**
              * @breif Bind the buffer.

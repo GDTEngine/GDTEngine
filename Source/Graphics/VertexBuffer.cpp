@@ -19,9 +19,19 @@ CVertexBuffer::CVertexBuffer()
     glGenBuffers(1, &m_vertexBufferId);
 }
 
+CVertexBuffer::CVertexBuffer(CVertexBuffer&& other) noexcept
+    : CBufferObject(other.getUsage())
+    , m_vertexBufferId(other.m_vertexBufferId)
+{
+    other.m_vertexBufferId = 0;
+}
+
 CVertexBuffer::~CVertexBuffer()
 {
-    glDeleteBuffers(1, &m_vertexBufferId);
+    if (m_vertexBufferId > 0)
+    {
+        glDeleteBuffers(1, &m_vertexBufferId);
+    }
 }
 
 void CVertexBuffer::bind() const
@@ -33,19 +43,19 @@ void CVertexBuffer::bind() const
     }
 }
 
-void CVertexBuffer::setAttributePointer(CVertexArray* vertexArray, int32 index, int32 size, EType type, int32 stride,
+void CVertexBuffer::setAttributePointer(CVertexArray& vertexArray, int32 index, int32 size, EType type, int32 stride,
     int32 offset) const
 {
-    vertexArray->bind();
+    vertexArray.bind();
     bind();
 
     glVertexAttribPointer(index, size, static_cast<GLenum>(type), GL_FALSE, stride, reinterpret_cast<void*>(offset));
     glEnableVertexAttribArray(index);
 }
 
-void CVertexBuffer::setData(CVertexArray* vertexArray, int32 size, const void* dataPtr) const
+void CVertexBuffer::setData(CVertexArray& vertexArray, int32 size, const void* dataPtr) const
 {
-    vertexArray->bind();
+    vertexArray.bind();
     bind();
 
     glBufferData(GL_ARRAY_BUFFER, size, dataPtr, static_cast<GLenum>(getUsage()));
