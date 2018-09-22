@@ -4,7 +4,7 @@
 This outlines the most important coding standards that are applicable to GDTEngine. The coding standards are enforced to maintain readability, consistency and easier maintenance.
 
 #### Layout of a C++ Classes
-* Typedef, enums, nested classes, methods are first orderd by access specifiers then alphabetically by the name.
+* Typedef, enums, nested classes, methods are first ordered by access specifiers then alphabetically by the name.
 * Member variables are first orderd by access specifiers, then alphabetically by the name of the type, and last alphabetically by the name.
 
 All C++ class declarations should follow this basic layout:
