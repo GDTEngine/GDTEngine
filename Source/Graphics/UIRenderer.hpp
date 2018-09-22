@@ -31,28 +31,28 @@ namespace gdt
         public:
 
             /**
-             * @breif Default constructor.
+             * @brief Default constructor.
              */
             CUIRenderer();
 
             /**
-             * @breif Copy constructor deleted.
+             * @brief Copy constructor deleted.
              */
             CUIRenderer(const CUIRenderer& other) = delete;
 
             /**
-             * @breif Move constructor.
+             * @brief Move constructor.
              * @param other Source.
              */
             CUIRenderer(CUIRenderer&& other) noexcept;
 
             /**
-             * @breif Destructor.
+             * @brief Destructor.
              */
             ~CUIRenderer();
 
             /**
-             * @breif Assignment operator deleted.
+             * @brief Assignment operator deleted.
              */
             void operator=(const CUIRenderer& rhs) = delete;
 

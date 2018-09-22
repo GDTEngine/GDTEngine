@@ -15,14 +15,14 @@ namespace gdt
     namespace graphics
     {
         /**
-         * @breif A **'CArrayBuffer'** is an object that stores all of the state needed to supply vertex data.
+         * @brief A **'CArrayBuffer'** is an object that stores all of the state needed to supply vertex data.
          */
         class CVertexArray
         {
         public:
 
             /**
-             * @breif Mode which will be used to draw vertices.
+             * @brief Mode which will be used to draw vertices.
              */
             enum class EDrawMode
             {
@@ -39,54 +39,54 @@ namespace gdt
         public:
 
             /**
-             * @breif Default constructor.
+             * @brief Default constructor.
              */
             CVertexArray();
 
             /**
-             * @breif Copy constructor deleted.
+             * @brief Copy constructor deleted.
              */
             CVertexArray(const CVertexArray& other) = delete;
 
             /**
-             * @breif Move constructor.
+             * @brief Move constructor.
              * @param other Source.
              */
             CVertexArray(CVertexArray&& other) noexcept;
 
             /**
-             * @breif Destructor.
+             * @brief Destructor.
              */
             ~CVertexArray();
 
             void operator=(const CVertexArray& rhs) = delete;
 
             /**
-             * @breif Bind the vertex array.
+             * @brief Bind the vertex array.
              */
             void bind() const;
 
             /**
-             * @breif Draw arrays.
+             * @brief Draw arrays.
              * @param start Start of the array.
              * @param count Number of vertices to draw.
              */
             void drawArrays(int32 start, int32 count) const;
 
             /**
-             * @breif Get the draw mode for this vertex array.
+             * @brief Get the draw mode for this vertex array.
              * @return Draw mode for this vertex array.
              */
             EDrawMode getDrawMode() const;
 
             /**
-             * @breif Set the draw mode for the vertex array.
+             * @brief Set the draw mode for the vertex array.
              * @param drawMode Draw mode to be used.
              */
             void setDrawMode(EDrawMode drawMode);
 
             /**
-             * @breif Manualy unbind the active vertex array.
+             * @brief Manualy unbind the active vertex array.
              */
             static void unbind();
 

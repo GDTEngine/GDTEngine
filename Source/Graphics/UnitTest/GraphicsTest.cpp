@@ -3,7 +3,7 @@
 * @author   Marek Cernak
 * @date     9/16/2018
 *
-* @breif Graphics module tests
+* @brief Graphics module tests
 */
 
 #include "../RenderWindow.hpp"
