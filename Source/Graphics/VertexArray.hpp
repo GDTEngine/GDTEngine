@@ -68,11 +68,6 @@ namespace gdt
 
             /**
              * @breif Draw arrays.
-             */
-            void drawArrays() const;
-
-            /**
-             * @breif Draw arrays.
              * @param start Start of the array.
              * @param count Number of vertices to draw.
              */
@@ -93,7 +88,6 @@ namespace gdt
         private:
 
             EDrawMode m_drawMode;
-            int32 m_count;
             static uint32 m_sActiveVertexArray;
             uint32 m_vertexArrayId;
         };

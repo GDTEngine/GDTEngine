@@ -13,14 +13,12 @@ uint32 CVertexArray::m_sActiveVertexArray = 0;
 
 CVertexArray::CVertexArray()
     : m_drawMode(EDrawMode::Triangles)
-    , m_count(0)
 {
     glGenVertexArrays(1, &m_vertexArrayId);
 }
 
 CVertexArray::CVertexArray(CVertexArray&& other) noexcept
     : m_drawMode(other.m_drawMode)
-    , m_count(other.m_count)
     , m_vertexArrayId(other.m_vertexArrayId)
 {
     other.m_vertexArrayId = 0;
@@ -41,11 +39,6 @@ void CVertexArray::bind() const
         glBindVertexArray(m_vertexArrayId);
         m_sActiveVertexArray = m_vertexArrayId;
     }
-}
-
-void CVertexArray::drawArrays() const
-{
-    drawArrays(0, m_count);
 }
 
 void CVertexArray::drawArrays(int32 start, int32 count) const
