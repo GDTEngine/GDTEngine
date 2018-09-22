@@ -9,6 +9,7 @@
 #include <GLEW/glew.h>
 
 using namespace gdt;
+using namespace graphics;
 
 uint32 CShader::m_sActiveProgramId = 0;
 

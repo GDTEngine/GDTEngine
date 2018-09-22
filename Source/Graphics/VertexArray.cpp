@@ -1,12 +1,13 @@
 /**
  * @file     VertexArray.cpp
  * @author   Ludvig Arlebrink
- * @date     9/17/2018
+ * @date     9/22/2018
  */
 
 #include "VertexArray.hpp"
 
 using namespace gdt;
+using namespace graphics;
 
 uint32 CVertexArray::m_sActiveVertexArray = 0;
 
@@ -40,4 +41,14 @@ void CVertexArray::drawArrays(int32 start, int32 count) const
 {
     bind();
     glDrawArrays(static_cast<GLenum>(m_drawMode), start, count);
+}
+
+CVertexArray::EDrawMode CVertexArray::getDrawMode() const
+{
+    return m_drawMode;
+}
+
+void CVertexArray::setDrawMode(EDrawMode drawMode)
+{
+    m_drawMode = drawMode;
 }

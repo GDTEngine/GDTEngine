@@ -7,6 +7,7 @@
 #include "RenderWindow.hpp"
 
 using namespace gdt;
+using namespace graphics;
 
 bool CRenderWindow::m_sGlewInitialized = false;
 bool CRenderWindow::m_sGlfwInitialized = false;

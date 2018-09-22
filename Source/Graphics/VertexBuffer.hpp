@@ -1,7 +1,7 @@
 /**
  * @file     VertexBuffer.hpp
  * @author   Ludvig Arlebrink
- * @date     9/17/2018
+ * @date     9/22/2018
  */
 
 #pragma once
@@ -11,66 +11,67 @@
 
 namespace gdt
 {
-    // Forward delcations.
-    class CVertexArray;
-
-    /**
-     * @breif A vertex buffer.
-     * 
-     * Default usage for this buffer is **'StaticDraw'**.
-     */
-    class CVertexBuffer final : public CBufferObject
+    namespace graphics
     {
-    public:
+        // Forward delcations.
+        class CVertexArray;
 
         /**
-         * @breif Default constructor.
-         */
-        CVertexBuffer();
-        
-        /**
-         * @breif Destructor.
-         */
-        ~CVertexBuffer();
-
-        /**
-         * @breif Manualy bind this buffer.
-         */
-        void bind() const override;
-
-        /**
-         * @breif Set a attribute pointer to the buffer.
-         * @param vertexArray Vertex array the buffer will be attached to.
-         * @param index Index of the pointer.
-         * @param size
-         * @param type
-         * @param stride
-         * @param offset
+         * @breif A vertex buffer.
          *
-         * Calling this function will also bind this buffer.
+         * Default usage for this buffer is **'StaticDraw'**.
          */
-        void setAttributePointer(CVertexArray* vertexArray, int32 index, int32 size, EType type, int32 stride, int32 offset);
+        class CVertexBuffer final : public CBufferObject
+        {
+        public:
 
-        /**
-         * @breif Set the data of this buffer.
-         * @param vertexArray
-         * @param size
-         * @param dataPtr
-         *
-         * Calling this function will also bind this buffer.
-         */
-        void setData(CVertexArray* vertexArray, int32 size, const void* dataPtr);
+            /**
+             * @breif Default constructor.
+             */
+            CVertexBuffer();
 
-        /**
-         * @breif Manualy unbind the vertex buffers.
-         */
-        static void unbind();
+            /**
+             * @breif Destructor.
+             */
+            ~CVertexBuffer();
 
-    private:
+            /**
+             * @breif Manualy bind this buffer.
+             */
+            void bind() const override;
 
-        EUsage m_usage;
+            /**
+             * @breif Set a attribute pointer to the buffer.
+             * @param vertexArray Vertex array the buffer will be attached to.
+             * @param index Index of the pointer.
+             * @param size
+             * @param type
+             * @param stride
+             * @param offset
+             *
+             * Calling this function will also bind this buffer.
+             */
+            void setAttributePointer(CVertexArray* vertexArray, int32 index, int32 size, EType type, int32 stride, int32 offset) const;
 
-        static uint32 m_sActiveVertexBuffer;
-        uint32 m_vertexBufferId;
-    };
+            /**
+             * @breif Set the data of this buffer.
+             * @param vertexArray
+             * @param size
+             * @param dataPtr
+             *
+             * Calling this function will also bind this buffer.
+             */
+            void setData(CVertexArray* vertexArray, int32 size, const void* dataPtr) const;
+
+            /**
+             * @breif Manualy unbind the vertex buffers.
+             */
+            static void unbind();
+
+        private:
+
+            static uint32 m_sActiveVertexBuffer;
+            uint32 m_vertexBufferId;
+        };
+    }
 }

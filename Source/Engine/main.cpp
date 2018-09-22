@@ -7,6 +7,9 @@
 
 using namespace gdt;
 
+// Using it here temporary.
+using namespace graphics;
+
 int main(int argc, char* argv[])
 {
     CRenderWindow* pRenderWindow = new CRenderWindow("GDTEngine", 1280, 720);

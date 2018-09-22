@@ -1,7 +1,7 @@
 /**
  * @file     VertexArray.hpp
  * @author   Ludvig Arlebrink
- * @date     9/17/2018
+ * @date     9/22/2018
  */
 
 #include "VertexBuffer.hpp"
@@ -9,11 +9,12 @@
 #include "VertexArray.hpp"
 
 using namespace gdt;
+using namespace graphics;
 
 uint32 CVertexBuffer::m_sActiveVertexBuffer = 0;
 
 CVertexBuffer::CVertexBuffer()
-    : m_usage(EUsage::StaticDraw)
+    : CBufferObject(EUsage::StaticDraw)
 {
     glGenBuffers(1, &m_vertexBufferId);
 }
@@ -33,7 +34,7 @@ void CVertexBuffer::bind() const
 }
 
 void CVertexBuffer::setAttributePointer(CVertexArray* vertexArray, int32 index, int32 size, EType type, int32 stride,
-    int32 offset)
+    int32 offset) const
 {
     vertexArray->bind();
     bind();
@@ -42,11 +43,15 @@ void CVertexBuffer::setAttributePointer(CVertexArray* vertexArray, int32 index, 
     glEnableVertexAttribArray(index);
 }
 
-void CVertexBuffer::setData(CVertexArray* vertexArray, int32 size, const void* dataPtr)
+void CVertexBuffer::setData(CVertexArray* vertexArray, int32 size, const void* dataPtr) const
 {
     vertexArray->bind();
     bind();
 
-    glBufferData(GL_ARRAY_BUFFER, size, dataPtr, static_cast<GLenum>(m_usage));
+    glBufferData(GL_ARRAY_BUFFER, size, dataPtr, static_cast<GLenum>(getUsage()));
 }
 
+void CVertexBuffer::unbind()
+{
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
