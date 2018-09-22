@@ -21,12 +21,12 @@ CVertexArray::CVertexArray(CVertexArray&& other) noexcept
     : m_drawMode(other.m_drawMode)
     , m_vertexArrayId(other.m_vertexArrayId)
 {
-    other.m_vertexArrayId = 0;
+    other.m_vertexArrayId = 0u;
 }
 
 CVertexArray::~CVertexArray()
 {
-    if (m_vertexArrayId > 0)
+    if (m_vertexArrayId > 0u)
     {
         glDeleteVertexArrays(1, &m_vertexArrayId);
     }
@@ -55,4 +55,9 @@ CVertexArray::EDrawMode CVertexArray::getDrawMode() const
 void CVertexArray::setDrawMode(EDrawMode drawMode)
 {
     m_drawMode = drawMode;
+}
+
+void CVertexArray::unbind()
+{
+    glBindVertexArray(0u);
 }

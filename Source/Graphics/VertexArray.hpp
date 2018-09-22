@@ -85,6 +85,11 @@ namespace gdt
              */
             void setDrawMode(EDrawMode drawMode);
 
+            /**
+             * @breif Manualy unbind the active vertex array.
+             */
+            static void unbind();
+
         private:
 
             EDrawMode m_drawMode;

@@ -80,7 +80,7 @@ namespace gdt
             void setData(CVertexArray& vertexArray, int32 size, const void* dataPtr) const;
 
             /**
-             * @breif Manualy unbind the vertex buffers.
+             * @breif Manualy unbind the active vertex buffers.
              */
             static void unbind();
 

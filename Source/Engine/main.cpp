@@ -34,8 +34,6 @@ int main(int argc, char* argv[])
     vbo->setData(vao, sizeof(vertices), vertices);
     vbo->setAttributePointer(vao, 0, 3, CVertexBuffer::EType::Float, sizeof(float) * 3, 0);
 
-    // vbo.setData(&vao, )
-
     if (uberShader.getStatus() == EStatus::Failure)
     {
         LOG(uberShader.getErrorString());
