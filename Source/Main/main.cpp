@@ -5,12 +5,20 @@
  */
 
 #include <cstring>
+#include <vector>
+
+#ifdef _WIN32
+#include <Windows.h>
+
+std::vector<HINSTANCE> g_modules;
+
+#endif
+
 
 int main(int argc, char* argv[])
 {
 #ifdef GDT_EDITOR
-
-    bool launchEditor = false;
+    auto launchEditor = false;
 
     if (argc > 1)
     {
@@ -20,6 +28,12 @@ int main(int argc, char* argv[])
         }
     }
 
-#endif
+#ifdef _WIN32
+    WIN32_FIND_DATA fileData;
+    HANDLE fileHandle = FindFirstFile(TEXT("./Plugins/*.dll"), &fileData);
 
+    getchar();
+
+#endif
+#endif
 }
