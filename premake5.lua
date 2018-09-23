@@ -12,11 +12,20 @@ workspace "GDTEngine"
 	location "Generated"
     language "C++"
     architecture "x86_64"
-    configurations { "Debug", "Release" }
+    configurations { "Debug_Editor", "Debug", "Release_Editor", "Release" }
     startproject "Engine"
+
+    filter { "configurations:Debug_Editor" }
+        symbols "On"
+        defines { "GDT_EDITOR", "GDT_DEBUG" }
+
 	filter { "configurations:Debug" }
         symbols "On"
         defines { "GDT_DEBUG" }
+
+    filter { "configurations:Release_Editor" }
+        optimize "On"
+        defines { "GDT_EDITOR", "GDT_RELEASE"}
 	
 	filter { "configurations:Release" }
         optimize "On"
@@ -120,7 +129,7 @@ function linkGraphics()
 end
 
 project "Engine"
-    kind "ConsoleApp"
+    kind "StaticLib"
     location "Source/Engine"
     files { "Source/Engine/**.hpp", "Source/Engine/**.inl", "Source/Engine/**.cpp" }
 
@@ -132,7 +141,17 @@ project "Engine"
     includeGraphics()
 
     linkGraphics()
-    
+
+project "Editor"
+    kind "StaticLib"
+    location "Source/Editor"
+
+project "Main"
+    kind "ConsoleApp"
+    location "Source/Main"
+    files { "Source/Main/**.hpp", "Source/Main/**.inl", "Source/Main/**.cpp" }
+
+
 project "Graphics_UnitTest"
     kind "ConsoleApp"
     files {
