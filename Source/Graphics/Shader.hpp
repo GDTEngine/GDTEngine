@@ -28,9 +28,6 @@ namespace gdt
              */
             CShader();
 
-            /**
-             * @brief Copy constructor deleted.
-             */
             CShader(const CShader& other) = delete;
 
             /**
@@ -82,9 +79,6 @@ namespace gdt
              */
             ~CShader();
 
-            /**
-             * @brief Assignment operator deleted.
-             */
             void operator=(const CShader& rhs) = delete;
 
             /**
@@ -143,55 +137,55 @@ namespace gdt
             EStatus getStatus() const;
 
             /**
-             * @brief Set a **'bool'** uniform.
+             * @brief Set a bool uniform.
              * @param name Name of the uniform.
              * @param value Value of uniform.
              */
             void setBool(const std::string& name, bool value) const;
 
             /**
-             * @brief Set a **'float'** uniform.
+             * @brief Set a float uniform.
              * @param name Name of the uniform.
              * @param value Value of uniform.
              */
             void setFloat(const std::string& name, f32 value) const;
 
             /**
-             * @brief Set a **'int'** uniform.
+             * @brief Set a int uniform.
              * @param name Name of the uniform.
              * @param value Value of uniform.
              */
             void setInt(const std::string& name, int32 value) const;
             /**
-             * @brief Set a **'mat2'** uniform.
+             * @brief Set a mat2 uniform.
              * @param name Name of the uniform.
              * @param value Value of uniform.
              */
             void setMat2(const std::string& name, const glm::mat2& value) const;
 
             /**
-             * @brief Set a **'mat3'** uniform.
+             * @brief Set a mat3 uniform.
              * @param name Name of the uniform.
              * @param value Value of uniform.
              */
             void setMat3(const std::string& name, const glm::mat3& value) const;
 
             /**
-             * @brief Set a **'mat4'** uniform.
+             * @brief Set a mat4 uniform.
              * @param name Name of the uniform.
              * @param value Value of uniform.
              */
             void setMat4(const std::string& name, const glm::mat4& value) const;
 
             /**
-             * @brief Set a **'vec2'** uniform.
+             * @brief Set a vec2 uniform.
              * @param name Name of the uniform.
              * @param value Value of uniform.
              */
             void setVec2(const std::string& name, const glm::vec2& value) const;
 
             /**
-             * @brief Set a **'vec3'** uniform.
+             * @brief Set a vec3 uniform.
              * @param name Name of the uniform.
              * @param value Value of uniform.
              */

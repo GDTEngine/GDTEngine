@@ -7,6 +7,10 @@
 #include "UIRenderer.hpp"
 #include <GLM/gtc/matrix_transform.hpp>
 
+#include <string>
+#include <fstream>
+#include <streambuf>
+
 using namespace gdt;
 
 // Using it here temporary.
@@ -16,27 +20,19 @@ int main(int argc, char* argv[])
 {
     CRenderWindow* pRenderWindow = new CRenderWindow("GDTEngine", 1280, 720);
 
-    CShader uberShader(shader::uberVertex, shader::uberFragment);
-    /*
-    float vertices[18] = {
-        // First triangle.
-        0.5f,  0.5f,
-        0.5f, -0.5f,
-        -0.5f,  0.5f,
+    std::ifstream vsFile("../../Shaders/Uber.vs.glsl");
+    std::string vs((std::istreambuf_iterator<char>(vsFile)),
+        std::istreambuf_iterator<char>());
 
-        // Second triangle.
-        0.5f, -0.5f,
-        -0.5f, -0.5f,
-        -0.5f,  0.5f
-    };
+    vsFile.close();
 
-    CVertexArray vao;
-    CArrayBuffer* vbo = new CArrayBuffer();
+    std::ifstream fsFile("../../Shaders/Uber.fs.glsl");
+    std::string fs((std::istreambuf_iterator<char>(fsFile)),
+        std::istreambuf_iterator<char>());
+    fsFile.close();
 
-    vbo->setData(sizeof(vertices), vertices);
-
-    vbo->setAttributePointer(vao, 0, 3, CArrayBuffer::EType::Float, sizeof(float) * 3, 0);
-     */
+    CShader uberShader(vs, fs);
+    
     if (uberShader.getStatus() == EStatus::Failure)
     {
         LOG(uberShader.getErrorString());
@@ -52,15 +48,13 @@ int main(int argc, char* argv[])
 
         uberShader.use();
         uberShader.setMat4("Projection", glm::ortho(0.0f, 1280.0f, 720.0f, 0.0f));
-        //vao.drawArrays(0, 6);
-
         uiRenderer.begin();
 
-        for (auto x = 0; x < 70; ++x)
+        for (auto x = 0; x < 10; ++x)
         {
-            for (auto y = 0; y < 30; ++y)
+            for (auto y = 0; y < 10; ++y)
             {
-                uiRenderer.submitPanel(glm::vec2(24 * x, 24 * y), glm::vec2(16), glm::vec2(0.0f));
+                uiRenderer.submitPanel(glm::vec2(24 * x, 24 * y), glm::vec2(22.0f), glm::vec2(0.0f));
             }
         }
 

@@ -28,14 +28,8 @@ namespace gdt
              */
             CRenderWindow();
 
-            /**
-             * @brief Copy constructor deleted.
-             */
             CRenderWindow(const CRenderWindow& other) = delete;
 
-            /**
-             * @brief Move constructor deleted.
-             */
             CRenderWindow(const CRenderWindow&& other) = delete;
 
             /**
@@ -51,9 +45,6 @@ namespace gdt
              */
             ~CRenderWindow();
 
-            /**
-             * @brief Assignment operator deleted.
-             */
             void operator=(const CRenderWindow& rhs) = delete;
 
             /**
