@@ -136,21 +136,52 @@ project "Engine"
     includeGLM()
     includeGLEW()
     includeGLFW()
-
     includeCore()
     includeGraphics()
 
+function includeEngine()
+    includedirs "Source/Engine"
+end
+
+function linkEngine()
+    filter { "kind:not StaticLib", "system:windows" }
+        links { "Engine" }
+    
+    filter { "kind:not StaticLib", "system:not windows" }
+        links { "Engine" }
+
+    filter {}
+
     linkGraphics()
+end
 
 project "Editor"
     kind "StaticLib"
     location "Source/Editor"
+
+project "Test_Plugin"
+    kind "SharedLib"
+    location "Source/Test_Plugin"
+    files { "Source/Test_Plugin/**.hpp", "Source/Test_Plugin/**.inl", "Source/Test_Plugin/**.cpp" }
+    targetdir ("Source/Main/Plugins")
+    defines { "DLL_EXPORT" }
+
+    includeCore()
+    includeGraphics()
+    includeEngine()
+
+    linkEngine()
 
 project "Main"
     kind "ConsoleApp"
     location "Source/Main"
     files { "Source/Main/**.hpp", "Source/Main/**.inl", "Source/Main/**.cpp" }
 
+    includeCore()
+    includeGraphics()
+    includeEngine()
+
+    linkEngine()
 
 project "Graphics_UnitTest"
     kind "ConsoleApp"
