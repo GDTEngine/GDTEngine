@@ -7,7 +7,7 @@
 #pragma once
 
 /**
- * @breif Use this enum class to check status of various things.
+ * @brief Use this enum class to check status of various things.
  */
 enum class EStatus
 {

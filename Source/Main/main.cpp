@@ -33,16 +33,13 @@ int main(int argc, char* argv[])
 
 #ifdef _WIN32
     WIN32_FIND_DATA fileData;
-    // HANDLE fileHandle = FindFirstFile(TEXT("./Plugins/*.dll"), &fileData);
-
-    HINSTANCE tmp = LoadLibrary(TEXT("./Plugins/Test_Plugin.dll"));
-
+    HINSTANCE tmp = LoadLibrary(TEXT("./Plugins/SpaceShooter.dll"));
     if (!tmp)
     {
         std::cout << "COULD NOT LOAD LIB\n";
     }
 
-    PLUGINPROC begin = (PLUGINPROC)GetProcAddress(tmp, "begin");
+    PLUGINPROC begin = (PLUGINPROC)GetProcAddress(tmp, "startUpPlugin");
     if (!begin)
     {
         std::cout << "No proc address added\n";
@@ -51,10 +48,8 @@ int main(int argc, char* argv[])
     {
         (begin)();
     }
-    //procAdd("L");
-    // (procAdd)();
 
-#endif
+#endif // _WIN32
 
     getchar();
 }

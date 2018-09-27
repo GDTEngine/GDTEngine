@@ -3,7 +3,7 @@
 * @author   Marek Cernak
 * @date     9/16/2018
 *
-* @breif Graphics module mocks
+* @brief Graphics module mocks
 */
 
 #pragma once

@@ -88,6 +88,7 @@ end
 
 -- Source --
 
+group "Engine"
 project "Core"
     kind "None"
     location "Source/Core"
@@ -99,6 +100,7 @@ function includeCore()
     includedirs "Source/Core"
 end
 
+group "Engine"
 project "Graphics"
     kind "StaticLib"
     location "Source/Graphics"
@@ -128,6 +130,7 @@ function linkGraphics()
     linkGLFW()
 end
 
+group "Engine"
 project "Engine"
     kind "StaticLib"
     location "Source/Engine"
@@ -155,23 +158,12 @@ function linkEngine()
     linkGraphics()
 end
 
+group "Editor"
 project "Editor"
     kind "StaticLib"
     location "Source/Editor"
 
-project "Test_Plugin"
-    kind "SharedLib"
-    location "Source/Test_Plugin"
-    files { "Source/Test_Plugin/**.hpp", "Source/Test_Plugin/**.inl", "Source/Test_Plugin/**.cpp" }
-    targetdir ("Source/Main/Plugins")
-    defines { "DLL_EXPORT" }
-
-    includeCore()
-    includeGraphics()
-    includeEngine()
-
-    linkEngine()
-
+group "Main"
 project "Main"
     kind "ConsoleApp"
     location "Source/Main"
@@ -183,6 +175,7 @@ project "Main"
 
     linkEngine()
 
+group "UnitTests"
 project "Graphics_UnitTest"
     kind "ConsoleApp"
     files {
@@ -201,3 +194,18 @@ project "Graphics_UnitTest"
     }
     includeCore()
     linkGraphics()
+
+
+group "Examples"
+project "SpaceShooter"
+    kind "SharedLib"
+    location "Source/Test_Plugin"
+    files { "Source/Test_Plugin/**.hpp", "Source/Test_Plugin/**.inl", "Source/Test_Plugin/**.cpp" }
+    targetdir ("Source/Main/Plugins")
+    defines { "GDT_PLUGIN_DLL_EXPORT" }
+    
+    includeCore()
+    includeGraphics()
+    includeEngine()
+    
+    linkEngine()
