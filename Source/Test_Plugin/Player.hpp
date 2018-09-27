@@ -7,15 +7,20 @@
 #pragma once
 
 #include "Entity.hpp"
-#include <iostream>
 
-class CPlayer final : public CEntity
+namespace gdt
 {
-public:
+    namespace space
+    {
+        class CPlayer final : public engine::CEntity
+        {
+        public:
 
-    CPlayer();
+            CPlayer();
 
-    ~CPlayer();
+            ~CPlayer();
 
-    void tick(f32 deltaTime) override;
-};
+            void tick(f32 deltaTime) override;
+        };
+    }
+}

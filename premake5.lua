@@ -90,7 +90,7 @@ end
 
 group "Engine"
 project "Core"
-    kind "None"
+    kind "StaticLib"
     location "Source/Core"
     files { "Source/Core/**.hpp", "Source/Core/**.inl", "Source/Core/**.cpp", }
 
@@ -98,6 +98,17 @@ project "Core"
 
 function includeCore()
     includedirs "Source/Core"
+end
+
+function linkCore()
+    filter { "kind:not StaticLib", "system:windows" }
+        links { "Core" }
+
+    filter { "kind:not StaticLib", "system:not windows" }
+        links { "Core" }
+
+    filter {}
+
 end
 
 group "Engine"
@@ -128,6 +139,7 @@ function linkGraphics()
 
     linkGLEW()
     linkGLFW()
+    linkCore()
 end
 
 group "Engine"

@@ -33,7 +33,7 @@ namespace gdt
             /**
              * @brief Copy constructor deleted.
              */
-            CArrayBuffer(const CArrayBuffer& other) = delete;
+            CArrayBuffer(const CArrayBuffer&) = delete;
 
             /**
              * @brief Move constructor.
@@ -49,7 +49,7 @@ namespace gdt
             /**
              * @brief Assignment operator deleted.
              */
-            void operator=(const CVertexArray& rhs) = delete;
+            void operator=(const CVertexArray&) = delete;
 
             /**
              * @brief Manualy bind this buffer.

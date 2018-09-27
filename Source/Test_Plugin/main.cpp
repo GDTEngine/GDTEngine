@@ -7,7 +7,6 @@
 #pragma once
 
 #include "Entity.hpp"
-
 #include "Player.hpp"
 #include "ClassManager.hpp"
 #include "GDTPluginApi.hpp"
@@ -16,11 +15,14 @@
 #include <iostream>
 #include <Windows.h>
 
+using namespace gdt;
+using namespace space;
+
 GDT_PLUGIN_API void startUpPlugin()
 {
-    std::cout << "DLL Loaded\n";
-    
-    CClassManager::get().registerEntity("CPlayer", []()->CEntity* { return new CPlayer; });
+    std::cout << "Plugin \"SpaceShooter\" Loaded!\n";
+
+    engine::CClassManager::get().registerEntity("CPlayer", []()->engine::CEntity* { return new CPlayer; });
 }
 
 GDT_PLUGIN_API void shutDownPlugin()

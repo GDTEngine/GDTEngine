@@ -1,30 +1,58 @@
+/**
+ * @file     ClassManager.hpp
+ * @author   Ludvig Arlebrink
+ * @date     9/28/2018
+ */
+
 #pragma once
 
 #include "Entity.hpp"
 
-#include <map>
+#include <unordered_map>
 #include <string>
 
-class CClassManager
+namespace gdt
 {
-public:
+    namespace engine
+    {
+        /**
+         * @brief Manager for handling classes.
+         */
+        class CClassManager
+        {
+        public:
 
-    using createEnityFunction = CEntity* (*)();
+            using createEntityFunction = CEntity*(*)();
 
-public:
+        public:
 
-    static CClassManager& get();
+            /**
+             * @brief Get the singleton instance.
+             * @return Singleton instance.
+             */
+            static CClassManager& get();
 
-    CEntity* createEntity(const std::string& className);
+            /**
+             * @brief Create an entity.
+             * @param className Name of the entity class.
+             */
+            CEntity* createEntity(const std::string& className);
 
-    void registerEntity(const std::string& className, createEnityFunction createEnityFunction);
+            /**
+             * @brief Register an entity class.
+             * @param className Name of the entity class.
+             * @param function Function used to create an entity.
+             */
+            void registerEntity(const std::string& className, createEntityFunction function);
 
-private:
+        private:
 
-    CClassManager() = default;
-    ~CClassManager() = default;
+            CClassManager() = default;
+            ~CClassManager() = default;
 
-private:
+        private:
 
-    std::map<std::string, createEnityFunction> m_entityClasses;
-};
+            std::unordered_map<std::string, createEntityFunction> m_entityClasses;
+        };
+    }
+}

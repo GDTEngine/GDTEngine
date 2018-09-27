@@ -31,7 +31,7 @@ namespace gdt
             /**
              * @brief Copy constructor deleted.
              */
-            CShader(const CShader& other) = delete;
+            CShader(const CShader&) = delete;
 
             /**
              * @brief Move constructor.
@@ -85,7 +85,7 @@ namespace gdt
             /**
              * @brief Assignment operator deleted.
              */
-            void operator=(const CShader& rhs) = delete;
+            void operator=(const CShader&) = delete;
 
             /**
              * @brief Compile a shader from source glsl code.
@@ -143,7 +143,7 @@ namespace gdt
             EStatus getStatus() const;
 
             /**
-             * @brief Set a **'bool'** uniform.
+             * @brief Set a bool uniform.
              * @param name Name of the uniform.
              * @param value Value of uniform.
              */

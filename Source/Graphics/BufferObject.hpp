@@ -123,7 +123,7 @@ namespace gdt
             /**
              * @brief Copy constructor deleted.
              */
-            CBufferObject(const CBufferObject& other) = delete;
+            CBufferObject(const CBufferObject&) = delete;
 
             /**
              * @brief Move constructor.
@@ -145,7 +145,7 @@ namespace gdt
             /**
              * @brief Assignment operator deleted.
              */
-            void operator=(const CBufferObject& rhs) = delete;
+            void operator=(const CBufferObject&) = delete;
 
             /**
              * @brief Bind the buffer.

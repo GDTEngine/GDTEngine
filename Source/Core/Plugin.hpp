@@ -6,13 +6,14 @@
 
 #pragma once
 
+#include "BaseTypes.hpp"
 #include "Status.hpp"
 
 #include <string>
 #ifdef _WIN32
 #include <Windows.h>
 #elif __linux__
-#include <dlfcn.h>
+ // @todo Linux implementation.
 #endif // _WIN32
 
 namespace gdt
@@ -31,7 +32,7 @@ namespace gdt
              */
             CPlugin();
 
-            CPlugin(const CPlugin& other) = delete;
+            CPlugin(const CPlugin&) = delete;
 
             /**
              * @brief Move constructor.
@@ -50,10 +51,29 @@ namespace gdt
              */
             ~CPlugin();
 
-            void operator=(const CPlugin& rhs) = delete;
+            void operator=(const CPlugin&) = delete;
 
+            /**
+             * @brief Call a c function in the plugin without no params or return type.
+             * @param functionName Name of the function to call.
+             */
             void callFunction(const std::string& functionName);
 
+            /**
+             * @brief Get a string of errors.
+             * @return String of errors.
+             * @note Only works in debug mode.
+             *
+             * Check 'EStatus' by calling 'getStatus'. If EStatus is equals to 'Failure', call this class to get more information.
+             */
+            std::string getErrorString() const;
+
+            /**
+             * @brief Check if everything regarding shader compelation went right.
+             * @return 'Success' if everything went right.
+             *
+             * Call 'getErrorString' to get more information about the errors.
+             */
             EStatus getStatus() const;
 
             /**
@@ -62,12 +82,25 @@ namespace gdt
              */
             void loadPlugin(const std::string& pluginFilepath);
 
+            /**
+             * @brief Reload the plugin.
+             */
             void reloadPlugin();
+
+            /**
+             * @brief Unload the plugin.
+             */
+            void unloadPlugin();
 
         private:
 
             bool m_pluginIsLoaded;
             EStatus m_status;
+
+        #ifdef GDT_DEBUG || GDT_EDITOR
+            std::string m_errorString;
+        #endif // GDT_DEBUG || GDT_EDITOR
+
             std::string m_pluginFilepath;
 
         #ifdef _WIN32

@@ -1,5 +1,5 @@
 /**
- * @file     GDTPluginApi.hpp
+ * @file     GDTPluginAPI.hpp
  * @author   Ludvig Arlebrink
  * @date     9/27/2018
  */

@@ -1,38 +1,49 @@
 /**
- * @file     main.cpp
+ * @file     Entity.cpp
  * @author   Ludvig Arlebrink
- * @date     9/22/2018
+ * @date     9/28/2018
  */
 
 #pragma once
 
 #include "BaseTypes.hpp"
 
-class CEntity
+namespace gdt
 {
-public:
+    namespace engine
+    {
+        /**
+         * @brief Base class for all entities.
+         */
+        class CEntity
+        {
+        public:
 
-    using entityId = uint32;
+            using entityId = uint32;
 
-public:
+        public:
 
-    CEntity();
+            CEntity();
 
-    virtual ~CEntity();
+            CEntity(const CEntity&) = delete;
 
-    void operator=(const CEntity&& other) = delete;
+            virtual ~CEntity();
 
-    entityId getEntityId() const;
+            void operator=(const CEntity&) = delete;
 
-protected:
+            entityId getEntityId() const;
 
-    virtual void beginPlay();
+        protected:
 
-    virtual void endPlay();
+            virtual void beginPlay();
 
-    virtual void tick(f32 deltaTime);
+            virtual void endPlay();
 
-private:
+            virtual void tick(f32 deltaTime);
 
-    entityId m_entityId;
-};
+        private:
+
+            entityId m_entityId;
+        };
+    }
+}

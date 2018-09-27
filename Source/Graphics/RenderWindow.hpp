@@ -31,12 +31,12 @@ namespace gdt
             /**
              * @brief Copy constructor deleted.
              */
-            CRenderWindow(const CRenderWindow& other) = delete;
+            CRenderWindow(const CRenderWindow&) = delete;
 
             /**
              * @brief Move constructor deleted.
              */
-            CRenderWindow(const CRenderWindow&& other) = delete;
+            CRenderWindow(CRenderWindow&&) = delete;
 
             /**
              * @brief Creates a window.
@@ -54,7 +54,7 @@ namespace gdt
             /**
              * @brief Assignment operator deleted.
              */
-            void operator=(const CRenderWindow& rhs) = delete;
+            void operator=(const CRenderWindow&) = delete;
 
             /**
              * @brief Clears what has been rendered on the window.

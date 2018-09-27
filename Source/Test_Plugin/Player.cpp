@@ -6,6 +6,9 @@
 
 #include "Player.hpp"
 
+using namespace gdt;
+using namespace space;
+
 CPlayer::CPlayer()
 {
 }
