@@ -95,6 +95,8 @@ project "Core"
     files { "Source/Core/**.hpp", "Source/Core/**.inl", "Source/Core/**.cpp", }
 
     includeGLM()
+    includeGLEW()
+    includeGLFW()
 
 function includeCore()
     includedirs "Source/Core"
@@ -109,6 +111,8 @@ function linkCore()
 
     filter {}
 
+    linkGLEW()
+    linkGLFW()
 end
 
 group "Engine"
@@ -137,8 +141,6 @@ function linkGraphics()
 
     filter {}
 
-    linkGLEW()
-    linkGLFW()
     linkCore()
 end
 
