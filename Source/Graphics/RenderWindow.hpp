@@ -7,9 +7,8 @@
 #pragma once
 
 #include "BaseTypes.hpp"
+#include "Window.hpp"
 
-#include <GLEW/glew.h>
-#include <GLFW/glfw3.h>
 #include <string>
 
 namespace gdt
@@ -19,7 +18,7 @@ namespace gdt
         /**
          * @brief A window with an OpenGL context.
          */
-        class CRenderWindow final
+        class CRenderWindow final : public core::CWindow
         {
         public:
 
@@ -64,14 +63,6 @@ namespace gdt
             void clear() const;
 
             /**
-             * @brief Creates a window.
-             * @param title Title of the window.
-             * @param width The width of the window.
-             * @param height The height of the window.
-             */
-            void create(const std::string& title, int32 width, int32 height);
-
-            /**
              * @brief Displays what has been rendered to the window.
              *
              * Will set this window to the current context.
@@ -89,17 +80,6 @@ namespace gdt
              * @return Width of the window.
              */
             int32 getWidth() const;
-
-            /**
-             * @brief Check whether the window has the input focus.
-             * @return 'true' if in focus.
-             */
-            bool hasFocus() const;
-
-            /**
-             * @brief Check whether the window is visible
-             */
-            bool isVisible() const;
 
             /**
              * @brief Make this window the current context.
@@ -141,9 +121,6 @@ namespace gdt
             void windowSizeCallback(int32 width, int32 height);
 
         private:
-
-            static bool m_sGlewInitialized;
-            static bool m_sGlfwInitialized;
 
             GLFWwindow* m_pRenderWindow;
         };

@@ -13,7 +13,7 @@ namespace gdt
     namespace core
     {
         /**
-         * @breif Describes a state of a key.
+         * @brief Describes a state of a key.
          */
         enum class EKeyState : int32
         {

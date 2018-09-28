@@ -9,9 +9,6 @@
 using namespace gdt;
 using namespace graphics;
 
-bool CRenderWindow::m_sGlewInitialized = false;
-bool CRenderWindow::m_sGlfwInitialized = false;
-
 CRenderWindow::CRenderWindow()
     : m_pRenderWindow(nullptr)
 {
@@ -36,33 +33,6 @@ void CRenderWindow::clear() const
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void CRenderWindow::create(const std::string& title, int32 width, int32 height)
-{
-    if (!m_sGlfwInitialized)
-    {
-        glfwInit();
-        m_sGlfwInitialized = true;
-    }
-
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
-
-    m_pRenderWindow = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
-
-    // Connect the glfw window to this instance.
-    glfwSetWindowUserPointer(m_pRenderWindow, this);
-
-    glfwMakeContextCurrent(m_pRenderWindow);
-    
-    if (!m_sGlewInitialized)
-    {
-        glewInit();
-        m_sGlewInitialized = true;
-    }
-    
-    glfwSwapInterval(1);
-}
-
 void CRenderWindow::display() const
 {
     makeThisContextCurrent();
@@ -83,16 +53,6 @@ int32 CRenderWindow::getWidth() const
     int32 height;
     glfwGetWindowSize(m_pRenderWindow, &width, &height);
     return width;
-}
-
-bool CRenderWindow::hasFocus() const
-{
-    return static_cast<bool>(glfwGetWindowAttrib(m_pRenderWindow, GLFW_FOCUSED));
-}
-
-bool CRenderWindow::isVisible() const
-{
-    return static_cast<bool>(glfwGetWindowAttrib(m_pRenderWindow, GLFW_VISIBLE));
 }
 
 void CRenderWindow::makeThisContextCurrent() const

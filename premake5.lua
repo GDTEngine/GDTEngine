@@ -183,6 +183,9 @@ project "Main"
     location "Source/Main"
     files { "Source/Main/**.hpp", "Source/Main/**.inl", "Source/Main/**.cpp" }
 
+    includeGLM()
+    includeGLEW()
+    includeGLFW()
     includeCore()
     includeGraphics()
     includeEngine()

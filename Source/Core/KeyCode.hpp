@@ -15,6 +15,9 @@ namespace gdt
 {
     namespace core
     {
+        /**
+         * @brief The reference.
+         */
         enum class EKeyCode : int32
         {
             /** Key 0. */
