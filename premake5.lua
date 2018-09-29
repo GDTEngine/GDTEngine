@@ -188,7 +188,27 @@ project "Main"
     linkEngine()
 
 group "UnitTests"
-project "Graphics_UnitTest"
+project "UnitTest_Core"
+    kind "ConsoleApp"
+    files {
+        "Source/Core/UnitTest/**.cpp",
+        "Source/Core/UnitTest/**.hpp",
+        "ThirdParty/googletest-release-1.8.1/googletest/src/gtest-all.cc",
+        "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock_main.cc",
+        "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock-all.cc" 
+    }
+    location "Source/Graphics/UnitTest"
+    includedirs {
+        "ThirdParty/googletest-release-1.8.1/googletest/include",
+        "ThirdParty/googletest-release-1.8.1/googletest/src",
+        "ThirdParty/googletest-release-1.8.1/googlemock/include",
+        "ThirdParty/googletest-release-1.8.1/googletest/src"
+    }
+    includeCore()
+    linkGraphics()
+
+group "UnitTests"
+project "UnitTest_Graphics"
     kind "ConsoleApp"
     files {
         "Source/Graphics/UnitTest/**.cpp",
@@ -207,6 +227,25 @@ project "Graphics_UnitTest"
     includeCore()
     linkGraphics()
 
+group "UnitTests"
+project "UnitTest_Engine"
+    kind "ConsoleApp"
+    files {
+        "Source/Engine/UnitTest/**.cpp",
+        "Source/Engine/UnitTest/**.hpp",
+        "ThirdParty/googletest-release-1.8.1/googletest/src/gtest-all.cc",
+        "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock_main.cc",
+        "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock-all.cc" 
+    }
+    location "Source/Graphics/UnitTest"
+    includedirs {
+        "ThirdParty/googletest-release-1.8.1/googletest/include",
+        "ThirdParty/googletest-release-1.8.1/googletest/src",
+        "ThirdParty/googletest-release-1.8.1/googlemock/include",
+        "ThirdParty/googletest-release-1.8.1/googletest/src"
+    }
+    includeCore()
+    linkGraphics()
 
 group "Examples"
 project "SpaceShooter"
