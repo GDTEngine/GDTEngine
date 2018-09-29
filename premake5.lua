@@ -40,7 +40,7 @@ end
 
 function includeGLEW()
     defines { "GLEW_STATIC" }
-	includedirs "ThirdParty/GLEW/Include"
+        includedirs "ThirdParty/GLEW/Include"
 end	
 
 function linkGLEW()
@@ -48,14 +48,20 @@ function linkGLEW()
         libdirs "ThirdParty/GLEW/Lib/Win64/Debug"
         
     filter { "system:windows", "architecture:x86_64", "configurations:Release" }
-	    libdirs "ThirdParty/GLEW/Lib/Win64/Release"
-    
+        libdirs "ThirdParty/GLEW/Lib/Win64/Release"
+
+    filter { "system:not windows", "architecture:x86_64" }
+        libdirs "ThirdParty/GLEW/Lib/Unix64"
+
     filter {}
 	
-	filter { "kind:not StaticLib" }
-        links { "glew32s", "opengl32" }
+        filter { "kind:not StaticLib", "system:windows" }
+            links { "glew32s", "opengl32" }
         
-	filter {}
+        filter { "kind:not StaticLib", "system:not windows" }
+            links { "GL", "GLEW" }
+
+    filter {}
 end
 
 function includeGLFW()
@@ -67,20 +73,33 @@ function linkGLFW()
         libdirs "ThirdParty/GLFW/Lib/Win64/Debug"
         
     filter { "system:windows", "architecture:x86_64", "configurations:Release" }
-	    libdirs "ThirdParty/GLFW/Lib/Win64/Release"
+        libdirs "ThirdParty/GLFW/Lib/Win64/Release"
+
+    filter { "system:not windows", "architecture:x86_64" }
+        libdirs "ThirdParty/GLFW/Lib/Unix64"
 
     filter {}
 
-	filter { "kind:not StaticLib" }
-        links { "glfw3" }
+        filter { "kind:not StaticLib", "system:windows" }
+            links { "glfw3" }
+
+        filter { "kind:not StaticLib", "system:not windows" }
+            links { "glfw3", "X11", "Xxf86vm", "Xrandr", "Xinerama", "Xcursor", "pthread", "Xi", "dl" }
         
-	filter {}
+    filter {}
 end
 
 -- Source --
 
 project "Core"
-    kind "None"
+    filter { "system:windows" }
+        links { "Graphics" }
+        kind "None"
+
+    filter { "system:not windows" }
+        links { "Graphics" }
+        kind "StaticLib"
+
     location "Source/Core"
     files { "Source/Core/**.hpp", "Source/Core/**.inl", "Source/Core/**.cpp", }
 
@@ -117,6 +136,7 @@ function linkGraphics()
 
     linkGLEW()
     linkGLFW()
+
 end
 
 project "Engine"
@@ -133,6 +153,15 @@ project "Engine"
 
     linkGraphics()
     
+function includeGTest()
+    includedirs {
+      "ThirdParty/googletest-release-1.8.1/googletest/include",
+      "ThirdParty/googletest-release-1.8.1/googletest/src",
+      "ThirdParty/googletest-release-1.8.1/googlemock/include",
+      "ThirdParty/googletest-release-1.8.1/googletest/src"
+    }
+end 
+
 project "Graphics_UnitTest"
     kind "ConsoleApp"
     files {
@@ -143,11 +172,10 @@ project "Graphics_UnitTest"
         "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock-all.cc" 
     }
     location "Source/Graphics/UnitTest"
-    includedirs {
-      "ThirdParty/googletest-release-1.8.1/googletest/include",
-      "ThirdParty/googletest-release-1.8.1/googletest/src",
-      "ThirdParty/googletest-release-1.8.1/googlemock/include",
-      "ThirdParty/googletest-release-1.8.1/googletest/src"
-    }
+    includeGTest()
+    includeGLM()
+    includeGLEW()
+    includeGLFW()
     includeCore()
+    includeGraphics()
     linkGraphics()

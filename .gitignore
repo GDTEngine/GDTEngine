@@ -19,3 +19,6 @@
 # Allow other.
 !*.md
 !premake5.exe
+
+# Allow libs.
+!ThirdParty/**/*.a

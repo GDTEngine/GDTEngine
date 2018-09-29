@@ -5,6 +5,7 @@
  */
 
 #include "RenderWindow.hpp"
+#include <iostream>
 
 using namespace gdt;
 using namespace graphics;
@@ -28,6 +29,7 @@ CRenderWindow::~CRenderWindow()
     {
         glfwDestroyWindow(m_pRenderWindow);
     }
+    glfwSetErrorCallback(NULL);
 }
 
 void CRenderWindow::clear() const
@@ -36,8 +38,14 @@ void CRenderWindow::clear() const
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
+void glfwErrorCallback(int error, const char* description)
+{
+    LOG_ERROR(description);
+}
+
 void CRenderWindow::create(const std::string& title, int32 width, int32 height)
 {
+    glfwSetErrorCallback(glfwErrorCallback);
     if (!m_sGlfwInitialized)
     {
         glfwInit();
