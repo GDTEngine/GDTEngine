@@ -14,7 +14,7 @@ namespace gdt
         namespace shader
         {
             /**
-             * @breif Vertex shader source for Uber shader.
+             * @brief Vertex shader source for Uber shader.
              */
             const char* uberVertex =
                 "#version 450 core\n"
@@ -31,7 +31,7 @@ namespace gdt
                 "}\n\0";
 
             /**
-             * @breif Fragment shader source for Uber shader.
+             * @brief Fragment shader source for Uber shader.
              */
             const char* uberFragment =
                 "#version 450 core\n"
