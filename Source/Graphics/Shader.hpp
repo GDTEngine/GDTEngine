@@ -140,7 +140,7 @@ namespace gdt
              *
              * Call 'getErrorString' to get more information about the errors.
              */
-            EStatus getStatus() const;
+            core::EStatus getStatus() const;
 
             /**
              * @brief Set a bool uniform.
@@ -217,7 +217,7 @@ namespace gdt
 
         private:
 
-            EStatus m_status;
+            core::EStatus m_status;
 
             static uint32 m_sActiveProgramId;
             uint32 m_programId;

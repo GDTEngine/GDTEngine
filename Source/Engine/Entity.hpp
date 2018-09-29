@@ -19,31 +19,37 @@ namespace gdt
         {
         public:
 
-            using entityId = uint32;
-
-        public:
-
+            /**
+             * @brief Default constructor.
+             */
             CEntity();
 
             CEntity(const CEntity&) = delete;
 
+            /**
+             * @brief Destructor.
+             */
             virtual ~CEntity();
 
             void operator=(const CEntity&) = delete;
 
-            entityId getEntityId() const;
-
         protected:
 
+            /**
+             * @brief Called when the class is instantiated.
+             */
             virtual void beginPlay();
 
+            /**
+             * @brief Called when the class is destroyed.
+             */
             virtual void endPlay();
 
+            /**
+             * @brief Called every frame.
+             * @param deltaTime Time it took to render the last frame in seconds.
+             */
             virtual void tick(f32 deltaTime);
-
-        private:
-
-            entityId m_entityId;
         };
     }
 }

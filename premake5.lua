@@ -75,7 +75,8 @@ project "UnitTest_Core"
         "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock_main.cc",
         "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock-all.cc" 
     }
-    location "Source/Graphics/UnitTest"
+
+    location "Source/Core/UnitTest"
     includedirs {
         "ThirdParty/googletest-release-1.8.1/googletest/include",
         "ThirdParty/googletest-release-1.8.1/googletest/src",
@@ -150,7 +151,7 @@ project "UnitTest_Engine"
         "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock-all.cc" 
     }
 
-    location "Source/Graphics/UnitTest"
+    location "Source/Engine/UnitTest"
     includedirs {
         "ThirdParty/googletest-release-1.8.1/googletest/include",
         "ThirdParty/googletest-release-1.8.1/googletest/src",

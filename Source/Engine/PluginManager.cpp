@@ -30,7 +30,7 @@ void CPluginManager::startUp()
     {
         auto pPlugin = std::make_unique<core::CPlugin>("Plugins/" + fileIterator.getFilename());
 
-        if (pPlugin->getStatus() == EStatus::Failure)
+        if (pPlugin->getStatus() == core::EStatus::Failure)
         {
             LOG_ERROR("Could not load plugin: " + fileIterator.getFilename());
             break;
@@ -44,7 +44,7 @@ void CPluginManager::startUp()
     {
         pPlugin->callFunction("startUpPlugin");
         
-        if (pPlugin->getStatus() == EStatus::Failure)
+        if (pPlugin->getStatus() == core::EStatus::Failure)
         {
             LOG_ERROR("Could not call startUpPlugin.");
         }
@@ -57,7 +57,7 @@ void CPluginManager::shutDown()
     {
         pPlugin->callFunction("shutDownPlugin");
 
-        if (pPlugin->getStatus() == EStatus::Failure)
+        if (pPlugin->getStatus() == core::EStatus::Failure)
         {
             LOG_ERROR("Could not call shutDownPlugin.");
         }

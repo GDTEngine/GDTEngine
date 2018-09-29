@@ -36,7 +36,7 @@ namespace gdt
             */
             void SetUp() override
             {
-                m_pRenderWindow = std::make_unique<gdt::graphics::CRenderWindow>("GDTEngine", 1280, 720);
+                m_pRenderWindow = std::make_unique<graphics::CRenderWindow>("GDTEngine", 1280, 720);
             }
 
             /*
@@ -46,7 +46,7 @@ namespace gdt
             {}
 
         protected:
-            std::unique_ptr<gdt::graphics::CRenderWindow> m_pRenderWindow;
+            std::unique_ptr<graphics::CRenderWindow> m_pRenderWindow;
         };
 
         // This is just an example test. Provide proper tests when needed.
