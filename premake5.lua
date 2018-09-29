@@ -137,13 +137,6 @@ project "UnitTest_Graphics"
             "ThirdParty/GLEW/Lib/Win64/Release"
         }
 
-        "Source/Engine/UnitTest/**.cpp",
-        "Source/Engine/UnitTest/**.hpp",
-        "ThirdParty/googletest-release-1.8.1/googletest/src/gtest-all.cc",
-        "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock_main.cc",
-        "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock-all.cc" 
-    }
-
     includedirs {
         "ThirdParty/googletest-release-1.8.1/googletest/include",
         "ThirdParty/googletest-release-1.8.1/googletest/src",
