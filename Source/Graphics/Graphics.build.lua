@@ -2,6 +2,7 @@ group "Engine"
 project "Graphics"
     kind "StaticLib"
     location ""
+    
     files {
         "**.hpp",
         "**.inl",
@@ -16,10 +17,6 @@ project "Graphics"
         "../../ThirdParty/GLM/Include",
         "../Core"
     }
-
-function includeGraphics()
-    includedirs{ scriptPath() }
-end 
 
 function linkGraphics()
     filter { "kind:not StaticLib", "system:windows" }

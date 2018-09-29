@@ -17,10 +17,6 @@ project "Engine"
         "../Engine",
     }
 
-function includeEngine()
-    includedirs{ scriptPath() }
-end
-
 function linkEngine()
     filter { "kind:not StaticLib", "system:windows" }
         links { "Engine" }

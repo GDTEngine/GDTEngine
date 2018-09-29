@@ -21,7 +21,7 @@ workspace "GDTEngine"
 
 	filter { "configurations:Debug" }
         symbols "On"
-        defines { "GDT_DEBUG" }
+        defines { "GLEW_STATIC", "GDT_DEBUG" }
 
     filter { "configurations:Release_Editor" }
         optimize "On"
@@ -59,14 +59,10 @@ workspace "GDTEngine"
     -- Main.
     include "Source/Main/Main.build.lua"
 
-group "Editor"
-project "Editor"
-    kind "StaticLib"
-    location "Source/Editor"
-
 group "UnitTests"
 project "UnitTest_Core"
     kind "ConsoleApp"
+    location "Source/Core/UnitTest"
 
     files {
         "Source/Core/UnitTest/**.cpp",
@@ -76,12 +72,15 @@ project "UnitTest_Core"
         "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock-all.cc" 
     }
 
-    location "Source/Core/UnitTest"
     includedirs {
         "ThirdParty/googletest-release-1.8.1/googletest/include",
         "ThirdParty/googletest-release-1.8.1/googletest/src",
         "ThirdParty/googletest-release-1.8.1/googlemock/include",
-        "ThirdParty/googletest-release-1.8.1/googletest/src"
+        "ThirdParty/googletest-release-1.8.1/googletest/src",
+        "ThirdParty/GLFW/Include",
+        "ThirdParty/GLEW/Include",
+        "ThirdParty/GLM/Include",
+        "Source/Core"
     }
 
     filter { "system:windows", "architecture:x86_64", "configurations:Debug" }
@@ -96,29 +95,34 @@ project "UnitTest_Core"
             "ThirdParty/GLEW/Lib/Win64/Release"
         }
 
-        includedirs {
-            "Source/Core",
-        }
+    filter{}
+
 
     linkCore()
 
 group "UnitTests"
 project "UnitTest_Graphics"
     kind "ConsoleApp"
+    location "Source/Graphics/UnitTest"
+
     files {
         "Source/Graphics/UnitTest/**.cpp",
         "Source/Graphics/UnitTest/**.hpp",
         "ThirdParty/googletest-release-1.8.1/googletest/src/gtest-all.cc",
         "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock_main.cc",
-        "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock-all.cc" 
+        "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock-all.cc",
     }
 
-    location "Source/Graphics/UnitTest"
     includedirs {
         "ThirdParty/googletest-release-1.8.1/googletest/include",
         "ThirdParty/googletest-release-1.8.1/googletest/src",
         "ThirdParty/googletest-release-1.8.1/googlemock/include",
-        "ThirdParty/googletest-release-1.8.1/googletest/src"
+        "ThirdParty/googletest-release-1.8.1/googletest/src",
+        "ThirdParty/GLFW/Include",
+        "ThirdParty/GLEW/Include",
+        "ThirdParty/GLM/Include",
+        "Source/Core",
+        "Source/Graphics"
     }
 
     filter { "system:windows", "architecture:x86_64", "configurations:Debug" }
@@ -133,16 +137,15 @@ project "UnitTest_Graphics"
             "ThirdParty/GLEW/Lib/Win64/Release"
         }
 
-    includedirs {
-        "Source/Core",
-        "Source/Graphics",
-    }
+    filter{}
 
     linkGraphics()
 
 group "UnitTests"
 project "UnitTest_Engine"
     kind "ConsoleApp"
+    location "Source/Engine/UnitTest"
+
     files {
         "Source/Engine/UnitTest/**.cpp",
         "Source/Engine/UnitTest/**.hpp",
@@ -151,12 +154,17 @@ project "UnitTest_Engine"
         "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock-all.cc" 
     }
 
-    location "Source/Engine/UnitTest"
     includedirs {
         "ThirdParty/googletest-release-1.8.1/googletest/include",
         "ThirdParty/googletest-release-1.8.1/googletest/src",
         "ThirdParty/googletest-release-1.8.1/googlemock/include",
-        "ThirdParty/googletest-release-1.8.1/googletest/src"
+        "ThirdParty/googletest-release-1.8.1/googletest/src",
+        "ThirdParty/GLFW/Include",
+        "ThirdParty/GLEW/Include",
+        "ThirdParty/GLM/Include",
+        "Source/Core",
+        "Source/Graphics",
+        "Source/Engine"
     }
 
     filter { "system:windows", "architecture:x86_64", "configurations:Debug" }
@@ -171,11 +179,7 @@ project "UnitTest_Engine"
             "ThirdParty/GLEW/Lib/Win64/Release"
         }
 
-    includedirs {
-        "Source/Core",
-        "Source/Graphics",
-        "Source/Engine"
-    }
+    filter{}
 
     linkEngine()
 

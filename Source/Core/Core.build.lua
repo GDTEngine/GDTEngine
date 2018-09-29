@@ -14,10 +14,13 @@ project "Core"
     includedirs {
         "../../ThirdParty/GLFW/Include",
         "../../ThirdParty/GLEW/Include",
-        "../../ThirdParty/GLM/Include",
+        "../../ThirdParty/GLM/Include"
     }
 
 function linkCore()
+    linkGLEW()
+    linkGLFW()
+
     filter { "kind:not StaticLib", "system:windows" }
         links { "Core" }
 
@@ -25,7 +28,4 @@ function linkCore()
         links { "Core" }
 
     filter {}
-
-    linkGLEW()
-    linkGLFW()
 end

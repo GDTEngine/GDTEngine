@@ -8,6 +8,6 @@ end
 function linkGLFW()
 	filter { "kind:not StaticLib" }
         links { "glfw3" }
-        
+
 	filter {}
 end

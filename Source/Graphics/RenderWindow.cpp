@@ -6,6 +6,9 @@
 
 #include "RenderWindow.hpp"
 
+#include <GLEW/glew.h>
+#include <GLFW/glfw3.h>
+
 using namespace gdt;
 using namespace graphics;
 
