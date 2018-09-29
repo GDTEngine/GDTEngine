@@ -41,155 +41,33 @@ workspace "GDTEngine"
 	targetdir ("Build/Bin/%{prj.name}/%{cfg.longname}")
     objdir ("Build/Obj/%{prj.name}/%{cfg.longname}")
 
--- Third Party --
+    -- Third party.
+    include "ThirdParty/ThirdParty.build.lua"
 
-function includeGLM()
-    includedirs "ThirdParty/GLM/Include"
-end
+    -- Core.
+    include "Source/Core/Core.build.lua"
 
-function includeGLEW()
-    defines { "GLEW_STATIC" }
-	includedirs "ThirdParty/GLEW/Include"
-end	
+    -- Graphics.
+    include "Source/Graphics/Graphics.build.lua"
 
-function linkGLEW()
-    filter { "system:windows", "architecture:x86_64", "configurations:Debug" }
-        libdirs "ThirdParty/GLEW/Lib/Win64/Debug"
-        
-    filter { "system:windows", "architecture:x86_64", "configurations:Release" }
-	    libdirs "ThirdParty/GLEW/Lib/Win64/Release"
-    
-    filter {}
-	
-	filter { "kind:not StaticLib" }
-        links { "glew32s", "opengl32" }
-        
-	filter {}
-end
+    -- Engine.
+    include "Source/Engine/Engine.build.lua"
 
-function includeGLFW()
-	includedirs "ThirdParty/GLFW/Include"
-end	
+    -- Editor.
+    include "Source/Editor/Editor.build.lua"
 
-function linkGLFW()
-    filter { "system:windows", "architecture:x86_64", "configurations:Debug" }
-        libdirs "ThirdParty/GLFW/Lib/Win64/Debug"
-        
-    filter { "system:windows", "architecture:x86_64", "configurations:Release" }
-	    libdirs "ThirdParty/GLFW/Lib/Win64/Release"
-
-    filter {}
-
-	filter { "kind:not StaticLib" }
-        links { "glfw3" }
-        
-	filter {}
-end
-
--- Source --
-
-group "Engine"
-project "Core"
-    kind "StaticLib"
-    location "Source/Core"
-    files { "Source/Core/**.hpp", "Source/Core/**.inl", "Source/Core/**.cpp", }
-
-    includeGLM()
-
-function includeCore()
-    includedirs "Source/Core"
-end
-
-function linkCore()
-    filter { "kind:not StaticLib", "system:windows" }
-        links { "Core" }
-
-    filter { "kind:not StaticLib", "system:not windows" }
-        links { "Core" }
-
-    filter {}
-
-end
-
-group "Engine"
-project "Graphics"
-    kind "StaticLib"
-    location "Source/Graphics"
-    files { "Source/Graphics/**.hpp", "Source/Graphics/**.inl", "Source/Graphics/**.cpp" }
-    excludes { "Source/Graphics/UnitTest/**" }
-
-    includeGLM()
-    includeGLEW()
-    includeGLFW()
-
-    includeCore()
-
-function includeGraphics()
-    includedirs "Source/Graphics"
-end 
-
-function linkGraphics()
-    filter { "kind:not StaticLib", "system:windows" }
-        links { "Graphics" }
-    
-    filter { "kind:not StaticLib", "system:not windows" }
-        links { "Graphics" }
-
-    filter {}
-
-    linkGLEW()
-    linkGLFW()
-    linkCore()
-end
-
-group "Engine"
-project "Engine"
-    kind "StaticLib"
-    location "Source/Engine"
-    files { "Source/Engine/**.hpp", "Source/Engine/**.inl", "Source/Engine/**.cpp" }
-
-    includeGLM()
-    includeGLEW()
-    includeGLFW()
-    includeCore()
-    includeGraphics()
-
-function includeEngine()
-    includedirs "Source/Engine"
-end
-
-function linkEngine()
-    filter { "kind:not StaticLib", "system:windows" }
-        links { "Engine" }
-    
-    filter { "kind:not StaticLib", "system:not windows" }
-        links { "Engine" }
-
-    filter {}
-
-    linkGraphics()
-end
+    -- Main.
+    include "Source/Main/Main.build.lua"
 
 group "Editor"
 project "Editor"
     kind "StaticLib"
     location "Source/Editor"
 
-group "Main"
-project "Main"
-    kind "ConsoleApp"
-    location "Source/Main"
-    files { "Source/Main/**.hpp", "Source/Main/**.inl", "Source/Main/**.cpp" }
-
-    includeCore()
-    includeGraphics()
-    includeEngine()
-
-    linkEngine()
-
 group "UnitTests"
 project "UnitTest_Core"
     kind "ConsoleApp"
+
     files {
         "Source/Core/UnitTest/**.cpp",
         "Source/Core/UnitTest/**.hpp",
@@ -204,8 +82,24 @@ project "UnitTest_Core"
         "ThirdParty/googletest-release-1.8.1/googlemock/include",
         "ThirdParty/googletest-release-1.8.1/googletest/src"
     }
-    includeCore()
-    linkGraphics()
+
+    filter { "system:windows", "architecture:x86_64", "configurations:Debug" }
+        libdirs {
+            "ThirdParty/GLFW/Lib/Win64/Debug",
+            "ThirdParty/GLEW/Lib/Win64/Debug"
+        }
+
+    filter { "system:windows", "architecture:x86_64", "configurations:Release" }
+        libdirs {
+            "ThirdParty/GLFW/Lib/Win64/Release",
+            "ThirdParty/GLEW/Lib/Win64/Release"
+        }
+
+        includedirs {
+            "Source/Core",
+        }
+
+    linkCore()
 
 group "UnitTests"
 project "UnitTest_Graphics"
@@ -217,14 +111,32 @@ project "UnitTest_Graphics"
         "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock_main.cc",
         "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock-all.cc" 
     }
+
     location "Source/Graphics/UnitTest"
     includedirs {
-      "ThirdParty/googletest-release-1.8.1/googletest/include",
-      "ThirdParty/googletest-release-1.8.1/googletest/src",
-      "ThirdParty/googletest-release-1.8.1/googlemock/include",
-      "ThirdParty/googletest-release-1.8.1/googletest/src"
+        "ThirdParty/googletest-release-1.8.1/googletest/include",
+        "ThirdParty/googletest-release-1.8.1/googletest/src",
+        "ThirdParty/googletest-release-1.8.1/googlemock/include",
+        "ThirdParty/googletest-release-1.8.1/googletest/src"
     }
-    includeCore()
+
+    filter { "system:windows", "architecture:x86_64", "configurations:Debug" }
+        libdirs {
+            "ThirdParty/GLFW/Lib/Win64/Debug",
+            "ThirdParty/GLEW/Lib/Win64/Debug"
+        }
+
+    filter { "system:windows", "architecture:x86_64", "configurations:Release" }
+        libdirs {
+            "ThirdParty/GLFW/Lib/Win64/Release",
+            "ThirdParty/GLEW/Lib/Win64/Release"
+        }
+
+    includedirs {
+        "Source/Core",
+        "Source/Graphics",
+    }
+
     linkGraphics()
 
 group "UnitTests"
@@ -237,6 +149,7 @@ project "UnitTest_Engine"
         "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock_main.cc",
         "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock-all.cc" 
     }
+
     location "Source/Graphics/UnitTest"
     includedirs {
         "ThirdParty/googletest-release-1.8.1/googletest/include",
@@ -244,19 +157,51 @@ project "UnitTest_Engine"
         "ThirdParty/googletest-release-1.8.1/googlemock/include",
         "ThirdParty/googletest-release-1.8.1/googletest/src"
     }
-    includeCore()
-    linkGraphics()
+
+    filter { "system:windows", "architecture:x86_64", "configurations:Debug" }
+        libdirs {
+            "ThirdParty/GLFW/Lib/Win64/Debug",
+            "ThirdParty/GLEW/Lib/Win64/Debug"
+        }
+
+    filter { "system:windows", "architecture:x86_64", "configurations:Release" }
+        libdirs {
+            "ThirdParty/GLFW/Lib/Win64/Release",
+            "ThirdParty/GLEW/Lib/Win64/Release"
+        }
+
+    includedirs {
+        "Source/Core",
+        "Source/Graphics",
+        "Source/Engine"
+    }
+
+    linkEngine()
 
 group "Examples"
 project "SpaceShooter"
     kind "SharedLib"
-    location "Source/Test_Plugin"
-    files { "Source/Test_Plugin/**.hpp", "Source/Test_Plugin/**.inl", "Source/Test_Plugin/**.cpp" }
+    location "Source/SpaceShooter"
+    files { "Source/SpaceShooter/**.hpp", "Source/SpaceShooter/**.inl", "Source/SpaceShooter/**.cpp" }
     targetdir ("Source/Main/Plugins")
     defines { "GDT_PLUGIN_DLL_EXPORT" }
     
-    includeCore()
-    includeGraphics()
-    includeEngine()
+    includedirs {
+        "Source/Core",
+        "Source/Graphics",
+        "Source/Engine"
+    }
+
+    filter { "system:windows", "architecture:x86_64", "configurations:Debug" }
+        libdirs {
+            "ThirdParty/GLFW/Lib/Win64/Debug",
+            "ThirdParty/GLEW/Lib/Win64/Debug"
+        }
+
+    filter { "system:windows", "architecture:x86_64", "configurations:Release" }
+        libdirs {
+            "ThirdParty/GLFW/Lib/Win64/Release",
+            "ThirdParty/GLEW/Lib/Win64/Release"
+        }
     
     linkEngine()

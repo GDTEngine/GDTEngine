@@ -43,7 +43,7 @@ void CPlugin::callFunction(const std::string& functionName)
     }
 
 #ifdef _WIN32
-    auto function = reinterpret_cast<int(_cdecl *)()>(GetProcAddress(m_pPlugin, functionName.c_str()));
+    auto function = reinterpret_cast<void(_cdecl *)()>(GetProcAddress(m_pPlugin, functionName.c_str()));
     if (!function)
     {
         m_status = EStatus::Failure;

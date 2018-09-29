@@ -15,8 +15,8 @@ namespace gdt
     namespace test
     {
         /**
-        * Base class for graphics unit tests.
-        */
+         * @brief Base class for graphics unit tests.
+         */
         class CGraphicsTestBase : public ::testing::Test {
 
         protected:
