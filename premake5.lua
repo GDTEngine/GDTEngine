@@ -137,6 +137,13 @@ project "UnitTest_Graphics"
             "ThirdParty/GLEW/Lib/Win64/Release"
         }
 
+    linkGraphics()
+
+group "UnitTests"
+project "UnitTest_Engine"
+    kind "ConsoleApp"
+    location "Source/Engine/UnitTest"
+
     includedirs {
         "ThirdParty/googletest-release-1.8.1/googletest/include",
         "ThirdParty/googletest-release-1.8.1/googletest/src",
