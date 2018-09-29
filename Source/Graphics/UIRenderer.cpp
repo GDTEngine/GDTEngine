@@ -20,7 +20,12 @@ CUIRenderer::CUIRenderer()
 
     m_pVertexArray->setDrawMode(CVertexArray::EDrawMode::Triangles);
     m_pVertexBuffer->setData(sizeof(f32) * 2 * 1024 * 100, nullptr);
-    m_pVertexBuffer->setAttributePointer(*m_pVertexArray, 0, 2, CArrayBuffer::EType::Float, sizeof(float) * 2, 0);
+    int32 offset = 0;
+    m_pVertexBuffer->setAttributePointer(*m_pVertexArray, 0, 2, CArrayBuffer::EType::Float, sizeof(SUIDefinition), offset);
+    offset += sizeof(glm::vec2);
+    m_pVertexBuffer->setAttributePointer(*m_pVertexArray, 1, 2, CArrayBuffer::EType::Float, sizeof(SUIDefinition), offset);
+    offset += sizeof(glm::vec2);
+    m_pVertexBuffer->setAttributePointer(*m_pVertexArray, 2, 2, CArrayBuffer::EType::Float, sizeof(SUIDefinition), offset);
 
 }
 
@@ -50,26 +55,39 @@ void CUIRenderer::end()
 
 void CUIRenderer::submitPanel(const glm::vec2& position, const glm::vec2& size, const glm::vec2& anchor)
 {
+    glm::vec2 center = position;
+    m_pMap->center = center;
     m_pMap->position = position + size;
+    m_pMap->size = size;
     ++m_pMap;
 
+    m_pMap->center = center;
     m_pMap->position.x = position.x + size.x;
     m_pMap->position.y = position.y;
+    m_pMap->size = size;
     ++m_pMap;
 
+    m_pMap->center = center;
     m_pMap->position.x = position.x;
     m_pMap->position.y = position.y + size.y;
+    m_pMap->size = size;
     ++m_pMap;
 
+    m_pMap->center = center;
     m_pMap->position.x = position.x + size.x;
     m_pMap->position.y = position.y;
+    m_pMap->size = size;
     ++m_pMap;
 
+    m_pMap->center = center;
     m_pMap->position = position;
+    m_pMap->size = size;
     ++m_pMap;
 
+    m_pMap->center = center;
     m_pMap->position.x = position.x;
     m_pMap->position.y = position.y + size.x;
+    m_pMap->size = size;
     ++m_pMap;
     
     m_count += 6;

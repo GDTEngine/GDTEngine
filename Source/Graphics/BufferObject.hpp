@@ -120,9 +120,6 @@ namespace gdt
              */
             CBufferObject();
 
-            /**
-             * @brief Copy constructor deleted.
-             */
             CBufferObject(const CBufferObject&) = delete;
 
             /**
@@ -142,9 +139,6 @@ namespace gdt
              */
             virtual ~CBufferObject();
 
-            /**
-             * @brief Assignment operator deleted.
-             */
             void operator=(const CBufferObject&) = delete;
 
             /**

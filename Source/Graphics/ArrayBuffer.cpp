@@ -11,35 +11,35 @@
 using namespace gdt;
 using namespace graphics;
 
-uint32 CArrayBuffer::m_sActiveVertexBuffer = 0;
+uint32 CArrayBuffer::m_sActiveArrayBuffer = 0;
 
 CArrayBuffer::CArrayBuffer()
     : CBufferObject(EUsage::StaticDraw)
 {
-    glGenBuffers(1, &m_vertexBufferId);
+    glGenBuffers(1, &m_arrayBufferId);
 }
 
 CArrayBuffer::CArrayBuffer(CArrayBuffer&& other) noexcept
     : CBufferObject(other.getUsage())
-    , m_vertexBufferId(other.m_vertexBufferId)
+    , m_arrayBufferId(other.m_arrayBufferId)
 {
-    other.m_vertexBufferId = 0;
+    other.m_arrayBufferId = 0;
 }
 
 CArrayBuffer::~CArrayBuffer()
 {
-    if (m_vertexBufferId > 0)
+    if (m_arrayBufferId > 0)
     {
-        glDeleteBuffers(1, &m_vertexBufferId);
+        glDeleteBuffers(1, &m_arrayBufferId);
     }
 }
 
 void CArrayBuffer::bind() const
 {
-    if (m_sActiveVertexBuffer != m_vertexBufferId)
+    if (m_sActiveArrayBuffer != m_arrayBufferId)
     {
-        glBindBuffer(GL_ARRAY_BUFFER, m_vertexBufferId);
-        m_sActiveVertexBuffer = m_vertexBufferId;
+        glBindBuffer(GL_ARRAY_BUFFER, m_arrayBufferId);
+        m_sActiveArrayBuffer = m_arrayBufferId;
     }
 }
 

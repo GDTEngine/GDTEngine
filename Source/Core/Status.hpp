@@ -15,8 +15,10 @@ namespace gdt
          */
         enum class EStatus
         {
-            /**  */
+            /** Failure. */
             Failure = 0,
+
+            /** Success. */
             Success
         };
     }

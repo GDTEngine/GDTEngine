@@ -25,7 +25,9 @@ namespace gdt
 
             struct SUIDefinition
             {
+                glm::vec2 center;
                 glm::vec2 position;
+                glm::vec2 size;
             };
 
         public:
