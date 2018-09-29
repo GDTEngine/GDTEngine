@@ -28,9 +28,9 @@ namespace gdt
              */
             CRenderWindow();
 
-            CRenderWindow(const CRenderWindow& other) = delete;
+            CRenderWindow(const CRenderWindow&) = delete;
 
-            CRenderWindow(const CRenderWindow&& other) = delete;
+            CRenderWindow(CRenderWindow&&) = delete;
 
             /**
              * @brief Creates a window.
@@ -45,7 +45,7 @@ namespace gdt
              */
             ~CRenderWindow();
 
-            void operator=(const CRenderWindow& rhs) = delete;
+            void operator=(const CRenderWindow&) = delete;
 
             /**
              * @brief Clears what has been rendered on the window.

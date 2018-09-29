@@ -28,7 +28,7 @@ namespace gdt
              */
             CShader();
 
-            CShader(const CShader& other) = delete;
+            CShader(const CShader&) = delete;
 
             /**
              * @brief Move constructor.
@@ -79,7 +79,7 @@ namespace gdt
              */
             ~CShader();
 
-            void operator=(const CShader& rhs) = delete;
+            void operator=(const CShader&) = delete;
 
             /**
              * @brief Compile a shader from source glsl code.
@@ -134,7 +134,7 @@ namespace gdt
              *
              * Call 'getErrorString' to get more information about the errors.
              */
-            EStatus getStatus() const;
+            core::EStatus getStatus() const;
 
             /**
              * @brief Set a bool uniform.
@@ -211,7 +211,7 @@ namespace gdt
 
         private:
 
-            EStatus m_status;
+            core::EStatus m_status;
 
             static uint32 m_sActiveProgramId;
             uint32 m_programId;

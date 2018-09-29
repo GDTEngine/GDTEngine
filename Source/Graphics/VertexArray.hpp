@@ -43,7 +43,7 @@ namespace gdt
              */
             CVertexArray();
 
-            CVertexArray(const CVertexArray& other) = delete;
+            CVertexArray(const CVertexArray&) = delete;
 
             /**
              * @brief Move constructor.
@@ -56,7 +56,7 @@ namespace gdt
              */
             ~CVertexArray();
 
-            void operator=(const CVertexArray& rhs) = delete;
+            void operator=(const CVertexArray&) = delete;
 
             /**
              * @brief Bind the vertex array.

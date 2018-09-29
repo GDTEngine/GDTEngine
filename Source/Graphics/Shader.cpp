@@ -14,7 +14,7 @@ using namespace graphics;
 uint32 CShader::m_sActiveProgramId = 0;
 
 CShader::CShader()
-    : m_status(EStatus::Success)
+    : m_status(core::EStatus::Success)
     , m_programId(0)
 {
 }
@@ -57,7 +57,7 @@ void CShader::compileProgram(const std::string& vertexSource, const std::string&
 void CShader::compileProgram(const std::string& vertexSource, const std::string& geometrySource,
     const std::string fragmentSource)
 {
-    m_status = EStatus::Success;
+    m_status = core::EStatus::Success;
 
     // Create shaders.
     uint32 vertex = glCreateShader(GL_VERTEX_SHADER);
@@ -96,7 +96,7 @@ void CShader::compileProgram(const std::string& vertexSource, const std::string&
     checkShaderErrors(fragment, "Fragment");
 
     // Return if something went wrong.
-    if (m_status == EStatus::Failure)
+    if (m_status == core::EStatus::Failure)
     {
         glDeleteShader(vertex);
         if (geometry)
@@ -129,7 +129,7 @@ void CShader::compileProgram(const std::string& vertexSource, const std::string&
     glDeleteShader(fragment);
 
     // Associate the program id with this class if 'Success', else delete the program.
-    if (m_status == EStatus::Success)
+    if (m_status == core::EStatus::Success)
     {
         m_programId = programId;
     }
@@ -148,7 +148,7 @@ std::string CShader::getErrorString() const
 #endif
 }
 
-EStatus CShader::getStatus() const
+core::EStatus CShader::getStatus() const
 {
     return m_status;
 }
@@ -211,9 +211,9 @@ void CShader::checkShaderErrors(uint32 shaderId, const std::string& type)
 {
     int32 success = 0;
     glGetShaderiv(shaderId, GL_COMPILE_STATUS, &success);
-    if (m_status == EStatus::Success && !success)
+    if (m_status == core::EStatus::Success && !success)
     {
-        m_status = EStatus::Failure;
+        m_status = core::EStatus::Failure;
     }
 
 #if GDT_DEBUG
@@ -233,9 +233,9 @@ void CShader::checkProgramErrors(uint32 programId)
 {
     int32 success = 0;
     glGetProgramiv(programId, GL_LINK_STATUS, &success);
-    if (m_status == EStatus::Success && !success)
+    if (m_status == core::EStatus::Success && !success)
     {
-        m_status = EStatus::Failure;
+        m_status = core::EStatus::Failure;
     }
 
 #if GDT_DEBUG

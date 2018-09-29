@@ -40,7 +40,7 @@ namespace gdt
             /**
              * @brief Copy constructor deleted.
              */
-            CUIRenderer(const CUIRenderer& other) = delete;
+            CUIRenderer(const CUIRenderer&) = delete;
 
             /**
              * @brief Move constructor.
@@ -56,7 +56,7 @@ namespace gdt
             /**
              * @brief Assignment operator deleted.
              */
-            void operator=(const CUIRenderer& rhs) = delete;
+            void operator=(const CUIRenderer&) = delete;
 
             void begin();
 
