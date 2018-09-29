@@ -15,7 +15,7 @@ namespace gdt
     namespace graphics
     {
         /**
-         * @brief A **'CArrayBuffer'** is an object that stores all of the state needed to supply vertex data.
+         * @brief A CArrayBuffer is an object that stores all of the state needed to supply vertex data.
          */
         class CVertexArray
         {
@@ -43,9 +43,6 @@ namespace gdt
              */
             CVertexArray();
 
-            /**
-             * @brief Copy constructor deleted.
-             */
             CVertexArray(const CVertexArray&) = delete;
 
             /**

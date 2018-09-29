@@ -19,7 +19,7 @@ namespace gdt
         /**
          * @brief A vertex buffer.
          *
-         * Default usage for this buffer is **'StaticDraw'**.
+         * Default usage for this buffer is StaticDraw.
          */
         class CArrayBuffer final : public CBufferObject
         {
@@ -46,9 +46,6 @@ namespace gdt
              */
             ~CArrayBuffer();
 
-            /**
-             * @brief Assignment operator deleted.
-             */
             void operator=(const CVertexArray&) = delete;
 
             /**
@@ -78,7 +75,7 @@ namespace gdt
             /**
              * @brief Set the data of this buffer.
              * @param size Specifies the size in bytes of the buffer object's new data store.
-             * @param dataPtr Specifies a pointer to data that will be copied into the data store for initialization, or **'nullptr'** if no data is to be copied.
+             * @param dataPtr Specifies a pointer to data that will be copied into the data store for initialization, or nullptr if no data is to be copied.
              *  
              * Calling this function will also bind this buffer.
              */
@@ -96,8 +93,8 @@ namespace gdt
 
         private:
 
-            static uint32 m_sActiveVertexBuffer;
-            uint32 m_vertexBufferId;
+            static uint32 m_sActiveArrayBuffer;
+            uint32 m_arrayBufferId;
         };
     }
 }

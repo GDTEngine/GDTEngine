@@ -7,9 +7,6 @@
 #include "Entity.hpp"
 #include "PluginManager.hpp"
 #include "RenderWindow.hpp"
-#include "Log.hpp"
-
-#include <GLFW/glfw3.h>
 
 using namespace gdt;
 
@@ -147,21 +144,16 @@ int main(int argc, char* argv[])
 {
     engine::CPluginManager::get().startUp();
 
-    graphics::CRenderWindow renderWindow;
+    graphics::CRenderWindow window;
+    window.create("Window", 1280, 720);
 
-    renderWindow.create("Test", 800, 600);
-
-
-    CPlayer player;
-
-    while (true)
+    while(true)
     {
-        // renderWindow.clear();
-        renderWindow.handleInput();
         glfwPollEvents();
+        window.clear();
 
-        CEventManager::get().update(renderWindow);
-
-        // renderWindow.display();
+        window.display();
     }
+
+    getchar();
 }

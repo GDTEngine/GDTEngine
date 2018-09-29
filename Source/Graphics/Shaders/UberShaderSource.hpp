@@ -22,12 +22,7 @@ namespace gdt
                 "uniform mat4 Projection = mat4(1.0);"
                 "void main()\n"
                 "{\n"
-                "   gl_Position = Projection * vec4(position, 0.0, 1.0);\n"
-                "}\n\0";
-
-            const char* uberGeometry =
-                "#version 450 core\n"
-
+                "    gl_Position = Projection * vec4(position, 0.0, 1.0);\n"
                 "}\n\0";
 
             /**
@@ -36,9 +31,12 @@ namespace gdt
             const char* uberFragment =
                 "#version 450 core\n"
                 "out vec4 FragColor;\n"
+                "uniform struct UIStyle {\n"
+                "    float borderWidth;"
+                "} uiStyle;\n"
                 "void main()\n"
                 "{\n"
-                "   FragColor = vec4(0.2f, 0.1f, 0.1f, 1.0f);\n"
+                "    FragColor = vec4(0.2, 0.1, 0.1, 1.0);\n"
                 "}\n\0";
         }
     }
