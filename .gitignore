@@ -1,11 +1,11 @@
-# Ignore everything including subfolders.
+# Ignore everything including subdirectories.
 *
 !*/
 
-# Allow git files.
+# Git.
 !*.gitignore
 
-# Allow cpp.
+# C/C++.
 !*.cpp
 !*.hpp
 !*.inl
@@ -13,12 +13,18 @@
 !*.pump
 !*.cc
 
-# Allow lua.
+# Shaders.
+!*.vs.glsl
+!*.gs.glsl
+!*.cs.glsl
+
+# Lua.
 !*.lua
 
 # Allow other.
 !*.md
 !premake5.exe
+!*.travis.yml
 
-# Allow libs.
+# Allow third party libs.
 !ThirdParty/**/*.a

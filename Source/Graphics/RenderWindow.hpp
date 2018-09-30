@@ -17,29 +17,23 @@ namespace gdt
     namespace graphics
     {
         /**
-         * @breif A window with an OpenGL context.
+         * @brief A window with an OpenGL context.
          */
         class CRenderWindow final
         {
         public:
 
             /**
-             * @breif Default constructor.
+             * @brief Default constructor.
              */
             CRenderWindow();
 
-            /**
-             * @breif Copy constructor deleted.
-             */
-            CRenderWindow(const CRenderWindow& other) = delete;
+            CRenderWindow(const CRenderWindow&) = delete;
+
+            CRenderWindow(CRenderWindow&&) = delete;
 
             /**
-             * @breif Move constructor deleted.
-             */
-            CRenderWindow(const CRenderWindow&& other) = delete;
-
-            /**
-             * @breif Creates a window.
+             * @brief Creates a window.
              * @param title Title of the window.
              * @param width The width of the window.
              * @param height The height of the window.
@@ -47,24 +41,21 @@ namespace gdt
             CRenderWindow(const std::string& title, int32 width, int32 height);
 
             /**
-             * @breif Destructor.
+             * @brief Destructor.
              */
             ~CRenderWindow();
 
-            /**
-             * @breif Assignment operator deleted.
-             */
-            void operator=(const CRenderWindow& rhs) = delete;
+            void operator=(const CRenderWindow&) = delete;
 
             /**
-             * @breif Clears what has been rendered on the window.
+             * @brief Clears what has been rendered on the window.
              *
              * Will set this window to the current context.
              */
             void clear() const;
 
             /**
-             * @breif Creates a window.
+             * @brief Creates a window.
              * @param title Title of the window.
              * @param width The width of the window.
              * @param height The height of the window.
@@ -72,55 +63,55 @@ namespace gdt
             void create(const std::string& title, int32 width, int32 height);
 
             /**
-             * @breif Displays what has been rendered to the window.
+             * @brief Displays what has been rendered to the window.
              *
              * Will set this window to the current context.
              */
             void display() const;
 
             /**
-             * @breif Get the height of the window in pixels.
+             * @brief Get the height of the window in pixels.
              * @return Height of the window.
              */
             int32 getHeight() const;
 
             /**
-             * @breif Get the width of the window in pixels.
+             * @brief Get the width of the window in pixels.
              * @return Width of the window.
              */
             int32 getWidth() const;
 
             /**
-             * @breif Check whether the window has the input focus.
+             * @brief Check whether the window has the input focus.
              * @return 'true' if in focus.
              */
             bool hasFocus() const;
 
             /**
-             * @breif Check whether the window is visible
+             * @brief Check whether the window is visible
              */
             bool isVisible() const;
 
             /**
-             * @breif Make this window the current context.
+             * @brief Make this window the current context.
              */
             void makeThisContextCurrent() const;
 
             /**
-             * @breif Set the size of the window.
+             * @brief Set the size of the window.
              * @param width Width of the window.
              * @param height Height of the window.
              */
             void setSize(int32 width, int32 height) const;
 
             /**
-             * @breif Set the title of the window.
+             * @brief Set the title of the window.
              * @param title Title of the window.
              */
             void setTitle(const std::string& title) const;
 
             /**
-             * @breif Set the size and the position of the viewport.
+             * @brief Set the size and the position of the viewport.
              * @param x Horizontal position of the viewport.
              * @param y Vertical position of the viewport.
              * @param width Width of the viewport.
@@ -129,7 +120,7 @@ namespace gdt
             void setViewport(int32 x, int32 y, int32 width, int32 height) const;
 
             /**
-             * @breif Set the window to be visible or invisible.
+             * @brief Set the window to be visible or invisible.
              * @param visible 'true' to make the window visible.
              */
             void setVisible(bool visible) const;

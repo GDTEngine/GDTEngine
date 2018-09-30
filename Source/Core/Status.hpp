@@ -6,12 +6,20 @@
 
 #pragma once
 
-/**
- * @breif Use this enum class to check status of various things.
- */
-enum class EStatus
+namespace gdt
 {
-    /**  */
-    Failure = 0,
-    Success
-};
+    namespace core
+    {
+        /**
+         * @brief Use this enum class to check status of various things.
+         */
+        enum class EStatus
+        {
+            /** Failure. */
+            Failure = 0,
+
+            /** Success. */
+            Success
+        };
+    }
+}

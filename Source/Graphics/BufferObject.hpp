@@ -27,7 +27,7 @@ namespace gdt
             };
 
             /**
-             * @breif Enum class for basic data types.
+             * @brief Enum class for basic data types.
              */
             enum class EType
             {
@@ -51,7 +51,7 @@ namespace gdt
             };
 
             /**
-             * @breif Usage of the buffer.
+             * @brief Usage of the buffer.
              */
             enum class EUsage
             {
@@ -116,17 +116,14 @@ namespace gdt
         public:
 
             /**
-             * @breif Default constructor.
+             * @brief Default constructor.
              */
             CBufferObject();
 
-            /**
-             * @breif Copy constructor deleted.
-             */
-            CBufferObject(const CBufferObject& other) = delete;
+            CBufferObject(const CBufferObject&) = delete;
 
             /**
-             * @breif Move constructor.
+             * @brief Move constructor.
              * @param other Source.
              */
             CBufferObject(CBufferObject&& other) noexcept;
@@ -138,28 +135,25 @@ namespace gdt
             explicit CBufferObject(EUsage usage);
 
             /**
-             * @breif Destructor.
+             * @brief Destructor.
              */
             virtual ~CBufferObject();
 
-            /**
-             * @breif Assignment operator deleted.
-             */
-            void operator=(const CBufferObject& rhs) = delete;
+            void operator=(const CBufferObject&) = delete;
 
             /**
-             * @breif Bind the buffer.
+             * @brief Bind the buffer.
              */
             virtual void bind() const = 0;
 
             /**
-             * @breif Get the usage of this buffer.
+             * @brief Get the usage of this buffer.
              * @return Usage of this buffer.
              */
             EUsage getUsage() const;
 
             /**
-             * @breif Set the usage of this buffer.
+             * @brief Set the usage of this buffer.
              * @param usage Usage of this buffer.
              */
             void setUsage(EUsage usage);

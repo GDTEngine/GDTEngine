@@ -17,53 +17,50 @@ namespace gdt
         class CVertexArray;
 
         /**
-         * @breif A vertex buffer.
+         * @brief A vertex buffer.
          *
-         * Default usage for this buffer is **'StaticDraw'**.
+         * Default usage for this buffer is StaticDraw.
          */
         class CArrayBuffer final : public CBufferObject
         {
         public:
 
             /**
-             * @breif Default constructor.
+             * @brief Default constructor.
              */
             CArrayBuffer();
 
             /**
-             * @breif Copy constructor deleted.
+             * @brief Copy constructor deleted.
              */
-            CArrayBuffer(const CArrayBuffer& other) = delete;
+            CArrayBuffer(const CArrayBuffer&) = delete;
 
             /**
-             * @breif Move constructor.
+             * @brief Move constructor.
              * @param other Source.
              */
             CArrayBuffer(CArrayBuffer&& other) noexcept;
 
             /**
-             * @breif Destructor.
+             * @brief Destructor.
              */
             ~CArrayBuffer();
 
-            /**
-             * @breif Assignment operator deleted.
-             */
-            void operator=(const CVertexArray& rhs) = delete;
+            void operator=(const CVertexArray&) = delete;
 
             /**
-             * @breif Manualy bind this buffer.
+             * @brief Manualy bind this buffer.
              */
             void bind() const override;
 
             /**
-             * @breif Map this buffer.
+             * @brief Map this buffer.
              * @param access Indicate the access.
              */
             void* mapBuffer(EAccess access);
 
             /**
-             * @breif Set a attribute pointer to the buffer.
+             * @brief Set a attribute pointer to the buffer.
              * @param vertexArray Vertex array the buffer will be attached to.
              * @param index Index of the pointer.
              * @param size Specifies the number of components per generic vertex attribute.
@@ -76,28 +73,28 @@ namespace gdt
             void setAttributePointer(CVertexArray& vertexArray, int32 index, int32 size, EType type, int32 stride, int32 offset) const;
 
             /**
-             * @breif Set the data of this buffer.
+             * @brief Set the data of this buffer.
              * @param size Specifies the size in bytes of the buffer object's new data store.
-             * @param dataPtr Specifies a pointer to data that will be copied into the data store for initialization, or **'nullptr'** if no data is to be copied.
+             * @param dataPtr Specifies a pointer to data that will be copied into the data store for initialization, or nullptr if no data is to be copied.
              *  
              * Calling this function will also bind this buffer.
              */
             void setData(int32 size, const void* dataPtr) const;
 
             /**
-             * @breif Unmaps the buffer.
+             * @brief Unmaps the buffer.
              */
             void unmapBuffer() const;
 
             /**
-             * @breif Manualy unbind the active vertex buffers.
+             * @brief Manualy unbind the active vertex buffers.
              */
             static void unbind();
 
         private:
 
-            static uint32 m_sActiveVertexBuffer;
-            uint32 m_vertexBufferId;
+            static uint32 m_sActiveArrayBuffer;
+            uint32 m_arrayBufferId;
         };
     }
 }

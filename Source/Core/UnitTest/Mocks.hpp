@@ -12,8 +12,11 @@
 
 namespace gdt
 {
-    namespace test
+    namespace core
     {
-        /*Put mocks under*/
+        namespace test
+        {
+            /*Put mocks under*/
+        }
     }
 }
