@@ -13,7 +13,6 @@ using namespace gdt;
 using namespace graphics;
 
 CRenderWindow::CRenderWindow()
-    : m_pRenderWindow(nullptr)
 {
 }
 
@@ -24,29 +23,26 @@ CRenderWindow::CRenderWindow(const std::string& title, int32 width, int32 height
 
 CRenderWindow::~CRenderWindow()
 {
-    if (m_pRenderWindow)
-    {
-        glfwDestroyWindow(m_pRenderWindow);
-    }
 }
 
 void CRenderWindow::clear() const
 {
     makeThisContextCurrent();
+    
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void CRenderWindow::display() const
 {
     makeThisContextCurrent();
-    glfwSwapBuffers(m_pRenderWindow);
+    glfwSwapBuffers(m_pWindow);
 }
 
 int32 CRenderWindow::getHeight() const
 {
     int32 width;
     int32 height;
-    glfwGetWindowSize(m_pRenderWindow, &width, &height);
+    glfwGetWindowSize(m_pWindow, &width, &height);
     return height;
 }
 
@@ -54,26 +50,18 @@ int32 CRenderWindow::getWidth() const
 {
     int32 width;
     int32 height;
-    glfwGetWindowSize(m_pRenderWindow, &width, &height);
+    glfwGetWindowSize(m_pWindow, &width, &height);
     return width;
-}
-
-void CRenderWindow::makeThisContextCurrent() const
-{
-    if (glfwGetCurrentContext() != m_pRenderWindow)
-    {
-        glfwMakeContextCurrent(m_pRenderWindow);
-    }
 }
 
 void CRenderWindow::setSize(int32 width, int32 height) const
 {
-    glfwSetWindowSize(m_pRenderWindow, width, height);
+    glfwSetWindowSize(m_pWindow, width, height);
 }
 
 void CRenderWindow::setTitle(const std::string& title) const
 {
-    glfwSetWindowTitle(m_pRenderWindow, title.c_str());
+    glfwSetWindowTitle(m_pWindow, title.c_str());
 }
 
 void CRenderWindow::setViewport(int32 x, int32 y, int32 width, int32 height) const
@@ -86,11 +74,11 @@ void CRenderWindow::setVisible(bool visible) const
 {
     if (visible)
     {
-        glfwShowWindow(m_pRenderWindow);
+        glfwShowWindow(m_pWindow);
     }
     else
     {
-        glfwHideWindow(m_pRenderWindow);
+        glfwHideWindow(m_pWindow);
     }
 }
 

@@ -1,13 +1,13 @@
 function linkGLEW()
-	filter { "kind:not StaticLib" }
-        	links { "glew32s", "opengl32" }
+    filter { "kind:not StaticLib" }
+        links { "glew32s", "opengl32" }
         
-	filter {}
+    filter {}
 end
 
 function linkGLFW()
-	filter { "kind:not StaticLib" }
-        	links { "glfw3" }
+    filter { "kind:not StaticLib" }
+        links { "glfw3dll" }
 
-	filter {}
+    filter {}
 end

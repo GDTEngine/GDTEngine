@@ -74,11 +74,6 @@ namespace gdt
             int32 getWidth() const;
 
             /**
-             * @brief Make this window the current context.
-             */
-            void makeThisContextCurrent() const;
-
-            /**
              * @brief Set the size of the window.
              * @param width Width of the window.
              * @param height Height of the window.
@@ -111,10 +106,6 @@ namespace gdt
             static void windowSizeCallback(GLFWwindow* pRenderWindow, int32 width, int32 height);
 
             void windowSizeCallback(int32 width, int32 height);
-
-        private:
-
-            GLFWwindow* m_pRenderWindow;
         };
     }
 }

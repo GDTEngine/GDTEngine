@@ -45,6 +45,10 @@ namespace gdt
              */
             void create(const std::string& title, int32 width, int32 height);
 
+            /**
+             * @brief Get the current state of a key.
+             * @param keyCode The key to check.
+             */
             EKeyState getKeyState(EKeyCode keyCode);
 
             /**
@@ -63,6 +67,18 @@ namespace gdt
              */
             bool isVisible() const;
 
+            /**
+             * @brief Make this window the current context.
+             */
+            void makeThisContextCurrent() const;
+
+            /**
+             * @brief Poll events for all windows.
+             *
+             * Should be called after handle events.
+             */
+            static void pollEvents();
+
         protected:
 
             virtual void onCursorPosition(const glm::vec2& position);
@@ -75,6 +91,14 @@ namespace gdt
 
             static void keyCallback(GLFWwindow* pWindow, int32 key, int32 scancode, int32 action, int32 mods);
 
+        #ifdef GDT_DEBUG
+            static void errorCallback(int32 error, const char* pDescription);
+        #endif
+
+        protected:
+
+            GLFWwindow* m_pWindow;
+
         private:
 
             static bool m_sGlewInitialized;
@@ -84,7 +108,6 @@ namespace gdt
             EKeyCode m_pKeyReleasedStack[512];
             EKeyState m_pKeyStates[512];
 
-            GLFWwindow* m_pWindow;
 
             glm::vec2 m_relativeCursorPosition;
 

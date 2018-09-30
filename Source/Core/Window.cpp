@@ -5,6 +5,7 @@
  */
 
 #include "Window.hpp"
+#include "Log.hpp"
 
 using namespace gdt;
 using namespace core;
@@ -38,6 +39,10 @@ void CWindow::create(const std::string& title, int32 width, int32 height)
     {
         glfwInit();
         m_sGlfwInitialized = true;
+
+    #ifdef GDT_DEBUG
+        glfwSetErrorCallback(errorCallback);
+    #endif // GDT_DEBUG
     }
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -88,6 +93,19 @@ bool CWindow::isVisible() const
     return static_cast<bool>(glfwGetWindowAttrib(m_pWindow, GLFW_VISIBLE));
 }
 
+void CWindow::makeThisContextCurrent() const
+{
+    if (glfwGetCurrentContext() != m_pWindow)
+    {
+        glfwMakeContextCurrent(m_pWindow);
+    }
+}
+
+void CWindow::pollEvents()
+{
+    glfwPollEvents();
+}
+
 void CWindow::onCursorPosition(const glm::vec2& position)
 {
     m_relativeCursorPosition = position;
@@ -130,3 +148,10 @@ void CWindow::keyCallback(GLFWwindow* pWindow, int32 key, int32 scancode, int32 
         pWin->onKey(static_cast<EKeyCode>(key), EKeyState::Released);
     }
 }
+
+#ifdef GDT_DEBUG
+void CWindow::errorCallback(int32 error, const char* pDescription)
+{
+    LOG_ERROR(error << " " << pDescription);
+}
+#endif

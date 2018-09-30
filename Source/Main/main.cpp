@@ -28,9 +28,14 @@ int main(int argc, char* argv[])
     while(true)
     {
         window.handleInput();
-        glfwPollEvents();
+
+        core::CWindow::pollEvents();
+
+        window.clear();
         
         engine::CEventManager::get().update(window);
+
+        window.display();
     }
 
     getchar();
