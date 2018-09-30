@@ -14,7 +14,6 @@
 
 using namespace gdt;
 
-
 int main(int argc, char* argv[])
 {
 
