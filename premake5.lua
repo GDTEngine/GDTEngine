@@ -21,15 +21,13 @@ workspace "GDTEngine"
 	filter { "configurations:Release" }
         optimize "On"
         defines { "GDT_RELEASE"}
-	
-    filter {}
     
-    filter {"system:windows", "action:vs*"}
-        systemversion(os.winSdkVersion() .. ".0")
-
     filter {}
+    if (os.target() == "windows") then
+        systemversion(os.winSdkVersion() .. ".0")
+    end
 
-	targetdir ("Build/Bin/%{prj.name}/%{cfg.longname}")
+    targetdir ("Build/Bin/%{prj.name}/%{cfg.longname}")
     objdir ("Build/Obj/%{prj.name}/%{cfg.longname}")
 
 -- Third Party --
