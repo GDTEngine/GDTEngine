@@ -20,7 +20,7 @@ CEntity* CClassManager::createEntity(const std::string& className)
     return m_entityClasses.at(className)();
 }
 
-void CClassManager::registerEntity(const std::string& className, createEntityFunction function)
+void CClassManager::registerEntity(const std::string& className, CreateEntityFunction function)
 {
     m_entityClasses.emplace(className, function);
 }

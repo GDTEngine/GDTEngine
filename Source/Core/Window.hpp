@@ -7,6 +7,7 @@
 #pragma once
 
 #include "BaseTypes.hpp"
+#include "CoreAPI.hpp"
 #include "KeyState.hpp"
 #include "KeyCode.hpp"
 
@@ -22,7 +23,7 @@ namespace gdt
         /**
          * @brief A basic window with input.
          */
-        class CWindow
+        class CORE_API CWindow
         {
         public:
 

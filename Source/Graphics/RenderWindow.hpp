@@ -7,6 +7,7 @@
 #pragma once
 
 #include "BaseTypes.hpp"
+#include "GraphicsAPI.hpp"
 #include "Window.hpp"
 
 #include <string>
@@ -18,7 +19,7 @@ namespace gdt
         /**
          * @brief A window with an OpenGL context.
          */
-        class CRenderWindow final : public core::CWindow
+        class GRAPHICS_API CRenderWindow final : public core::CWindow
         {
         public:
 

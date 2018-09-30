@@ -7,6 +7,8 @@
 #pragma once
 
 #include "BaseTypes.hpp"
+#include "GraphicsAPI.hpp"
+#include "VertexArray.hpp"
 
 #include <GLEW/glew.h>
 
@@ -17,7 +19,7 @@ namespace gdt
         /**
          * @brief A CArrayBuffer is an object that stores all of the state needed to supply vertex data.
          */
-        class CVertexArray
+        class GRAPHICS_API CVertexArray
         {
         public:
 

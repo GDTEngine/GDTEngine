@@ -7,6 +7,7 @@
 #pragma once
 
 #include "BaseTypes.hpp"
+#include "GraphicsAPI.hpp"
 #include "Status.hpp"
 
 #include <GLM/glm.hpp>
@@ -19,7 +20,7 @@ namespace gdt
         /**
          * @brief Shader program wrapper.
          */
-        class CShader final
+        class GRAPHICS_API CShader final
         {
         public:
 

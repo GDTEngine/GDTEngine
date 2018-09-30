@@ -1,7 +1,10 @@
 group "Engine"
 project "Core"
-    kind "StaticLib"
+    kind "SharedLib"
     location ""
+
+    defines { "CORE_DLL_EXPORT" }
+
     files {
         "**.hpp",
         "**.inl",
@@ -17,10 +20,25 @@ project "Core"
         "../../ThirdParty/GLM/Include"
     }
 
-function linkCore()
+    filter { "system:windows", "architecture:x86_64", "configurations:Debug" }
+        libdirs {
+            "../../ThirdParty/GLFW/Lib/Win64/Debug",
+            "../../ThirdParty/GLEW/Lib/Win64/Debug"
+        }
+
+    filter { "system:windows", "architecture:x86_64", "configurations:Release" }
+        libdirs {
+            "../../ThirdParty/GLFW/Lib/Win64/Release",
+            "../../ThirdParty/GLEW/Lib/Win64/Release"
+        }
+
+    filter {}
+
     linkGLEW()
     linkGLFW()
 
+
+function linkCore()
     filter { "kind:not StaticLib", "system:windows" }
         links { "Core" }
 
@@ -28,4 +46,7 @@ function linkCore()
         links { "Core" }
 
     filter {}
+
+    linkGLEW()
+    linkGLFW()
 end

@@ -13,7 +13,7 @@ workspace "GDTEngine"
     language "C++"
     architecture "x86_64"
     configurations { "Debug_Editor", "Debug", "Release_Editor", "Release" }
-    startproject "Engine"
+    startproject "Main"
 
     filter { "configurations:Debug_Editor" }
         symbols "On"
@@ -38,7 +38,7 @@ workspace "GDTEngine"
 
     filter {}
 
-	targetdir ("Build/Bin/%{prj.name}/%{cfg.longname}")
+	targetdir ("Build")
     objdir ("Build/Obj/%{prj.name}/%{cfg.longname}")
 
     -- Third party.
@@ -96,7 +96,6 @@ project "UnitTest_Core"
         }
 
     filter{}
-
 
     linkCore()
 
@@ -179,9 +178,12 @@ project "SpaceShooter"
     location "Source/SpaceShooter"
     files { "Source/SpaceShooter/**.hpp", "Source/SpaceShooter/**.inl", "Source/SpaceShooter/**.cpp" }
     targetdir ("Source/Main/Plugins")
-    defines { "GDT_PLUGIN_DLL_EXPORT" }
+    defines { "GDT_PLUGIN_DLL_EXPORT", "SPACESHOOTER_DLL_EXPORT" }
     
     includedirs {
+        "ThirdParty/GLFW/Include",
+        "ThirdParty/GLEW/Include",
+        "ThirdParty/GLM/Include",
         "Source/Core",
         "Source/Graphics",
         "Source/Engine"
