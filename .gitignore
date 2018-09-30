@@ -13,6 +13,9 @@
 !*.pump
 !*.cc
 
+# DLLs.
+!*Build/glfw3.dll
+
 # Shaders.
 !*.vs.glsl
 !*.gs.glsl
