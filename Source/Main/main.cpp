@@ -5,12 +5,13 @@
  */
 
 #include "Entity.hpp"
-#include "PluginManager.hpp"
 #include "ClassManager.hpp"
 #include "EventManager.hpp"
-#include "RenderWindow.hpp"
-#include "Window.hpp"
+#include "EntityManager.hpp"
 #include "Log.hpp"
+#include "RenderWindow.hpp"
+#include "PluginManager.hpp"
+#include "Window.hpp"
 
 using namespace gdt;
 
@@ -20,9 +21,11 @@ int main(int argc, char* argv[])
     graphics::CRenderWindow window;
     window.create("Window", 1280, 720);
 
+    engine::CEntityManager::get().startUp();
     engine::CPluginManager::get().startUp();
 
-    engine::CEntity* player = engine::CClassManager::get().createEntity("CPlayer");
+
+    engine::CEntityManager::get().shutDown();
 
     while(true)
     {
@@ -33,6 +36,8 @@ int main(int argc, char* argv[])
         window.clear();
         
         engine::CEventManager::get().update(window);
+
+        engine::CEntityManager::get().update(0.1f);
 
         window.display();
     }

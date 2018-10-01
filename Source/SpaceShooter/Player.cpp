@@ -6,6 +6,8 @@
 
 #include "Player.hpp"
 #include "EventManager.hpp"
+#include "EntityManager.hpp"
+#include "TransformComponent.hpp"
 #include "Log.hpp"
 
 using namespace gdt;
@@ -30,7 +32,7 @@ CPlayer::~CPlayer()
 
 void CPlayer::tick(f32 deltaTime)
 {
-    LOG_MSG("YEY");
+    engine::STransformComponent* transform = engine::CEntityManager::get().getComponent<engine::STransformComponent>(getID());
 }
 
 void CPlayer::moveForward()

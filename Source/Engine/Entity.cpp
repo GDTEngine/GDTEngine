@@ -17,6 +17,11 @@ CEntity::~CEntity()
 {
 }
 
+EntityID CEntity::getID() const
+{
+    return m_entityID;
+}
+
 void CEntity::beginPlay()
 {
 }

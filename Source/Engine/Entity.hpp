@@ -8,6 +8,7 @@
 
 #include "BaseTypes.hpp"
 #include "EngineAPI.hpp"
+#include "EntityID.hpp"
 
 namespace gdt
 {
@@ -18,6 +19,8 @@ namespace gdt
          */
         class ENGINE_API CEntity
         {
+            friend class CEntityManager;
+
         public:
 
             /**
@@ -34,7 +37,9 @@ namespace gdt
 
             void operator=(const CEntity&) = delete;
 
-        public:
+            EntityID getID() const;
+
+        protected:
 
             /**
              * @brief Called when the class is instantiated.
@@ -51,6 +56,10 @@ namespace gdt
              * @param deltaTime Time it took to render the last frame in seconds.
              */
             virtual void tick(f32 deltaTime);
+
+        private:
+
+            EntityID m_entityID;
         };
     }
 }

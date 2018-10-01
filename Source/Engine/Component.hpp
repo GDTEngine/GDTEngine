@@ -7,6 +7,7 @@
 #pragma once
 
 #include "EngineAPI.hpp"
+#include "EntityID.hpp"
 
 namespace gdt
 {
@@ -14,7 +15,12 @@ namespace gdt
     {
         struct ENGINE_API SComponent
         {
-            
+        public:
+
+        public:
+
+            EntityID entityID;
+            size_t structID;
         };
     }
 }
