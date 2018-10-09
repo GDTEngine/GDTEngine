@@ -30,13 +30,11 @@ workspace "GDTEngine"
 	filter { "configurations:Release" }
         optimize "On"
         defines { "GDT_RELEASE"}
-	
-    filter {}
     
-    filter {"system:windows", "action:vs*"}
-        systemversion(os.winSdkVersion() .. ".0")
-
     filter {}
+    if (os.target() == "windows") then
+        systemversion(os.winSdkVersion() .. ".0")
+    end
 
 	targetdir ("Build")
     objdir ("Build/Obj/%{prj.name}/%{cfg.longname}")
@@ -95,6 +93,18 @@ project "UnitTest_Core"
             "ThirdParty/GLEW/Lib/Win64/Release"
         }
 
+    filter { "system:not windows", "architecture:x86_64", "configurations:Debug" }
+        libdirs {
+            "ThirdParty/GLFW/Lib/Unix64/Debug",
+            "ThirdParty/GLEW/Lib/Unix64/Debug"
+        }
+
+    filter { "system:not windows", "architecture:x86_64", "configurations:Release" }
+        libdirs {
+            "ThirdParty/GLFW/Lib/Unix64/Release",
+            "ThirdParty/GLEW/Lib/Unix64/Release"
+        }
+
     filter{}
 
     linkCore()
@@ -136,6 +146,20 @@ project "UnitTest_Graphics"
             "ThirdParty/GLEW/Lib/Win64/Release"
         }
 
+    filter { "system:not windows", "architecture:x86_64", "configurations:Debug" }
+        libdirs {
+            "ThirdParty/GLFW/Lib/Unix64/Debug",
+            "ThirdParty/GLEW/Lib/Unix64/Debug"
+        }
+
+    filter { "system:not windows", "architecture:x86_64", "configurations:Release" }
+        libdirs {
+            "ThirdParty/GLFW/Lib/Unix64/Release",
+            "ThirdParty/GLEW/Lib/Unix64/Release"
+        }
+
+    filter{}
+
     linkGraphics()
 
 group "UnitTests"
@@ -166,6 +190,18 @@ project "UnitTest_Engine"
         libdirs {
             "ThirdParty/GLFW/Lib/Win64/Release",
             "ThirdParty/GLEW/Lib/Win64/Release"
+        }
+
+    filter { "system:not windows", "architecture:x86_64", "configurations:Debug" }
+        libdirs {
+            "ThirdParty/GLFW/Lib/Unix64/Debug",
+            "ThirdParty/GLEW/Lib/Unix64/Debug"
+        }
+
+    filter { "system:not windows", "architecture:x86_64", "configurations:Release" }
+        libdirs {
+            "ThirdParty/GLFW/Lib/Unix64/Release",
+            "ThirdParty/GLEW/Lib/Unix64/Release"
         }
 
     filter{}
@@ -200,5 +236,18 @@ project "SpaceShooter"
             "ThirdParty/GLFW/Lib/Win64/Release",
             "ThirdParty/GLEW/Lib/Win64/Release"
         }
+
+    filter { "system:not windows", "architecture:x86_64", "configurations:Debug" }
+        libdirs {
+            "ThirdParty/GLFW/Lib/Unix64/Debug",
+            "ThirdParty/GLEW/Lib/Unix64/Debug"
+        }
+
+    filter { "system:not windows", "architecture:x86_64", "configurations:Release" }
+        libdirs {
+            "ThirdParty/GLFW/Lib/Unix64/Release",
+            "ThirdParty/GLEW/Lib/Unix64/Release"
+        }
     
     linkEngine()
+

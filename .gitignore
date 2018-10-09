@@ -29,3 +29,6 @@
 !*.md
 !premake5.exe
 !*.travis.yml
+
+# Allow third party libs.
+!ThirdParty/**/*.a
