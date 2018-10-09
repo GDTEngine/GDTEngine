@@ -81,8 +81,17 @@ namespace gdt
 
         protected:
 
+            /**
+             * @brief Called when cursor has changed its position.
+             * @param position Position of the cursor.
+             */
             virtual void onCursorPosition(const glm::vec2& position);
 
+            /**
+             * @brief Called when the state of a key has been changed.
+             * @param keyCode The that has been modified.
+             * @param keyState State of the key.
+             */
             virtual void onKey(EKeyCode keyCode, EKeyState keyState);
 
         private:

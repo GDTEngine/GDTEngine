@@ -16,7 +16,7 @@ namespace gdt
     namespace core
     {
         /**
-         * @brief The reference.
+         * @brief Key reference.
          */
         enum class EKeyCode : int32
         {

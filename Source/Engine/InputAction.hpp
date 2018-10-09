@@ -17,6 +17,9 @@ namespace gdt
 {
     namespace engine
     {
+        /**
+         * @brief Information about a certain action.
+         */
         struct SInputAction
         {
             friend class CEventManager;
@@ -36,6 +39,11 @@ namespace gdt
 
         public:
 
+            /**
+             * @brief Constructor.
+             * @param actionId Id of th action.
+             * @param key Key related to the action.
+             */
             SInputAction(const std::string& actionId, core::EKeyCode key)
             {
                 memcpy(this->actionId, actionId.c_str(), actionId.size() + 1);
@@ -44,7 +52,14 @@ namespace gdt
 
         public:
 
+            /**
+             * @brief Id of th action.
+             */
             char actionId[32];
+
+            /**
+             * @brief Key related to the action.
+             */
             core::EKeyCode key;
 
         private:
