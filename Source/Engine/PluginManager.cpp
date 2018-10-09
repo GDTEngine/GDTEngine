@@ -12,13 +12,7 @@
 using namespace gdt;
 using namespace engine;
 
-CPluginManager& CPluginManager::get()
-{
-    static CPluginManager instance;
-    return instance;
-}
-
-void CPluginManager::startUp()
+CPluginManager::CPluginManager()
 {
     core::CFileIterator fileIterator;
     if (!fileIterator.findFirstFile("Plugins/*.dll"))
@@ -43,7 +37,7 @@ void CPluginManager::startUp()
     for (auto& pPlugin : m_pPlugins)
     {
         pPlugin->callFunction("startUpPlugin");
-        
+
         if (pPlugin->getStatus() == core::EStatus::Failure)
         {
             LOG_ERROR("Could not call startUpPlugin.");
@@ -51,7 +45,7 @@ void CPluginManager::startUp()
     }
 }
 
-void CPluginManager::shutDown()
+CPluginManager::~CPluginManager()
 {
     for (auto& pPlugin : m_pPlugins)
     {

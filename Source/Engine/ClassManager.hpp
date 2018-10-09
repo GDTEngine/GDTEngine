@@ -27,12 +27,6 @@ namespace gdt
         public:
 
             /**
-             * @brief Get the singleton instance.
-             * @return Singleton instance.
-             */
-            static CClassManager& get();
-
-            /**
              * @brief Create an entity.
              * @param className Name of the entity class.
              */

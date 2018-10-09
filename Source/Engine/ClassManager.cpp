@@ -9,12 +9,6 @@
 using namespace gdt;
 using namespace engine;
 
-CClassManager& CClassManager::get()
-{
-    static CClassManager instance;
-    return instance;
-}
-
 CEntity* CClassManager::createEntity(const std::string& className)
 {
     return m_entityClasses.at(className)();

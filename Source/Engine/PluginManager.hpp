@@ -22,25 +22,14 @@ namespace gdt
         public:
 
             /**
-             * @brief Get the singleton instance.
-             * @return Singleton instance.
+             * @brief Default constructor.
              */
-            static CPluginManager& get();
+            CPluginManager();
 
             /**
-             * @brief Start up the manager.
+             * @brief Destructor.
              */
-            void startUp();
-
-            /**
-             * @brief Shut down the manager.
-             */
-            void shutDown();
-
-        private:
-
-            CPluginManager() = default;
-            ~CPluginManager() = default;
+            ~CPluginManager();
 
         private:
 
