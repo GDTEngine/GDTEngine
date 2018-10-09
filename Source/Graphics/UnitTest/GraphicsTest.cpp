@@ -6,7 +6,7 @@
 * @brief Graphics module tests
 */
 
-#include "../RenderWindow.hpp"
+#include "RenderWindow.hpp"
 #include <gtest/gtest.h>
 #include <memory>
 
