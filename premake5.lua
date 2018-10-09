@@ -21,7 +21,7 @@ workspace "GDTEngine"
 
 	filter { "configurations:Debug" }
         symbols "On"
-        defines { "GLEW_STATIC", "GDT_DEBUG" }
+        defines { "GDT_DEBUG" }
 
     filter { "configurations:Release_Editor" }
         optimize "On"
