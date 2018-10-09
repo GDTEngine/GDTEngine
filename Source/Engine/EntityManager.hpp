@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "Assets/Mesh.hpp"
+#include "Shader.hpp"
 #include "ClassManager.hpp"
 #include "EngineAPI.hpp"
 #include "EntityID.hpp"
@@ -83,6 +85,9 @@ namespace gdt
             std::unordered_map<CClassManager::StructID, std::vector<SComponent*>> m_components;
 
             CClassManager::ClassID m_initialEntity;
+
+            CMesh* dummy;
+            graphics::CShader* shader;
         };
 
         template<typename ComponentType>

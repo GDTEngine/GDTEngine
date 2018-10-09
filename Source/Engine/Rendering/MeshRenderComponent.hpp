@@ -13,7 +13,7 @@ namespace gdt
     {
         struct ENGINE_API SMeshRenderComponent : public SComponent
         {
-
+            int32 meshId;
         };
     }
 }

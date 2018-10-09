@@ -15,6 +15,7 @@
 
 # DLLs.
 !*Build/glfw3.dll
+!*Build/glew.dll
 
 # Shaders.
 !*.vs.glsl

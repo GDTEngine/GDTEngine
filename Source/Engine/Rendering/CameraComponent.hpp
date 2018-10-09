@@ -23,8 +23,14 @@ namespace gdt
              */
             f32 fieldOfView;
 
+            /**
+             * @brief Near plane.
+             */
             f32 nearPlane;
 
+            /**
+             * @brief Far plane.
+             */
             f32 farPlane;
         };
     }

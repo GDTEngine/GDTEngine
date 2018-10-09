@@ -29,7 +29,5 @@ void CMeshRenderSystem::tick(f32 deltaTime)
     {
         STransformComponent* te = CEntityManager::get().getComponent<STransformComponent>(t->entityID);
         te->position.x += 1.0f;
-
-        LOG_MSG(te->position.x);
     }
 }

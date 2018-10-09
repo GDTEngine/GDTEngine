@@ -18,6 +18,8 @@
 #include "Rendering/MeshRenderComponent.hpp"
 #include "TransformComponent.hpp"
 
+#include <fstream>
+
 using namespace gdt;
 using namespace engine;
 
@@ -87,6 +89,45 @@ void CEntityManager::startUp()
 void CEntityManager::shutDown()
 {
     instantiate(m_initialEntity);
+
+    std::vector<CMesh::SVertex> vertices(6);
+
+    vertices[0].position = { 0.5f, 0.5f, 0.0f };
+    vertices[1].position = { 0.5f, -0.5f, 0.0f };
+    vertices[2].position = { -0.5f, 0.5f, 0.0f };
+
+    vertices[3].position = { 0.5f, -0.5f, 0.0f };
+    vertices[4].position = { -0.5f, -0.5f, 0.0f };
+    vertices[5].position = { -0.5f, 0.5f, 0.0f };
+
+    vertices[0].color = { 0.5f, 0.5f, 0.0f };
+    vertices[1].color = { 0.5f, 0.5f, 0.0f };
+    vertices[2].color = { 0.5f, 0.5f, 0.0f };
+
+    vertices[3].color = { 0.5f, 0.5f, 0.0f };
+    vertices[4].color = { 0.5f, 0.5f, 0.0f };
+    vertices[5].color = { 0.5f, 0.5f, 0.0f };
+
+    dummy = new CMesh;
+    shader = new graphics::CShader;
+
+    dummy->setVertices(vertices);
+
+    std::ifstream vs("Default.vs.glsl");
+    std::string strVs((std::istreambuf_iterator<char>(vs)),
+        std::istreambuf_iterator<char>());
+
+    vs.close();
+
+    std::ifstream fs("Default.fs.glsl");
+    std::string strFs((std::istreambuf_iterator<char>(fs)),
+        std::istreambuf_iterator<char>());
+
+    fs.close();
+
+    shader->compileProgram(strVs, strFs);
+
+    LOG_MSG(shader->getErrorString());
 }
 
 void CEntityManager::update(f32 deltaTime)
@@ -97,4 +138,8 @@ void CEntityManager::update(f32 deltaTime)
     }
 
     CClassManager::get().forEachSystem([](CSystemBase* system) { system->tick(0.1f); });
+
+    shader->use();
+
+    dummy->draw();
 }
