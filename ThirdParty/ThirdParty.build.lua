@@ -1,6 +1,6 @@
 function linkGLEW()
     filter { "kind:not StaticLib" }
-        links { "glew32s", "opengl32" }
+        links { "glew32", "opengl32" }
         
     filter {}
 end
