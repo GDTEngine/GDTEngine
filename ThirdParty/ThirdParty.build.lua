@@ -9,10 +9,10 @@ end
 
 function linkGLFW()
     filter { "kind:not StaticLib", "system:windows" }
-        links { "glfw3" }
+        links { "glfw3dll" }
 
     filter { "kind:not StaticLib", "system:not windows" }
-        links { "glfw3", "X11", "Xxf86vm", "Xrandr", "Xinerama", "Xcursor", "pthread", "Xi", "dl" }
+        links { "glfw3dll", "X11", "Xxf86vm", "Xrandr", "Xinerama", "Xcursor", "pthread", "Xi", "dl" }
 
     filter {}
 end

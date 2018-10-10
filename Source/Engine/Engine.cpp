@@ -5,6 +5,11 @@
 */
 
 #include "Engine.hpp"
+#include "Managers/ClassManager.hpp"
+#include "Managers/EventManager.hpp"
+#include "Managers/PluginManager.hpp"
+#include "Object.hpp"
+#include "RenderWindow.hpp"
 
 using namespace gdt;
 using namespace engine;
@@ -20,11 +25,31 @@ CEngine::~CEngine()
 
 void CEngine::run()
 {
-    m_pClassManager = std::make_shared<CClassManager>();
-    m_pPluginManager = std::make_shared<CPluginManager>();
+    priv::CClassManager* classManager = new priv::CClassManager;
+    priv::CEventManager* eventManager = new priv::CEventManager;
+    priv::CPluginManager* pluginManager = new priv::CPluginManager;
+
+    graphics::CRenderWindow window;
+    window.create("Window", 1280, 720);
+
+    CObject::provideClassManager(classManager);
+    CObject::provideEventManager(eventManager);
+    CObject::providePluginManager(pluginManager);
+
+    pluginManager->loadPlugins("Plugins/*.dll", classManager);
+
+    classManager->createEntity("CPlayer");
 
     while (true)
     {
-
+        window.handleInput();
+        
+        core::CWindow::pollEvents();
+        
+        window.clear();
+        
+        eventManager->update(window);
+        
+        window.display();
     }
 }

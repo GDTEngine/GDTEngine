@@ -8,6 +8,8 @@
 
 #include "BaseTypes.hpp"
 #include "EngineAPI.hpp"
+#include "Object.hpp"
+#include "Transform.hpp"
 
 namespace gdt
 {
@@ -16,7 +18,7 @@ namespace gdt
         /**
          * @brief Base class for all entities.
          */
-        class ENGINE_API CEntity
+        class ENGINE_API CEntity : public CObject, public CTransform
         {
         public:
 
@@ -34,7 +36,7 @@ namespace gdt
 
             void operator=(const CEntity&) = delete;
 
-        public:
+        protected:
 
             /**
              * @brief Called when the class is instantiated.
@@ -51,10 +53,6 @@ namespace gdt
              * @param deltaTime Time it took to render the last frame in seconds.
              */
             virtual void tick(f32 deltaTime);
-
-        private:
-
-
         };
     }
 }

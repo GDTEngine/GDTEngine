@@ -7,15 +7,10 @@
 #pragma once
 
 #include "BaseTypes.hpp"
-#include "EngineAPI.hpp"
-#include "Entity.hpp"
-#include "InputAction.hpp"
+#include "IEventManager.hpp"
 #include "Window.hpp"
 
 #include <vector>
-
-#define ACTION_CB(className, functionName) \
-    [](void* pObject) { static_cast<className*>(pObject)->functionName(); }
 
 namespace gdt
 {
@@ -26,9 +21,16 @@ namespace gdt
             /**
              * @brief Manages events.
              */
-            class ENGINE_API CEventManager
+            class ENGINE_API CEventManager final : public IEventManager
             {
             public:
+
+                CEventManager();
+
+                /**
+                 * @brief Destructor.
+                 */
+                ~CEventManager();
 
                 /**
                  * @brief Bind an action.
@@ -51,12 +53,6 @@ namespace gdt
                  * @window Window to recive events from.
                  */
                 void update(core::CWindow& window);
-
-            private:
-
-                CEventManager() = default;
-
-                ~CEventManager() = default;
 
             private:
 

@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "Locator.hpp"
+#include "EngineAPI.hpp"
 
 #include <memory>
 
@@ -16,7 +16,7 @@ namespace gdt
     {
         namespace priv
         {
-            class CEngine
+            class ENGINE_API CEngine
             {
             public:
 
@@ -31,12 +31,6 @@ namespace gdt
                 void operator=(CEngine&) = delete;
 
                 void run();
-
-            private:
-
-                std::shared_ptr<CLocator> m_locator;
-                std::shared_ptr<CClassManager> m_pClassManager;
-                std::shared_ptr<CPluginManager> m_pPluginManager;
             };
         }
     }

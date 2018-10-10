@@ -62,6 +62,34 @@ void CPlugin::callFunction(const std::string& functionName)
     m_status = EStatus::Success;
 }
 
+void CPlugin::callFunction(const std::string & functionName, void* param)
+{
+    if (!m_pluginIsLoaded)
+    {
+        m_status = EStatus::Failure;
+        return;
+    }
+
+#ifdef _WIN32
+
+    auto function = reinterpret_cast<void(_cdecl *)(void*)>(GetProcAddress(m_pPlugin, functionName.c_str()));
+    if (!function)
+    {
+        m_status = EStatus::Failure;
+        return;
+    }
+
+    function(param);
+
+#elif __linux__
+
+    // @todo Linux implementation.
+
+#endif // _WIN32
+
+    m_status = EStatus::Success;
+}
+
 std::string CPlugin::getErrorString() const
 {
 #ifdef GDT_DEBUG || GDT_EDITOR

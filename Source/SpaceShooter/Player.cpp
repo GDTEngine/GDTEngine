@@ -5,7 +5,6 @@
  */
 
 #include "Player.hpp"
-#include "EventManager.hpp"
 #include "Log.hpp"
 
 using namespace gdt;
@@ -13,15 +12,15 @@ using namespace space;
 
 CPlayer::CPlayer()
 {
-    engine::CEventManager::get().registerAction(engine::SInputAction("MoveForward", core::EKeyCode::KeyW));
-    engine::CEventManager::get().registerAction(engine::SInputAction("MoveBack", core::EKeyCode::KeyS));
-    engine::CEventManager::get().registerAction(engine::SInputAction("MoveLeft", core::EKeyCode::KeyA));
-    engine::CEventManager::get().registerAction(engine::SInputAction("MoveRight", core::EKeyCode::KeyD));
+    eventManager()->registerAction(engine::SInputAction("MoveForward", core::EKeyCode::KeyW));
+    eventManager()->registerAction(engine::SInputAction("MoveBack", core::EKeyCode::KeyS));
+    eventManager()->registerAction(engine::SInputAction("MoveLeft", core::EKeyCode::KeyA));
+    eventManager()->registerAction(engine::SInputAction("MoveRight", core::EKeyCode::KeyD));
 
-    engine::CEventManager::get().bindAction("MoveForward", core::EKeyState::Held, this, ACTION_CB(CPlayer, moveForward));
-    engine::CEventManager::get().bindAction("MoveBack", core::EKeyState::Held, this, ACTION_CB(CPlayer, moveBack));
-    engine::CEventManager::get().bindAction("MoveLeft", core::EKeyState::Held, this, ACTION_CB(CPlayer, moveLeft));
-    engine::CEventManager::get().bindAction("MoveRight", core::EKeyState::Held, this, ACTION_CB(CPlayer, moveRight));
+    eventManager()->bindAction("MoveForward", core::EKeyState::Held, this, ACTION_CB(CPlayer, moveForward));
+    eventManager()->bindAction("MoveBack", core::EKeyState::Held, this, ACTION_CB(CPlayer, moveBack));
+    eventManager()->bindAction("MoveLeft", core::EKeyState::Held, this, ACTION_CB(CPlayer, moveLeft));
+    eventManager()->bindAction("MoveRight", core::EKeyState::Held, this, ACTION_CB(CPlayer, moveRight));
 }
 
 CPlayer::~CPlayer()

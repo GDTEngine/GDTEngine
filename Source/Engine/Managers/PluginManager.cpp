@@ -11,38 +11,10 @@
 
 using namespace gdt;
 using namespace engine;
+using namespace priv;
 
 CPluginManager::CPluginManager()
 {
-    core::CFileIterator fileIterator;
-    if (!fileIterator.findFirstFile("Plugins/*.dll"))
-    {
-        return;
-    }
-
-    do
-    {
-        auto pPlugin = new core::CPlugin("Plugins/" + fileIterator.getFilename());
-
-        if (pPlugin->getStatus() == core::EStatus::Failure)
-        {
-            LOG_ERROR("Could not load plugin: " + fileIterator.getFilename());
-            break;
-        }
-
-        m_pPlugins.push_back(pPlugin);
-    }
-    while (fileIterator.findNext());
-
-    for (auto& pPlugin : m_pPlugins)
-    {
-        pPlugin->callFunction("startUpPlugin");
-
-        if (pPlugin->getStatus() == core::EStatus::Failure)
-        {
-            LOG_ERROR("Could not call startUpPlugin.");
-        }
-    }
 }
 
 CPluginManager::~CPluginManager()
@@ -58,4 +30,40 @@ CPluginManager::~CPluginManager()
     }
 
     m_pPlugins.clear();
+}
+
+void CPluginManager::loadPlugins(const std::string& path, IClassManager* classManager)
+{
+    core::CFileIterator fileIterator;
+    if (!fileIterator.findFirstFile(path))
+    {
+        return;
+    }
+
+    auto position = path.find_last_of("/");
+    std::string subpath = path.substr(0, position + 1);
+
+    do
+    {
+        auto pPlugin = new core::CPlugin(subpath + fileIterator.getFilename());
+
+        if (pPlugin->getStatus() == core::EStatus::Failure)
+        {
+            LOG_ERROR("Could not load plugin: " + fileIterator.getFilename());
+            break;
+        }
+
+        m_pPlugins.push_back(pPlugin);
+    }
+    while (fileIterator.findNext());
+
+    for (auto& pPlugin : m_pPlugins)
+    {
+        pPlugin->callFunction("startUpPlugin", classManager);
+
+        if (pPlugin->getStatus() == core::EStatus::Failure)
+        {
+            LOG_ERROR("Could not call startUpPlugin.");
+        }
+    }
 }

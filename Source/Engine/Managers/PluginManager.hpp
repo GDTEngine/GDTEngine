@@ -7,6 +7,7 @@
 #pragma once
 
 #include "EngineAPI.hpp"
+#include "IPluginManager.hpp"
 #include "Plugin.hpp"
 
 #include <vector>
@@ -17,10 +18,12 @@ namespace gdt
     {
         namespace priv
         {
+            class IClassManager;
+
             /**
              * @brief Manager for handling plugins.
              */
-            class ENGINE_API CPluginManager final
+            class ENGINE_API CPluginManager final : public IPluginManager
             {
             public:
 
@@ -33,6 +36,8 @@ namespace gdt
                  * @brief Destructor.
                  */
                 ~CPluginManager();
+
+                void loadPlugins(const std::string& path, IClassManager* classManager);
 
             private:
 

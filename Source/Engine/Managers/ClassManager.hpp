@@ -27,6 +27,9 @@ namespace gdt
 
                 CClassManager();
 
+                /**
+                 * @brief Destructor.
+                 */
                 ~CClassManager();
 
                 /**

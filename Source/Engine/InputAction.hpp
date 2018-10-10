@@ -7,7 +7,6 @@
 #pragma once
 
 #include "BaseTypes.hpp"
-#include "Entity.hpp"
 #include "KeyState.hpp"
 #include "KeyCode.hpp"
 
@@ -17,12 +16,19 @@ namespace gdt
 {
     namespace engine
     {
+        class CEntity;
+
+        namespace priv
+        {
+            class CEventManager;
+        }
+
         /**
          * @brief Information about a certain action.
          */
         struct SInputAction
         {
-            friend class CEventManager;
+            friend priv::CEventManager;
 
         public:
 

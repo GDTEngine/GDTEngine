@@ -10,6 +10,17 @@ using namespace gdt;
 using namespace engine;
 using namespace priv;
 
+
+CClassManager::CClassManager()
+{
+
+}
+
+CClassManager::~CClassManager()
+{
+
+}
+
 CEntity* CClassManager::createEntity(const std::string& className)
 {
     return m_entityClasses.at(className)();

@@ -4,6 +4,12 @@
  * @date     9/28/2018
  */
 
+#pragma once
+
+#include "EngineAPI.hpp"
+
+#include <string>
+
 namespace gdt
 {
     namespace engine
