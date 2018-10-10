@@ -51,6 +51,10 @@ namespace gdt
              * @param deltaTime Time it took to render the last frame in seconds.
              */
             virtual void tick(f32 deltaTime);
+
+        private:
+
+
         };
     }
 }

@@ -8,6 +8,7 @@
 
 using namespace gdt;
 using namespace engine;
+using namespace priv;
 
 CEntity* CClassManager::createEntity(const std::string& className)
 {

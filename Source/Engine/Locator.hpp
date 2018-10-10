@@ -7,6 +7,7 @@
 #pragma once
 
 #include "ClassManager.hpp"
+#include "EngineAPI.hpp"
 #include "PluginManager.hpp"
 
 #include <memory>
@@ -20,15 +21,15 @@ namespace gdt
             class CEngine;
         }
 
-        class CLocator final
+        class ENGINE_API CLocator final
         {
-            friend priv::Engine;
+            friend priv::CEngine;
 
         public:
 
-            std::shared_ptr<CClassManager> classManager();
+            std::shared_ptr<priv::CClassManager> classManager();
 
-            std::shared_ptr<CPluginManager> pluginManager();
+            std::shared_ptr<priv::CPluginManager> pluginManager();
 
         private:
 
