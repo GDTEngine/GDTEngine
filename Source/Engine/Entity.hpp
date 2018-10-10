@@ -7,6 +7,7 @@
 #pragma once
 
 #include "BaseTypes.hpp"
+#include "EngineAPI.hpp"
 
 namespace gdt
 {
@@ -15,7 +16,7 @@ namespace gdt
         /**
          * @brief Base class for all entities.
          */
-        class CEntity
+        class ENGINE_API CEntity
         {
         public:
 
@@ -33,7 +34,7 @@ namespace gdt
 
             void operator=(const CEntity&) = delete;
 
-        protected:
+        public:
 
             /**
              * @brief Called when the class is instantiated.

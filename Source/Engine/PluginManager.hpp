@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "EngineAPI.hpp"
 #include "Plugin.hpp"
 
 #include <vector>
@@ -17,7 +18,7 @@ namespace gdt
         /**
          * @brief Manager for handling plugins.
          */
-        class CPluginManager final
+        class ENGINE_API CPluginManager final
         {
         public:
 
@@ -33,7 +34,7 @@ namespace gdt
 
         private:
 
-            std::vector<std::unique_ptr<core::CPlugin>> m_pPlugins;
+            std::vector<core::CPlugin*> m_pPlugins;
         };
     }
 }

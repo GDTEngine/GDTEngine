@@ -7,12 +7,14 @@
 #pragma once
 
 #include "Entity.hpp"
+#include "Log.hpp"
+#include "SpaceShooterAPI.hpp"
 
 namespace gdt
 {
     namespace space
     {
-        class CPlayer final : public engine::CEntity
+        class SPACESHOOTER_API CPlayer final : public engine::CEntity
         {
         public:
 
@@ -21,6 +23,16 @@ namespace gdt
             ~CPlayer();
 
             void tick(f32 deltaTime) override;
+
+        private:
+
+            void moveForward();
+
+            void moveBack();
+
+            void moveLeft();
+
+            void moveRight();
         };
     }
 }

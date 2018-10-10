@@ -7,6 +7,7 @@
 #pragma once
 
 #include "BaseTypes.hpp"
+#include "CoreAPI.hpp"
 #include "Status.hpp"
 
 #include <string>
@@ -23,7 +24,7 @@ namespace gdt
         /**
          * @brief Wrapper for dll plugin.
          */
-        class CPlugin final
+        class CORE_API CPlugin final
         {
         public:
 

@@ -13,7 +13,7 @@ workspace "GDTEngine"
     language "C++"
     architecture "x86_64"
     configurations { "Debug_Editor", "Debug", "Release_Editor", "Release" }
-    startproject "Engine"
+    startproject "Main"
 
     filter { "configurations:Debug_Editor" }
         symbols "On"
@@ -21,7 +21,7 @@ workspace "GDTEngine"
 
 	filter { "configurations:Debug" }
         symbols "On"
-        defines { "GLEW_STATIC", "GDT_DEBUG" }
+        defines { "GDT_DEBUG" }
 
     filter { "configurations:Release_Editor" }
         optimize "On"
@@ -36,7 +36,7 @@ workspace "GDTEngine"
         systemversion(os.winSdkVersion() .. ".0")
     end
 
-    targetdir ("Build/Bin/%{prj.name}/%{cfg.longname}")
+	targetdir ("Build")
     objdir ("Build/Obj/%{prj.name}/%{cfg.longname}")
 
     -- Third party.
@@ -107,7 +107,6 @@ project "UnitTest_Core"
 
     filter{}
 
-
     linkCore()
 
 group "UnitTests"
@@ -168,14 +167,6 @@ project "UnitTest_Engine"
     kind "ConsoleApp"
     location "Source/Engine/UnitTest"
 
-    files {
-        "Source/Engine/UnitTest/**.cpp",
-        "Source/Engine/UnitTest/**.hpp",
-        "ThirdParty/googletest-release-1.8.1/googletest/src/gtest-all.cc",
-        "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock_main.cc",
-        "ThirdParty/googletest-release-1.8.1/googlemock/src/gmock-all.cc" 
-    }
-
     includedirs {
         "ThirdParty/googletest-release-1.8.1/googletest/include",
         "ThirdParty/googletest-release-1.8.1/googletest/src",
@@ -223,9 +214,12 @@ project "SpaceShooter"
     location "Source/SpaceShooter"
     files { "Source/SpaceShooter/**.hpp", "Source/SpaceShooter/**.inl", "Source/SpaceShooter/**.cpp" }
     targetdir ("Source/Main/Plugins")
-    defines { "GDT_PLUGIN_DLL_EXPORT" }
+    defines { "GDT_PLUGIN_DLL_EXPORT", "SPACESHOOTER_DLL_EXPORT" }
     
     includedirs {
+        "ThirdParty/GLFW/Include",
+        "ThirdParty/GLEW/Include",
+        "ThirdParty/GLM/Include",
         "Source/Core",
         "Source/Graphics",
         "Source/Engine"

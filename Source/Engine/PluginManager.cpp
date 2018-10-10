@@ -22,7 +22,7 @@ CPluginManager::CPluginManager()
 
     do
     {
-        auto pPlugin = std::make_unique<core::CPlugin>("Plugins/" + fileIterator.getFilename());
+        auto pPlugin = new core::CPlugin("Plugins/" + fileIterator.getFilename());
 
         if (pPlugin->getStatus() == core::EStatus::Failure)
         {
@@ -30,7 +30,7 @@ CPluginManager::CPluginManager()
             break;
         }
 
-        m_pPlugins.push_back(std::move(pPlugin));
+        m_pPlugins.push_back(pPlugin);
     }
     while (fileIterator.findNext());
 
