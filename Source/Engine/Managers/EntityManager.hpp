@@ -1,5 +1,5 @@
 /**
- * @file     ClassManager.hpp
+ * @file     EntityManager.hpp
  * @author   Ludvig Arlebrink
  * @date     9/28/2018
  */
@@ -31,6 +31,13 @@ namespace gdt
                  * @brief The maximum amount of entities allowed.
                  */
                 static const int32 MaxEntites = 1024;
+
+            private:
+
+                struct SComponentInfo
+                {
+
+                };
 
             public:
 
