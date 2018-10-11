@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "GraphicsAPI.hpp"
+
 #include <GLEW/glew.h>
 
 namespace gdt
@@ -15,14 +17,19 @@ namespace gdt
         /**
          * @brief Abstract base class for buffer objects.
          */
-        class CBufferObject
+        class GRAPHICS_API CBufferObject
         {
         public:
 
             enum class EAccess
             {
+                /** Read only access. */
                 ReadOnly = GL_READ_ONLY,
+
+                /** Read and write access. */
                 ReadWrite = GL_READ_WRITE,
+
+                /** Write only access. */
                 WriteOnly = GL_WRITE_ONLY
             };
 

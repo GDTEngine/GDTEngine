@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "CoreAPI.hpp"
+
 #include <string>
 
 #ifdef _WIN32
@@ -23,7 +25,7 @@ namespace gdt
          * 
          * Begin by finding the first file, then iterate trough the directory.
          */
-        class CFileIterator final
+        class CORE_API CFileIterator final
         {
         public:
             

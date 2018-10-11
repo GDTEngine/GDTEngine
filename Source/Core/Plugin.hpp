@@ -7,6 +7,7 @@
 #pragma once
 
 #include "BaseTypes.hpp"
+#include "CoreAPI.hpp"
 #include "Status.hpp"
 
 #include <string>
@@ -23,7 +24,7 @@ namespace gdt
         /**
          * @brief Wrapper for dll plugin.
          */
-        class CPlugin final
+        class CORE_API CPlugin final
         {
         public:
 
@@ -58,6 +59,13 @@ namespace gdt
              * @param functionName Name of the function to call.
              */
             void callFunction(const std::string& functionName);
+
+            /**
+             * @brief Call a c function in the plugin without no params or return type.
+             * @param functionName Name of the function to call.
+             * @param param User pointer.
+             */
+            void callFunction(const std::string& functionName, void* param);
 
             /**
              * @brief Get a string of errors.
