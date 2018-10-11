@@ -8,7 +8,7 @@
 
 #include "Entity.hpp"
 #include "Player.hpp"
-#include "Managers/ClassManager.hpp"
+#include "Managers/EntityManager.hpp"
 #include "GDTPluginAPI.hpp"
 
 #include <string>
@@ -18,11 +18,13 @@
 using namespace gdt;
 using namespace space;
 
-GDT_PLUGIN_API void startUpPlugin(engine::priv::CClassManager* initializer)
+GDT_PLUGIN_API void startUpPlugin(engine::priv::CEntityManager* initializer)
 {
     LOG_MSG("Plugin \"SpaceShooter\" Loaded!\n");
 
-    initializer->registerEntity("CPlayer", []()->engine::CEntity* { return new CPlayer; });
+    initializer->registerEntity(typeid(CPlayer).hash_code(), []()->engine::CEntity* { return new CPlayer; });
+
+    initializer->instantiate(typeid(CPlayer).hash_code());
 }
 
 GDT_PLUGIN_API void shutDownPlugin()

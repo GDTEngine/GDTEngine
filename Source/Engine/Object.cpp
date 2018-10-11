@@ -9,7 +9,7 @@
 using namespace gdt;
 using namespace engine;
 
-priv::IClassManager* CObject::m_pClassManager = nullptr;
+priv::IEntityManager* CObject::m_pEntityManager = nullptr;
 priv::IEventManager* CObject::m_pEventManager = nullptr;
 priv::IPluginManager* CObject::m_pPluginManager = nullptr;
 
@@ -21,9 +21,9 @@ CObject::~CObject()
 {
 }
 
-priv::IClassManager* CObject::classManager()
+priv::IEntityManager* CObject::entityManager()
 {
-    return m_pClassManager;
+    return m_pEntityManager;
 }
 
 priv::IEventManager* CObject::eventManager()
@@ -36,17 +36,17 @@ priv::IPluginManager* CObject::pluginManager()
     return m_pPluginManager;
 }
 
-void CObject::provideClassManager(priv::IClassManager* classManager)
+void CObject::provideEntityManager(priv::IEntityManager* pEntityManager)
 {
-    m_pClassManager = classManager;
+    m_pEntityManager = pEntityManager;
 }
 
-void CObject::provideEventManager(priv::IEventManager* eventManager)
+void CObject::provideEventManager(priv::IEventManager* pEventManager)
 {
-    m_pEventManager = eventManager;
+    m_pEventManager = pEventManager;
 }
 
-void CObject::providePluginManager(priv::IPluginManager* pluginManager)
+void CObject::providePluginManager(priv::IPluginManager* pPluginManager)
 {
-    m_pPluginManager = pluginManager;
+    m_pPluginManager = pPluginManager;
 }

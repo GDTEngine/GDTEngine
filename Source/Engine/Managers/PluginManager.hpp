@@ -18,7 +18,7 @@ namespace gdt
     {
         namespace priv
         {
-            class IClassManager;
+            class IEntityManager;
 
             /**
              * @brief Manager for handling plugins.
@@ -37,7 +37,7 @@ namespace gdt
                  */
                 ~CPluginManager();
 
-                void loadPlugins(const std::string& path, IClassManager* classManager);
+                void loadPlugins(const std::string& path, IEntityManager* classManager);
 
             private:
 

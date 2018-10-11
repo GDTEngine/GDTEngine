@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "ClassID.hpp"
 #include "EngineAPI.hpp"
 
 #include <string>
@@ -19,30 +20,30 @@ namespace gdt
         namespace priv
         {
             /**
-             * @brief Manager for handling classes.
+             * @brief Manager for handling entities.
              */
-            class ENGINE_API IClassManager
+            class ENGINE_API IEntityManager
             {
             public:
 
-                using CreateEntityFunction = CEntity * (*)();
+                using CreateEntityFunction = CEntity* (*)();
 
             public:
 
-                virtual ~IClassManager() = default;
+                virtual ~IEntityManager() = default;
 
                 /**
                  * @brief Create an entity.
-                 * @param className Name of the entity class.
+                 * @param classID Hash id of the entity class.
                  */
-                virtual CEntity* createEntity(const std::string& className) = 0;
+                virtual CEntity* instantiate(ClassID classID) = 0;
 
                 /**
                  * @brief Register an entity class.
-                 * @param className Name of the entity class.
+                 * @param classID Hash id of the entity class.
                  * @param function Function used to create an entity.
                  */
-                virtual void registerEntity(const std::string& className, CreateEntityFunction function) = 0;
+                virtual void registerEntity(ClassID classID, CreateEntityFunction function) = 0;
             };
         }
     }

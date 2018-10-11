@@ -32,7 +32,7 @@ CPluginManager::~CPluginManager()
     m_pPlugins.clear();
 }
 
-void CPluginManager::loadPlugins(const std::string& path, IClassManager* classManager)
+void CPluginManager::loadPlugins(const std::string& path, IEntityManager* classManager)
 {
     core::CFileIterator fileIterator;
     if (!fileIterator.findFirstFile(path))

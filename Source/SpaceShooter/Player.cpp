@@ -29,7 +29,7 @@ CPlayer::~CPlayer()
 
 void CPlayer::tick(f32 deltaTime)
 {
-    LOG_MSG("YEY");
+    LOG_MSG(deltaTime);
 }
 
 void CPlayer::moveForward()
