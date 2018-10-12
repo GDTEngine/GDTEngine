@@ -5,6 +5,8 @@
  */
 
 #include "EntityManager.hpp"
+#include "Components/Component.hpp"
+#include "Components/CameraComponent.hpp"
 #include "Entity.hpp"
 
 using namespace gdt;
@@ -19,6 +21,29 @@ CEntityManager::CEntityManager()
 
 CEntityManager::~CEntityManager()
 {
+}
+
+SComponent* CEntityManager::addComponent(EntityID entityID, EComponentType componentType)
+{
+    SComponent* component = nullptr;
+
+    switch (componentType)
+    {
+        case EComponentType::CameraComponent:
+            component = new SCameraComponent;
+            break;
+
+        case EComponentType::MeshRenderComponent:
+            component = new SCameraComponent;
+            break;
+
+        default:
+            break;
+    }
+
+    component->entityID = entityID;
+
+    return component;
 }
 
 CEntity* CEntityManager::instantiate(ClassID classID)

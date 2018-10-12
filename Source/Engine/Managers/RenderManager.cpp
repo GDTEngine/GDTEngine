@@ -10,4 +10,6 @@ using namespace gdt;
 using namespace engine;
 using namespace priv;
 
-
+CRenderManager::~CRenderManager()
+{
+}

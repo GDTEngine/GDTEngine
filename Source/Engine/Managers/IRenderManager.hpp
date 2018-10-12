@@ -12,11 +12,11 @@ namespace gdt
     {
         namespace priv
         {
-            class ENGINE_API IRenderSystem
+            class ENGINE_API IRenderManager
             {
             public:
 
-                virtual ~IRenderSystem() = default;
+                virtual ~IRenderManager() = default;
             };
         }
     }

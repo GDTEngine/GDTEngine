@@ -7,7 +7,9 @@
 #pragma once
 
 #include "ClassID.hpp"
+#include "Components/ComponentType.hpp"
 #include "EngineAPI.hpp"
+#include "EntityID.hpp"
 
 #include <string>
 
@@ -16,6 +18,7 @@ namespace gdt
     namespace engine
     {
         class CEntity;
+        struct SComponent;
 
         namespace priv
         {
@@ -31,6 +34,8 @@ namespace gdt
             public:
 
                 virtual ~IEntityManager() = default;
+
+                virtual SComponent* addComponent(EntityID entityID, EComponentType componentType) = 0;
 
                 /**
                  * @brief Create an entity.

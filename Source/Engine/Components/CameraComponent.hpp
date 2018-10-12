@@ -13,7 +13,7 @@ namespace gdt
 {
     namespace engine
     {
-        struct SCamerComponent final : public SComponent
+        struct SCameraComponent final : public SComponent
         {
         public:
 

@@ -12,11 +12,11 @@ namespace gdt
     {
         namespace priv
         {
-            class ENGINE_API CRenderSystem final : public IRenderSystem
+            class ENGINE_API CRenderManager final : public IRenderManager
             {
             public:
 
-                ~CRenderSystem();
+                ~CRenderManager();
             };
         }
     }

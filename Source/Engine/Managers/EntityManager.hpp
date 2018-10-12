@@ -32,13 +32,6 @@ namespace gdt
                  */
                 static const int32 MaxEntites = 1024;
 
-            private:
-
-                struct SComponentInfo
-                {
-
-                };
-
             public:
 
                 /**
@@ -50,6 +43,13 @@ namespace gdt
                  * @brief Destructor.
                  */
                 ~CEntityManager();
+
+                /**
+                 * @brief Add a component to an entity.
+                 * @param entityId Entity to attach the component to.
+                 * @param componentType Type of component to add.
+                 */
+                virtual SComponent* addComponent(EntityID entityID, EComponentType componentType);
 
                 /**
                  * @brief Create an entity.
@@ -76,6 +76,7 @@ namespace gdt
 
                 EntityID m_entityCount;
                 CEntity* m_pEntities[MaxEntites];
+                SComponent* m_pComponent[MaxEntites * 2];
             };
         }
     }
