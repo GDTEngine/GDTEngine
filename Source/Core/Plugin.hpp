@@ -61,6 +61,13 @@ namespace gdt
             void callFunction(const std::string& functionName);
 
             /**
+             * @brief Call a c function in the plugin without no params or return type.
+             * @param functionName Name of the function to call.
+             * @param param User pointer.
+             */
+            void callFunction(const std::string& functionName, void* param);
+
+            /**
              * @brief Get a string of errors.
              * @return String of errors.
              * @note Only works in debug mode.

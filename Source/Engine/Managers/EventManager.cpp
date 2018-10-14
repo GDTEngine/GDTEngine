@@ -8,6 +8,17 @@
 
 using namespace gdt;
 using namespace engine;
+using namespace priv;
+
+CEventManager::CEventManager()
+{
+
+}
+
+CEventManager::~CEventManager()
+{
+
+}
 
 void CEventManager::bindAction(const std::string& actionId, core::EKeyState state, void* pObject,
     SInputAction::ActionCallback actionCallback)
@@ -24,12 +35,6 @@ void CEventManager::bindAction(const std::string& actionId, core::EKeyState stat
             return;
         }
     }
-}
-
-CEventManager& CEventManager::get()
-{
-    static CEventManager instance;
-    return instance;
 }
 
 void CEventManager::registerAction(const SInputAction& action)
