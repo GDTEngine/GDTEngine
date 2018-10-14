@@ -43,6 +43,7 @@ void CPlugin::callFunction(const std::string& functionName)
     }
 
 #ifdef _WIN32
+
     auto function = reinterpret_cast<void(_cdecl *)()>(GetProcAddress(m_pPlugin, functionName.c_str()));
     if (!function)
     {
@@ -78,7 +79,8 @@ EStatus CPlugin::getStatus() const
 void CPlugin::loadPlugin(const std::string& pluginFilepath)
 {
 #ifdef _WIN32
-    m_pPlugin = LoadLibraryA(pluginFilepath.c_str());
+    
+    m_pPlugin = LoadLibraryExA(pluginFilepath.c_str(), nullptr, 0);
 
     if (!m_pPlugin)
     {

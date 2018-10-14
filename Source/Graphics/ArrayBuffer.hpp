@@ -8,6 +8,7 @@
 
 #include "BaseTypes.hpp"
 #include "BufferObject.hpp"
+#include "GraphicsAPI.hpp"
 
 namespace gdt
 {
@@ -21,7 +22,7 @@ namespace gdt
          *
          * Default usage for this buffer is StaticDraw.
          */
-        class CArrayBuffer final : public CBufferObject
+        class GRAPHICS_API CArrayBuffer final : public CBufferObject
         {
         public:
 

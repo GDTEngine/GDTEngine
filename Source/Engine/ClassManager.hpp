@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "EngineAPI.hpp"
 #include "Entity.hpp"
 
 #include <unordered_map>
@@ -18,11 +19,11 @@ namespace gdt
         /**
          * @brief Manager for handling classes.
          */
-        class CClassManager
+        class ENGINE_API CClassManager
         {
         public:
 
-            using createEntityFunction = CEntity*(*)();
+            using CreateEntityFunction = CEntity * (*)();
 
         public:
 
@@ -43,16 +44,17 @@ namespace gdt
              * @param className Name of the entity class.
              * @param function Function used to create an entity.
              */
-            void registerEntity(const std::string& className, createEntityFunction function);
+            void registerEntity(const std::string& className, CreateEntityFunction function);
 
         private:
 
             CClassManager() = default;
+
             ~CClassManager() = default;
 
         private:
 
-            std::unordered_map<std::string, createEntityFunction> m_entityClasses;
+            std::unordered_map<std::string, CreateEntityFunction> m_entityClasses;
         };
     }
 }

@@ -7,6 +7,7 @@
 #pragma once
 
 #include "BaseTypes.hpp"
+#include "GraphicsAPI.hpp"
 
 #include <memory>
 #include <GLM/glm.hpp>
@@ -19,7 +20,7 @@ namespace gdt
         class CVertexArray;
         class CArrayBuffer;
 
-        class CUIRenderer
+        class GRAPHICS_API CUIRenderer
         {
         private:
 
