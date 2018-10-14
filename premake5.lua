@@ -32,6 +32,7 @@ workspace "GDTEngine"
         defines { "GDT_RELEASE"}
     
     filter {}
+
     if (os.target() == "windows") then
         systemversion(os.winSdkVersion() .. ".0")
     end
@@ -53,6 +54,9 @@ workspace "GDTEngine"
 
     -- Editor.
     include "Source/Editor/Editor.build.lua"
+
+    -- ManagedEngine.
+    include "Source/ManagedEngine/ManagedEngine.build.lua"
 
     -- Main.
     include "Source/Main/Main.build.lua"
