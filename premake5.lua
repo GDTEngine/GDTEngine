@@ -58,6 +58,9 @@ workspace "GDTEngine"
     -- ManagedEngine.
     include "Source/ManagedEngine/ManagedEngine.build.lua"
 
+    -- ManagedEditor.
+    include "Source/ManagedEditor/ManagedEditor.build.lua"
+
     -- Main.
     include "Source/Main/Main.build.lua"
 

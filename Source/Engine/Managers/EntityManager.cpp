@@ -9,8 +9,6 @@
 
 using namespace gdt;
 using namespace engine;
-using namespace priv;
-
 
 CEntityManager::CEntityManager()
     : m_entityCount(0)

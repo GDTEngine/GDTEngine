@@ -18,6 +18,8 @@ project "Engine"
         "../../ThirdParty/GLEW/Include",
         "../../ThirdParty/GLFW/Include",
         "../../ThirdParty/GLM/Include",
+        "../../ThirdParty/Mono/Include",
+        "../../ThirdParty/imgui/",
         "../Core",
         "../Graphics",
         "../Engine",
@@ -26,13 +28,15 @@ project "Engine"
     filter { "system:windows", "architecture:x86_64", "configurations:Debug" }
         libdirs {
             "../../ThirdParty/GLFW/Lib/Win64/Debug",
-            "../../ThirdParty/GLEW/Lib/Win64/Debug"
+            "../../ThirdParty/GLEW/Lib/Win64/Debug",
+            "../../ThirdParty/Mono/Lib/Win64/Debug"
         }
 
     filter { "system:windows", "architecture:x86_64", "configurations:Release" }
         libdirs {
             "../../ThirdParty/GLFW/Lib/Win64/Release",
-            "../../ThirdParty/GLEW/Lib/Win64/Release"
+            "../../ThirdParty/GLEW/Lib/Win64/Release",
+            "../../ThirdParty/Mono/Lib/Win64/Release"
         }
 
     filter {}

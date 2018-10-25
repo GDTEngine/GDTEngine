@@ -11,9 +11,12 @@
 #include "Object.hpp"
 #include "RenderWindow.hpp"
 
+#include <imgui/imgui.h>
+#include <imgui/imgui_impl_glfw.h>
+#include <imgui/imgui_impl_opengl3.h>
+
 using namespace gdt;
 using namespace engine;
-using namespace priv;
 
 CEngine::CEngine()
 {
@@ -25,30 +28,23 @@ CEngine::~CEngine()
 
 void CEngine::run()
 {
-    priv::CEntityManager* entityManager = new priv::CEntityManager;
-    priv::CEventManager* eventManager = new priv::CEventManager;
-    priv::CPluginManager* pluginManager = new priv::CPluginManager;
+    CEntityManager* entityManager = new CEntityManager;
+    engine::CEventManager* eventManager = new engine::CEventManager;
+    CPluginManager* pluginManager = new CPluginManager;
 
     graphics::CRenderWindow window;
     window.create("Window", 1280, 720);
 
-    CObject::provideEntityManager(entityManager);
-    CObject::provideEventManager(eventManager);
-    CObject::providePluginManager(pluginManager);
-
-    pluginManager->loadPlugins("Plugins/*.dll", entityManager);
-
     while (true)
     {
         window.handleInput();
-        
-        core::CWindow::pollEvents();
-        
+        core::CWindow::pollEvents();      
         entityManager->tick(0.05f);
 
         window.clear();
         eventManager->update(window);
         window.display();
+
     }
 
     delete pluginManager;

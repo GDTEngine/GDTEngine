@@ -33,6 +33,11 @@ EKeyState CWindow::getKeyState(EKeyCode keyCode)
     return m_pKeyStates[static_cast<int32>(keyCode)];
 }
 
+GLFWwindow* CWindow::getWindowHandle() const
+{
+    return m_pWindow;
+}
+
 void CWindow::create(const std::string& title, int32 width, int32 height)
 {
     if (!m_sGlfwInitialized)

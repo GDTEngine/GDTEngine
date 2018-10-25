@@ -18,17 +18,12 @@ namespace gdt
     {
         class CEntity;
 
-        namespace priv
-        {
-            class CEventManager;
-        }
-
         /**
          * @brief Information about a certain action.
          */
         struct SInputAction
         {
-            friend priv::CEventManager;
+            friend class CEventManager;
 
         public:
 

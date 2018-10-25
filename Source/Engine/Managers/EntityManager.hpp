@@ -18,58 +18,55 @@ namespace gdt
 {
     namespace engine
     {
-        namespace priv
+        /**
+         * @brief Manager for handling classes.
+         */
+        class ENGINE_API CEntityManager final : public IEntityManager
         {
+        public:
+
             /**
-             * @brief Manager for handling classes.
+             * @brief The maximum amount of entities allowed.
              */
-            class ENGINE_API CEntityManager final : public IEntityManager
-            {
-            public:
+            static const int32 MaxEntites = 1024;
 
-                /**
-                 * @brief The maximum amount of entities allowed.
-                 */
-                static const int32 MaxEntites = 1024;
+        public:
 
-            public:
+            /**
+             * @brief Default constructor.
+             */
+            CEntityManager();
 
-                /**
-                 * @brief Default constructor.
-                 */
-                CEntityManager();
+            /**
+             * @brief Destructor.
+             */
+            ~CEntityManager();
 
-                /**
-                 * @brief Destructor.
-                 */
-                ~CEntityManager();
+            /**
+             * @brief Create an entity.
+             * @param classID Hash id of the entity class.
+             */
+            CEntity* instantiate(ClassID classID) override;
 
-                /**
-                 * @brief Create an entity.
-                 * @param classID Hash id of the entity class.
-                 */
-                CEntity* instantiate(ClassID classID) override;
+            /**
+             * @brief Register an entity class.
+             * @param classID Hash id of the entity class.
+             * @param function Function used to create an entity.
+             */
+            void registerEntity(ClassID classID, CreateEntityFunction function) override;
 
-                /**
-                 * @brief Register an entity class.
-                 * @param classID Hash id of the entity class.
-                 * @param function Function used to create an entity.
-                 */
-                void registerEntity(ClassID classID, CreateEntityFunction function) override;
+            /**
+             * @brief Tick through all enabled and active entites.
+             * @brief deltaTime Delta time.
+             */
+            void tick(f32 deltaTime);
 
-                /**
-                 * @brief Tick through all enabled and active entites.
-                 * @brief deltaTime Delta time.
-                 */
-                void tick(f32 deltaTime);
+        private:
 
-            private:
+            std::unordered_map<ClassID, CreateEntityFunction> m_entityClasses;
 
-                std::unordered_map<ClassID, CreateEntityFunction> m_entityClasses;
-
-                EntityID m_entityCount;
-                CEntity* m_pEntities[MaxEntites];
-            };
-        }
+            EntityID m_entityCount;
+            CEntity* m_pEntities[MaxEntites];
+        };
     }
 }

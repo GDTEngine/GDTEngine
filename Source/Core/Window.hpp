@@ -52,6 +52,12 @@ namespace gdt
             EKeyState getKeyState(EKeyCode keyCode);
 
             /**
+             * @brief Get a pointer to the glfw window.
+             * @return Pointer to the glfw window.
+             */
+            GLFWwindow* getWindowHandle() const;
+
+            /**
              * @brief Handle window related input.
              */
             void handleInput();

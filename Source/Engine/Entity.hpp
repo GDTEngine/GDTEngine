@@ -18,17 +18,12 @@ namespace gdt
 {
     namespace engine
     {
-        namespace priv
-        {
-            class CEntityManager;
-        }
-
         /**
          * @brief Base class for all entities.
          */
         class ENGINE_API CEntity : public CObject
         {
-            friend priv::CEntityManager;
+            friend class CEntityManager;
 
         public:
 

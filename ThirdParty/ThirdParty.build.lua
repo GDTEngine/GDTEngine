@@ -16,3 +16,14 @@ function linkGLFW()
 
     filter {}
 end
+
+function linkMono()
+
+    filter { "kind:not StaticLib", "system:windows" }
+        links { "mono-2.0-sgen" }
+
+    filter { "kind:not StaticLib", "system:not windows" }
+        links { "mono-2.0-sgen" }
+
+    filter {}
+end

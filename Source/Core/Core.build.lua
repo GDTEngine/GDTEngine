@@ -17,26 +17,29 @@ project "Core"
     includedirs {
         "../../ThirdParty/GLFW/Include",
         "../../ThirdParty/GLEW/Include",
-        "../../ThirdParty/GLM/Include"
+        "../../ThirdParty/GLM/Include",
+        "../../ThirdParty/Mono/Include"
     }
 
     filter { "system:windows", "architecture:x86_64", "configurations:Debug" }
         libdirs {
             "../../ThirdParty/GLFW/Lib/Win64/Debug",
-            "../../ThirdParty/GLEW/Lib/Win64/Debug"
+            "../../ThirdParty/GLEW/Lib/Win64/Debug",
+            "../../ThirdParty/Mono/Lib/Win64/Debug"
         }
 
     filter { "system:windows", "architecture:x86_64", "configurations:Release" }
         libdirs {
             "../../ThirdParty/GLFW/Lib/Win64/Release",
-            "../../ThirdParty/GLEW/Lib/Win64/Release"
+            "../../ThirdParty/GLEW/Lib/Win64/Release",
+            "../../ThirdParty/Mono/Lib/Win64/Release"
         }
 
     filter {}
 
     linkGLEW()
     linkGLFW()
-
+    linkMono()
 
 function linkCore()
     filter { "kind:not StaticLib", "system:windows" }
@@ -49,4 +52,5 @@ function linkCore()
 
     linkGLEW()
     linkGLFW()
+    linkMono()
 end

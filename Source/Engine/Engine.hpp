@@ -14,24 +14,21 @@ namespace gdt
 {
     namespace engine
     {
-        namespace priv
+        class ENGINE_API CEngine
         {
-            class ENGINE_API CEngine
-            {
-            public:
+        public:
 
-                CEngine();
+            CEngine();
 
-                CEngine(const CEngine&) = delete;
+            CEngine(const CEngine&) = delete;
 
-                CEngine(CEngine&&) = delete;
+            CEngine(CEngine&&) = delete;
 
-                ~CEngine();
+            ~CEngine();
 
-                void operator=(CEngine&) = delete;
+            void operator=(CEngine&) = delete;
 
-                void run();
-            };
-        }
+            void run();
+        };
     }
 }

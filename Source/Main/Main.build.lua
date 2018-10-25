@@ -13,18 +13,19 @@ project "Main"
         "../../ThirdParty/GLEW/Include",
         "../../ThirdParty/GLFW/Include",
         "../../ThirdParty/GLM/Include",
+        "../../ThirdParty/Mono/Include",
+        "../../ThirdParty/imgui/",
         "../Core",
         "../Graphics",
         "../Engine",
         "../Editor/"
     }
-
     
     filter { "system:windows", "architecture:x86_64", "configurations:Debug" }
         libdirs { 
             "../../ThirdParty/GLFW/Lib/Win64/Debug",
             "../../ThirdParty/GLEW/Lib/Win64/Debug",
-            "../../ThirdParty/Mono/Lib/Win64/Debug"
+            "../../ThirdParty/Mono/Lib/Win64/Debug",
         }
 
     filter { "system:not windows", "architecture:x86_64", "configurations:Debug" }
@@ -46,4 +47,4 @@ project "Main"
             "../../ThirdParty/GLEW/Lib/Unix64/Release"
         }
 
-    linkEngine()
+    linkEditor()

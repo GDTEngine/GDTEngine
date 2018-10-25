@@ -16,33 +16,30 @@ namespace gdt
 {
     namespace engine
     {
-        namespace priv
+        class IEntityManager;
+
+        /**
+         * @brief Manager for handling plugins.
+         */
+        class ENGINE_API CPluginManager final : public IPluginManager
         {
-            class IEntityManager;
+        public:
 
             /**
-             * @brief Manager for handling plugins.
+             * @brief Default constructor.
              */
-            class ENGINE_API CPluginManager final : public IPluginManager
-            {
-            public:
+            CPluginManager();
 
-                /**
-                 * @brief Default constructor.
-                 */
-                CPluginManager();
+            /**
+             * @brief Destructor.
+             */
+            ~CPluginManager();
 
-                /**
-                 * @brief Destructor.
-                 */
-                ~CPluginManager();
+            void loadPlugins(const std::string& path, IEntityManager* classManager);
 
-                void loadPlugins(const std::string& path, IEntityManager* classManager);
+        private:
 
-            private:
-
-                std::vector<core::CPlugin*> m_pPlugins;
-            };
-        }
+            std::vector<core::CPlugin*> m_pPlugins;
+        };
     }
 }

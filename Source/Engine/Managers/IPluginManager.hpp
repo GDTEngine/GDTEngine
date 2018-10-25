@@ -13,17 +13,14 @@ namespace gdt
 {
     namespace engine
     {
-        namespace priv
+        class ENGINE_API IPluginManager
         {
-            class ENGINE_API IPluginManager
-            {
-            public:
+        public:
 
-                /**
-                 * @brief Destructor.
-                 */
-                virtual ~IPluginManager() = default;
-            };
-        }
+            /**
+             * @brief Destructor.
+             */
+            virtual ~IPluginManager() = default;
+        };
     }
 }
