@@ -5,6 +5,8 @@
 */
 
 #include "Engine.hpp"
+#include "Managers/BehaviorManager.hpp"
+#include "Managers/CSharpManager.hpp"
 #include "Managers/EntityManager.hpp"
 #include "Managers/EventManager.hpp"
 #include "Managers/PluginManager.hpp"
@@ -28,9 +30,20 @@ CEngine::~CEngine()
 
 void CEngine::run()
 {
-    CEntityManager* entityManager = new CEntityManager;
-    engine::CEventManager* eventManager = new engine::CEventManager;
-    CPluginManager* pluginManager = new CPluginManager;
+    CEntityManager* pEntityManager = new CEntityManager;
+    CObject::provideEntityManager(pEntityManager);
+
+    CEventManager* pEventManager = new CEventManager;
+    CObject::provideEventManager(pEventManager);
+    
+    CPluginManager* pPluginManager = new CPluginManager;
+    CObject::providePluginManager(pPluginManager);
+
+    CCSharpManager* pCSsharpManager = new CCSharpManager;
+    CObject::provideCSharpManager(pCSsharpManager);
+
+    CBehaviorManager* pBehaviorManager = new CBehaviorManager;
+    CObject::provideBehaviorManager(pBehaviorManager);
 
     graphics::CRenderWindow window;
     window.create("Window", 1280, 720);
@@ -39,15 +52,17 @@ void CEngine::run()
     {
         window.handleInput();
         core::CWindow::pollEvents();      
-        entityManager->tick(0.05f);
+
+        pBehaviorManager->preTick(0.01f);
+        pBehaviorManager->tick(0.01f);
+        pBehaviorManager->postTick(0.01f);
 
         window.clear();
-        eventManager->update(window);
+        pEventManager->update(window);
         window.display();
-
     }
 
-    delete pluginManager;
-    delete eventManager;
-    delete entityManager;
+    delete pPluginManager;
+    delete pEventManager;
+    delete pEntityManager;
 }

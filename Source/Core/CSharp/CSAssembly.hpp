@@ -4,11 +4,15 @@
  * @date     10/25/2018
  */
 
+#pragma once
+
+#include "../BaseTypes.hpp"
 #include "../CoreAPI.hpp"
 
 #include <mono/jit/jit.h>
 #include <mono/metadata/assembly.h>
 #include <string>
+#include <vector>
 
 namespace gdt
 {
@@ -23,6 +27,8 @@ namespace gdt
         public:
 
             CCSClass* getClass(const std::string& classNamespace, const std::string& className);
+
+            std::vector<CCSClass*> getAllClasses();
 
         private:
 

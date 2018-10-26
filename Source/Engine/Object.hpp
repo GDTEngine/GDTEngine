@@ -7,11 +7,11 @@
 #pragma once
 
 #include "EngineAPI.hpp"
+#include "Managers/IBehaviorManager.hpp"
+#include "Managers/ICSharpManager.hpp"
 #include "Managers/IEntityManager.hpp"
 #include "Managers/IPluginManager.hpp"
 #include "Managers/IEventManager.hpp"
-
-#include <memory>
 
 namespace gdt
 {
@@ -37,6 +37,18 @@ namespace gdt
             virtual ~CObject();
 
             /**
+             * @brief Get the behavior manager.
+             * @return Behavior manager.
+             */
+            static IBehaviorManager* behaviorManager();
+            
+            /**
+             * @brief Get the csharp manager.
+             * @return CSharp manager.
+             */
+            static ICSharpManager* csharpManager();
+
+            /**
              * @brief Get the class manager.
              * @return Class manager.
              */
@@ -55,6 +67,10 @@ namespace gdt
             static IPluginManager* pluginManager();
 
         private:
+            
+            static void provideBehaviorManager(IBehaviorManager* pBehaviorManager);
+
+            static void provideCSharpManager(ICSharpManager* pCSharpManager);
 
             static void provideEntityManager(IEntityManager* pEntityManager);
 
@@ -64,6 +80,8 @@ namespace gdt
 
         private:
 
+            static IBehaviorManager* m_pBehaviorManager;
+            static ICSharpManager* m_pCSharpManager;
             static IEntityManager* m_pEntityManager;
             static IEventManager* m_pEventManager;
             static IPluginManager* m_pPluginManager;

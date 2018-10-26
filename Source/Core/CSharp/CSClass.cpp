@@ -10,7 +10,7 @@
 using namespace gdt;
 using namespace core;
 
-CCSMethod* CCSClass::findMethod(const std::string& methodName)
+CCSMethod* CCSClass::getMethod(const std::string& methodName)
 {
     MonoMethod* pMonoMethod = nullptr;
     void* pIterator = nullptr;
@@ -26,6 +26,16 @@ CCSMethod* CCSClass::findMethod(const std::string& methodName)
     }
 
     return nullptr;
+}
+
+std::string CCSClass::getName() const
+{
+    return mono_class_get_name(m_pClass);
+}
+
+bool CCSClass::isSubclassOf(CCSClass* pClass)
+{
+    return mono_class_is_subclass_of(m_pClass, pClass->m_pClass, false);
 }
 
 CCSClass::CCSClass()

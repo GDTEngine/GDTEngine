@@ -11,12 +11,10 @@ using namespace engine;
 
 CEventManager::CEventManager()
 {
-
 }
 
 CEventManager::~CEventManager()
 {
-
 }
 
 void CEventManager::bindAction(const std::string& actionId, core::EKeyState state, void* pObject,

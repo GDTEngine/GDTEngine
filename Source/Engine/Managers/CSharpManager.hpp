@@ -6,12 +6,14 @@
 
 #pragma once
 
-#include "BaseTypes.hpp"
 #include "CSharp/CSAssembly.hpp"
 #include "CSharp/CSClass.hpp"
 #include "CSharp/CSDomain.hpp"
 #include "CSharp/CSMethod.hpp"
 #include "CSharp/CSObject.hpp"
+#include "EngineAPI.hpp"
+#include "ICSharpManager.hpp"
+#include "Object.hpp"
 
 #include <unordered_map>
 
@@ -19,7 +21,7 @@ namespace gdt
 {
     namespace engine
     {
-        class CCSharpManager
+        class ENGINE_API CCSharpManager : public CObject, public ICSharpManager
         {
         public:
 
@@ -33,19 +35,14 @@ namespace gdt
              */
             ~CCSharpManager();
 
-            void preTick(f32 deltaTime);
-
-            void tick(f32 deltaTime);
-
-            void postTick(f32 deltaTime);
-
         private:
 
             core::CCSDomain* m_pDomain;
             core::CCSAssembly* m_pEngineAssembly;
 
-            std::unordered_map<std::string, core::CCSClass*> m_pClasses;
-            std::vector<core::CCSObject*> m_pBehaviorObjects;
+            core::CCSMethod* m_pBehaviorTickMethod;
+
+            std::unordered_map<std::string, core::CCSClass*> m_pBehaviorClasses;
         };
     }
 }

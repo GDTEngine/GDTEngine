@@ -14,17 +14,11 @@
 
 using namespace gdt;
 
-void interop_fubar()
-{
-    std::cout << "fubar interop called" << std::endl;
-}
-
 int main(int argc, char* argv[])
 {
+    engine::CEngine* engine = new engine::CEngine;
+    engine->run();
 
-    // engine::priv::CEngine* engine = new engine::priv::CEngine;
-    // engine->run();
-
-    editor::CEditor* editor = new editor::CEditor;
-    editor->run();
+    // editor::CEditor* editor = new editor::CEditor;
+    // editor->run();
 }

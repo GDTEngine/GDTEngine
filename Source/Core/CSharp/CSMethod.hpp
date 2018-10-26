@@ -4,6 +4,8 @@
  * @date     10/25/2018
  */
 
+#pragma once
+
 #include "../CoreAPI.hpp"
 #include "../BaseTypes.hpp"
 
@@ -22,13 +24,17 @@ namespace gdt
 
         public:
 
-            void* callStatic();
+            void call(CCSObject* pObject);
 
-            void* callStatic(void** params);
+            void call(CCSObject* pObject, void** pParams);
 
-            void* call(CCSObject* object);
+            void callStatic();
 
-            void* call(CCSObject* object, void** params);
+            void callStatic(void** pParams);
+
+            void callVirtual(CCSObject* pObject);
+
+            void callVirtual(CCSObject* pObject, void** pParams);
 
         private:
             

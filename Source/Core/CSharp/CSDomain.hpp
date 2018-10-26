@@ -4,6 +4,8 @@
  * @date     10/25/2018
  */
 
+#pragma once
+
 #include "../CoreAPI.hpp"
 
 #include <mono/jit/jit.h>

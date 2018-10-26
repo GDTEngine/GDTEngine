@@ -4,6 +4,8 @@
  * @date     10/25/2018
  */
 
+#pragma once
+
 #include "../CoreAPI.hpp"
 
 #include <mono/jit/jit.h>
@@ -24,7 +26,11 @@ namespace gdt
 
         public:
 
-            CCSMethod* findMethod(const std::string& methodName);
+            CCSMethod* getMethod(const std::string& methodName);
+
+            std::string getName() const;
+
+            bool isSubclassOf(CCSClass* pClass);
 
         private:
 

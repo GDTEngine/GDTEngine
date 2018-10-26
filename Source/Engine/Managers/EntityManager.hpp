@@ -1,5 +1,5 @@
 /**
- * @file     ClassManager.hpp
+ * @file     EntityManager.hpp
  * @author   Ludvig Arlebrink
  * @date     9/28/2018
  */

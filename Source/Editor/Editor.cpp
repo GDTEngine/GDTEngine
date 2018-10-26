@@ -128,7 +128,7 @@ void CEditor::run()
     core::CCSAssembly* pEditorAssembly = pDomain->openAssembly("ManagedEditor.dll");
     core::CCSClass* pClass = pEditorAssembly->getClass("GDT.Editor", "EditorWindow");
     core::CCSObject* pObject = pDomain->newObject(pClass);
-    core::CCSMethod* pDrawMethod = pClass->findMethod("Draw");
+    core::CCSMethod* pDrawMethod = pClass->getMethod("Draw");
 
     mono_add_internal_call("GDT.Editor.EditorUI::Button", reinterpret_cast<void*>(CEditorUI::button));
     mono_add_internal_call("GDT.Editor.EditorUI::FloatField", reinterpret_cast<void*>(CEditorUI::floatField));

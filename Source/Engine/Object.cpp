@@ -9,6 +9,8 @@
 using namespace gdt;
 using namespace engine;
 
+IBehaviorManager* CObject::m_pBehaviorManager = nullptr;
+ICSharpManager* CObject::m_pCSharpManager = nullptr;
 IEntityManager* CObject::m_pEntityManager = nullptr;
 IEventManager* CObject::m_pEventManager = nullptr;
 IPluginManager* CObject::m_pPluginManager = nullptr;
@@ -19,6 +21,16 @@ CObject::CObject()
 
 CObject::~CObject()
 {
+}
+
+IBehaviorManager* CObject::behaviorManager()
+{
+    return m_pBehaviorManager;
+}
+
+ICSharpManager* CObject::csharpManager()
+{
+    return m_pCSharpManager;
 }
 
 IEntityManager* CObject::entityManager()
@@ -34,6 +46,16 @@ IEventManager* CObject::eventManager()
 IPluginManager* CObject::pluginManager()
 {
     return m_pPluginManager;
+}
+
+void CObject::provideBehaviorManager(IBehaviorManager* pBehaviorManager)
+{
+    m_pBehaviorManager = pBehaviorManager;
+}
+
+void CObject::provideCSharpManager(ICSharpManager* pCSharpManager)
+{
+    m_pCSharpManager = pCSharpManager;
 }
 
 void CObject::provideEntityManager(IEntityManager* pEntityManager)
