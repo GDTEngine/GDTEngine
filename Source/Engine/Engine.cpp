@@ -12,6 +12,7 @@
 #include "Managers/PluginManager.hpp"
 #include "Object.hpp"
 #include "RenderWindow.hpp"
+#include "XMLNode.hpp"
 
 #include <imgui/imgui.h>
 #include <imgui/imgui_impl_glfw.h>
@@ -47,6 +48,9 @@ void CEngine::run()
 
     graphics::CRenderWindow window;
     window.create("Window", 1280, 720);
+
+    core::CXMLNode* node = new core::CXMLNode("Data/Scenes/Scene1.xml");
+    node->save("Data/Scenes/Scene2.xml");
 
     while (true)
     {
