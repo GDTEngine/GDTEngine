@@ -22,5 +22,7 @@ void CLevelManager::loadLevel(const std::string& levelName)
 {
     core::CXMLNode* pXMLNode = new core::CXMLNode("Data/Levels/" + levelName + ".xml");
 
+
+
     delete pXMLNode;
 }
