@@ -49,8 +49,8 @@ void CEngine::run()
     graphics::CRenderWindow window;
     window.create("Window", 1280, 720);
 
-    core::CXMLNode* node = new core::CXMLNode("Data/Scenes/Scene1.xml");
-    node->save("Data/Scenes/Scene2.xml");
+    core::CXMLNode* node = new core::CXMLNode("Data/Levels/Level1.xml");
+    node->save("Data/Levels/Level2.xml");
 
     while (true)
     {

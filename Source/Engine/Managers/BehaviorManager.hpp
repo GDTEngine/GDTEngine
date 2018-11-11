@@ -21,8 +21,14 @@ namespace gdt
         {
         public:
 
+            /**
+             * @brief Constructor.
+             */
             CBehaviorManager();
 
+            /**
+             * @brief Destructor.
+             */
             ~CBehaviorManager();
 
             void postTick(f32 deltaTime) override;
